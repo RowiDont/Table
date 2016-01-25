@@ -28,7 +28,7 @@ Table is a web application clone of the restaurant booking service OpenTable usi
 [schema]: ./docs/schema.md
 
 ## Implementation Timeline
-''
+
 ### Phase 1: Restaurant Model, JSON API (1.5 day)
 
 Phase 1 is focused on setting up the Restaurant model and its corresponding
@@ -56,6 +56,9 @@ Phase 3 will implement user Authorization through Facebook and Google, as well
 as standard user creation/authentication. Full sign up and sign in views will
 be created, including proper CSS.
 
+[Details][phase-three]
+
+
 ## Phase 4: Reservation model and JSON API (2 days)
 
 Phase 4 will focus on creating the Rails model for reservations. The main points
@@ -65,6 +68,8 @@ submitting conflicting reservations is an unavoidable situation. Resolution and
 error messaging on the Rails side for this scenario will be handled in this
 phase.
 
+[Details][phase-four]
+
 ## Phase 5: Combine Reservation search with Restaurant search (2.5 days)
 
 The first part of Phase 5 will focus on starting a reservation on a restaurant
@@ -73,11 +78,15 @@ store, and reservation index. The restaurant-index search bar will take the
 currently selected location (SF/NYC) into account when searching. Additionally,
 the filters must be adapted to work with reservation searches.
 
+[Details][phase-five]
+
 ## Phase 6: Create the reviews model, JSON api, and react components (1 day)
 
 In this phase I will add a form component that will be available to a user
 after they have dined at a restaurant. This will require a join table to see
 if a user has eaten there or not. Then I will make the form react components.
+
+[Details][phase-six]
 
 ### Bonus Features (TBD)
 - [ ] Create a restaurant
@@ -90,4 +99,4 @@ if a user has eaten there or not. Then I will make the form react components.
 [phase-three]: ./docs/phases/phase3.md
 [phase-four]: ./docs/phases/phase4.md
 [phase-five]: ./docs/phases/phase5.md
-[phase-five]: ./docs/phases/phase6.md
+[phase-six]: ./docs/phases/phase6.md
