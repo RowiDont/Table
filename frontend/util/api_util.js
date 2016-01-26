@@ -1,3 +1,5 @@
+var ApiAction = require('../actions/api_actions');
+
 var ApiUtil = {
   fetchCities: function () {
     $.ajax({
@@ -5,7 +7,7 @@ var ApiUtil = {
       type: "GET",
       dataType: 'json',
       success: function (data) {
-        console.log(data);
+        ApiAction.receiveAllCities(data);
       },
       errors: function () {
         console.log("City fetch failed");

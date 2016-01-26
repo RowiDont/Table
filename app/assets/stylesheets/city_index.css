@@ -1,0 +1,16 @@
+.city {
+  float: left;
+  width: 49%;
+  text-align: center;
+  padding: 50px 0;
+  border: 1px solid #eee;
+}
+
+.city h2 {
+  font-size: 24px;
+}
+
+.city .count {
+  font-size: 12px;
+  color: grey;
+}
