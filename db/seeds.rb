@@ -1,11 +1,7 @@
 require_relative 'opentable_api.rb'
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+# ----------- NEW YORK -----------
 
 # Make a city!
 new_york = City.create!(name: "New York");
@@ -36,6 +32,54 @@ def get_data
   # debugger
   client = Client.new
   client.restaurants({city: "New York"})
+end
+
+data = get_data["restaurants"]
+
+data.each do |r|
+  Restaurant.create!(name: r["name"],
+                     address: r["address"],
+                     postal_code: r["postal_code"],
+                     lat: r["lat"],
+                     lng: r["lng"])
+
+end
+
+
+
+
+
+
+
+
+
+
+# ----------- SAN FRANCISCO -----------
+
+zipcodes = ["94102", "94103", "94104", "94105", "94107", "94108", "94109", "94110", "94111", "94112", "94114", "94115", "94116", "94117", "94118", "94121", "94122", "94123", "94124", "94127", "94129", "94130", "94131", "94132", "94133", "94134", "94158"]
+
+# Make a city!
+san_francisco = City.create!(name: "San Francisco");
+
+# ----------------------------- #
+
+# Make all the zipcodes!
+zipcodes.each do |zip|
+  Postalcode.create!(city_id: san_francisco.id, code: zip)
+end
+
+# ----------------------------- #
+
+# Make the restaurants
+
+# API calls, careful!
+
+include OpenTable
+
+def get_data
+  # debugger
+  client = Client.new
+  client.restaurants({city: "San Francisco"})
 end
 
 data = get_data["restaurants"]
