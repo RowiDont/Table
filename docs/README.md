@@ -2,7 +2,7 @@
 
 [Heroku link][heroku] **RP:** Heroku setup in progress
 
-[heroku]: http://www.herokuapp.com
+[heroku]: http://table-clone.herokuapp.com/
 
 ## Minimum Viable Product:
 
