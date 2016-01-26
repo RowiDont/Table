@@ -1,3 +1,41 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.nav-logo {
+  float: left;
+  padding-right: 20px;
+  margin: 10px 20px;
+  border-right: 1px solid #eee;
+}
+
+.header-nav {
+  padding: 0 50px;
+  max-width: 800px;
+  margin: auto;
+  border-bottom: 1px solid #eee;
+}
+
+.logo {
+  vertical-align: middle;
+  // margin-top: 10px;
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  background: rgb(208, 74, 74);
+  border-radius: 50%;
+}
+
+.logo-text {
+  vertical-align: middle;
+  display: inline-block;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 0 10px;
+}
+
+#content {
+  padding: 0 50px;
+  max-width: 800px;
+  margin: auto;
+}
