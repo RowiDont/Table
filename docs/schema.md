@@ -5,8 +5,8 @@ column name    | data type | details
 ---------------|-----------|-----------------------
 id             | integer   | not null, primary key
 name           | string    | not null, indexed
-neighborhood_id| integer   | not null, foreign key (references neighborhoods), indexed
 address        | string    | not null
+neighborhood_id| integer   | not null, foreign key (references neighborhoods), indexed
 cuisine_id     | integer   | not null, foreign key (references cuisines), indexed
 
 ## Neighborhoods
@@ -56,13 +56,13 @@ column name     | data type | details
 ----------------|-----------|-----------------------
 id              | integer   | not null, primary key
 email           | string    | not null, indexed, unique
-password_digest | string    | not null
+password_digest | string    | not null, indexed
 session_token   | string    | not null, indexed, unique
 
 ## reviews
 column name   | data type | details
 --------------|-----------|-----------------------
 id            | integer   | not null, primary key
-user_id       | string    | not null
-restaurant_id | integer   | not null, foreign key (references restaurant), indexed, unique [tag_id]
+user_id       | string    | not null, foreign key (references users), indexed, unique [restaurant_id]
+restaurant_id | integer   | not null, foreign key (references restaurant), indexed, unique [user_id]
 body          | text      | not null
