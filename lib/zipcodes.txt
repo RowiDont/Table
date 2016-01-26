@@ -1,0 +1,61 @@
+10001 - West Midtown
+10001 - Chelsea
+10002 - Lower East Side
+10003 - Greenwich Village
+10003 - Union Square
+10003 - Gramercy
+10003 - Flatiron
+10004 - Battery Park City
+10005 - Financial District
+10006 - Financial District
+10006 - Battery Park City
+10007 - Tribeca
+10007 - Financial District
+10009 - East Village
+10010 - Gramercy
+10010 - Flatiron
+10011 - Chelsea
+10011 - Village
+10012 - Village
+10012 - NoHo
+10012 - Soho
+10013 - Tribeca
+10013 - Soho
+10014 - West Village
+10014 - Soho
+10016 - Murray Hill
+10016 - Kips Bay
+10017 - Midtown East
+10018 - Midtown West
+10019 - Midtown West
+10021 - Upper East Side
+10022 - Midtown East
+10023 - Upper West Side
+10024 - Upper West Side
+10025 - Upper West Side
+10026 - Morningside Heights
+10026 - Harlem
+10027 - Morningside Heights
+10027 - Harlem
+10028 - Upper East Side
+10029 - East Harlem
+10029 - Carnegie Hill
+10030 - Harlem
+10031 - Hamilton Heights
+10031 - Sugar Hill
+10032 - Washington Heights
+10033 - Washington Heights
+10034 - Inwood
+10035 - Harlem
+10036 - Midtown West
+10037 - Harlem
+10038 - Financial District
+10038 - Seaport
+10039 - Harlem
+10040 - Washington Heights
+10065 - Upper East Side
+10069 - Upper West Side
+10075 - Upper East Side
+10103 - Midtown West
+10128 - Upper East Side
+10280 - Battery Park City

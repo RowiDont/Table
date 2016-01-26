@@ -6,15 +6,15 @@ column name    | data type | details
 id             | integer   | not null, primary key
 name           | string    | not null, indexed
 address        | string    | not null
-neighborhood_id| integer   | not null, foreign key (references neighborhoods), indexed
+postal_code    | integer   | not null, foreign key (references zipcodes), indexed
 cuisine_id     | integer   | not null, foreign key (references cuisines), indexed
 
-## Neighborhoods
+## zipcodes
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-city_id     | integer   | not null, foreign key (references cities), indexed
-name        | string    | not null
+code        | integer   | not null
+city_id     | integer   | not null, foreign key (references cities)
 
 ## Cities
 column name | data type | details
