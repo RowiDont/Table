@@ -26,5 +26,4 @@ RestaurantStore.__onDispatch = function (payload) {
   }
 };
 
-window.RestaurantStore = RestaurantStore;
 module.exports = RestaurantStore;

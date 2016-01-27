@@ -4,8 +4,39 @@ var React = require('react'),
 
 
 var CityIndexItem = React.createClass({
+  getInitialState: function () {
+    return { restaurants: {} };
+  },
+
+  _onChange: function () {
+    this.setState({ restaurants: RestaurantStore.all() });
+  },
+
+  componentDidMount: function () {
+    this.token = RestaurantStore.addListener(this._onChange);
+    ApiUtil.fetchRestaurants(this.props.params.city_id);
+  },
+
+  componentWillUnmount: function () {
+    this.token.remove();
+  },
+
   render: function () {
-    return <div>CityIndexItem</div>;
+    var list = Object.keys(this.state.restaurants).map(function (key) {
+      var restaurant = this.state.restaurants[key].restaurant,
+          name = restaurant.name,
+          address = restaurant.address;
+
+      return (
+
+        <li className="restaurant-item" key={key}>
+          <h3 className="restaurant-item-name">{name}</h3>
+          <span className="restaurant-item-address">{address}</span>
+        </li>
+      );
+    }.bind(this));
+
+    return <ul>{list}</ul>;
   }
 });
 

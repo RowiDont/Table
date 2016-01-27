@@ -12,21 +12,33 @@ var CityIndex = React.createClass({
   },
 
   componentDidMount: function () {
-    CityStore.addListener(this._onChange);
+    this.token = CityStore.addListener(this._onChange);
     ApiUtil.fetchCities();
+  },
+
+  componentWillUnmount: function () {
+    this.token.remove();
+  },
+
+  clickRedirect: function (e){
+    e.preventDefault();
+    var path = "/cities/" + e.currentTarget.id;
+    this.props.history.pushState("", path);
   },
 
   render: function () {
     var cities = this.state.cities.map(function (city, index) {
       var link = "#cities/" + city.id;
       return (<a href={link}
+                 id={city.id}
                  className="city"
-                 key={index}>
+                 key={index}
+                 onClick={this.clickRedirect}>
                <h2>{city.name}</h2>
                <div className="count">(Restaurants: {city.count})</div>
               </a>
              );
-    });
+    }.bind(this));
 
     return <ul className="city-grid group">{cities}</ul>;
   }
