@@ -27,11 +27,27 @@ var CityIndexItem = React.createClass({
           name = restaurant.name,
           address = restaurant.address;
 
+      var priceCt = parseInt(restaurant.price);
+      var pricing = [];
+      for (var i = 0; i < 4; i++) {
+        var klass;
+        if (priceCt > 0) {
+          klass = "selected";
+        } else {
+          klass = "";
+        }
+        pricing.push(<span key={i} className={klass}>$</span>);
+        priceCt--;
+      }
+      // debugger
+
+
       return (
 
         <li className="restaurant-item" key={key}>
           <h3 className="restaurant-item-name">{name}</h3>
           <span className="restaurant-item-address">{address}</span>
+          <div className="price">{pricing}</div>
         </li>
       );
     }.bind(this));
