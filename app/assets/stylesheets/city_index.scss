@@ -1,23 +1,67 @@
+.city-index-welcome {
+  background: white;
+  padding: 20px 20px 20px 10px;
+  margin-bottom: 20px;
+}
+
+.city-index-welcome h1 {
+  font-size: 36px;
+  font-weight: 400;
+}
+
+.city-index-welcome h2 {
+  font-size: 20px;
+}
+
+.city-grid-container {
+  background: white;
+}
+
+.city-grid-container > h2 {
+  padding: 20px;
+  font-size: 20px;
+}
+
+
 .city {
   box-sizing: border-box;
   float: left;
   width: 50%;
   text-align: center;
-  padding: 70px 0;
-  border: 1px solid #eee;
-  border-top: 0;
-  text-shadow: 3px black;
-}
-
-.city:nth-of-type(even) {
-  border-left: 0;
+  padding: 100px 0;
+  text-shadow: #CCC 1px 0 10px;
+  background: white;
+  font-weight: 300;
 }
 
 .city h2 {
   font-size: 24px;
+  color: white;
 }
 
 .city .count {
   font-size: 12px;
-  color: grey;
+  color: white;
+  text-shadow: #CCC 1px 0 10px;
+}
+
+
+.NewYork {
+  background-image: url(http://cache.boston.com/bonzai-fba/Third_Party_Photo/2011/09/01/skyline3__1314914830_0501.jpg);
+  background-size: cover;
+}
+
+.SanFrancisco {
+  background-image: url(http://stockarch.com/files/12/06/san_francisco_city_skyline.jpg);
+  background-size: cover;
+}
+
+.Seattle {
+  background-image: url(https://drscdn.500px.org/photo/57051686/m%3D2048/06c0b39531cc23a4f8af6f82f045ae6c);
+  background-size: cover;
+}
+
+.Boston {
+  background-image: url(http://images.fineartamerica.com/images/artworkimages/mediumlarge/1/boston-skyline-rick-berk.jpg);
+  background-size: cover;
 }

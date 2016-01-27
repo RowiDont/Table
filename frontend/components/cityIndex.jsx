@@ -22,16 +22,25 @@ var CityIndex = React.createClass({
 
   clickRedirect: function (e){
     e.preventDefault();
-    var path = "/cities/" + e.currentTarget.id;
-    this.props.history.pushState("", path);
+    var id = e.currentTarget.id;
+    var path = "/cities/" + id;
+    this.props.history.pushState({ count: this.state.cities[id - 1].count }, path);
   },
 
   render: function () {
+    var welcome = (
+      <div className="city-index-welcome">
+        <h1>Make restaurant reservations the easy way</h1>
+        <h2>Our network connects diners with more than 50 restaurants worldwide!</h2>
+      </div>
+    );
+
     var cities = this.state.cities.map(function (city, index) {
       var link = "#cities/" + city.id;
+      var klass = "city " + city.name.replace(/ /g,'');
       return (<a href={link}
                  id={city.id}
-                 className="city"
+                 className={klass}
                  key={index}
                  onClick={this.clickRedirect}>
                <h2>{city.name}</h2>
@@ -40,7 +49,18 @@ var CityIndex = React.createClass({
              );
     }.bind(this));
 
-    return <ul className="city-grid group">{cities}</ul>;
+    var cityGrid = (
+      <div className="city-grid-container">
+        <h2>Featured Cities</h2>
+        <ul className="city-grid group">{cities}</ul>
+      </div>
+    );
+    return(
+      <div>
+        {welcome}
+        {cityGrid}
+      </div>
+    );
   }
 });
 

@@ -1,7 +1,41 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,300);
 
+html, body, h2, h3, header,
+h1, img, a, div, ul, li {
+  border: 0;
+  padding: 0;
+  margin: 0;
+
+  text-decoration: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  box-sizing: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  background: #f5f5f5;
+}
+
+.group::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+header {
+  border-bottom: 1px solid #eee;
+  background: white;
+}
 .nav-logo {
   float: left;
   padding-right: 20px;
@@ -10,10 +44,9 @@
 }
 
 .header-nav {
-  padding: 0 50px;
-  max-width: 800px;
+  margin: 0 50px;
+  max-width: 900px;
   margin: auto;
-  border-bottom: 1px solid #eee;
 }
 
 .logo {
