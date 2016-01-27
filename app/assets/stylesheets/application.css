@@ -25,6 +25,7 @@ h1, img, a, div, ul, li {
   background: transparent;
   color: inherit;
   font: inherit;
+  box-sizing: inherit;
 }
 
 ul {

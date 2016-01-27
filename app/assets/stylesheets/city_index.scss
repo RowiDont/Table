@@ -1,6 +1,7 @@
 .city {
+  box-sizing: border-box;
   float: left;
-  width: calc(50% - 1.5px);
+  width: 50%;
   text-align: center;
   padding: 70px 0;
   border: 1px solid #eee;

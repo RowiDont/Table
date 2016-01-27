@@ -1,6 +1,6 @@
 var React = require('react'),
     ApiUtil = require('../util/api_util'),
-    CityStore = require('../stores/city');
+    CityStore = require('../stores/cityStore');
 
 var CityIndex = React.createClass({
   getInitialState: function () {
@@ -18,11 +18,14 @@ var CityIndex = React.createClass({
 
   render: function () {
     var cities = this.state.cities.map(function (city, index) {
-      return <li className="city"
+      var link = "#cities/" + city.id;
+      return (<a href={link}
+                 className="city"
                  key={index}>
-                 <h2>{city.name}</h2>
-                 <div className="count">(Restaurants: {city.count})</div>
-             </li>;
+               <h2>{city.name}</h2>
+               <div className="count">(Restaurants: {city.count})</div>
+              </a>
+             );
     });
 
     return <ul className="city-grid group">{cities}</ul>;
