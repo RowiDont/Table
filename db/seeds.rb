@@ -41,7 +41,8 @@ data.each do |r|
                      address: r["address"],
                      postal_code: r["postal_code"],
                      lat: r["lat"],
-                     lng: r["lng"])
+                     lng: r["lng"],
+                     price: r["price"])
 
 end
 
@@ -89,6 +90,7 @@ data.each do |r|
                      address: r["address"],
                      postal_code: r["postal_code"],
                      lat: r["lat"],
-                     lng: r["lng"])
+                     lng: r["lng"],
+                     price: r["price"])
 
 end
