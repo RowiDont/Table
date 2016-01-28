@@ -251,4 +251,3 @@ end
 #-----------------------Reservations------------------lalalala
 
 r1 = Reservation.create(user_id: 1, restaurant_id: 1, date: "4/2/2016", time_id: 12, head_count: 4)
-r2 = Reservation.create!(user_id: 1, restaurant_id: 55, date: "4/4/2016", time_id: 12, head_count: 5)
