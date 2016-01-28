@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160128143406) do
+ActiveRecord::Schema.define(version: 20160128194910) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,15 +25,27 @@ ActiveRecord::Schema.define(version: 20160128143406) do
     t.integer "city_id", null: false
   end
 
+  create_table "reservations", force: :cascade do |t|
+    t.integer "user_id",       null: false
+    t.integer "restaurant_id", null: false
+    t.date    "date",          null: false
+    t.integer "time_id",       null: false
+    t.integer "head_count",    null: false
+  end
+
   create_table "restaurants", force: :cascade do |t|
-    t.string   "name",        null: false
-    t.string   "address",     null: false
-    t.string   "postal_code", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "lat",         null: false
-    t.string   "lng",         null: false
-    t.integer  "price",       null: false
+    t.string   "name",          null: false
+    t.string   "address",       null: false
+    t.string   "postal_code",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "lat",           null: false
+    t.string   "lng",           null: false
+    t.integer  "price",         null: false
+    t.integer  "max_advance",   null: false
+    t.integer  "max_people",    null: false
+    t.integer  "open_time_id",  null: false
+    t.integer  "close_time_id", null: false
   end
 
   add_index "restaurants", ["name"], name: "index_restaurants_on_name", using: :btree
@@ -44,6 +56,10 @@ ActiveRecord::Schema.define(version: 20160128143406) do
     t.string   "session_token", null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "time_slots", force: :cascade do |t|
+    t.integer "time", null: false
   end
 
   create_table "users", force: :cascade do |t|

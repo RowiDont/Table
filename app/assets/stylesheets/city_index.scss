@@ -47,21 +47,21 @@
 
 
 .NewYork {
-  background-image: url(http://cache.boston.com/bonzai-fba/Third_Party_Photo/2011/09/01/skyline3__1314914830_0501.jpg);
+  background-image: image-url("city_images/ny1.jpg");
   background-size: cover;
 }
 
 .SanFrancisco {
-  background-image: url(http://stockarch.com/files/12/06/san_francisco_city_skyline.jpg);
+  background-image: image-url("city_images/sf1.jpg");
   background-size: cover;
 }
 
 .Seattle {
-  background-image: url(https://drscdn.500px.org/photo/57051686/m%3D2048/06c0b39531cc23a4f8af6f82f045ae6c);
+  background-image: image-url("city_images/st1.jpg");
   background-size: cover;
 }
 
 .Boston {
-  background-image: url(http://images.fineartamerica.com/images/artworkimages/mediumlarge/1/boston-skyline-rick-berk.jpg);
+  background-image: image-url("city_images/ny3.jpg");
   background-size: cover;
 }

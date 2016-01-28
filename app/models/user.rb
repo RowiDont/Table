@@ -14,7 +14,9 @@ class User < ActiveRecord::Base
   attr_reader :password
 
   has_many :sessions
+  has_many :reservations
   belongs_to :city
+
 
 
   def self.find_by_credentials(email, password)
