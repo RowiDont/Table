@@ -1,6 +1,7 @@
 json.extract! restaurant
 
 json.restaurant do
+  json.id restaurant.id
   json.name restaurant.name
   json.price restaurant.price
   json.address restaurant.address

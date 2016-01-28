@@ -21,16 +21,26 @@ var CityIndexItem = React.createClass({
     this.token.remove();
   },
 
+  redirect: function (e) {
+    e.preventDefault();
+
+    var id = e.currentTarget.id;
+    var path = "/restaurants/" + id;
+    this.props.history.pushState(null, path);
+  },
+
   render: function () {
     var restaurantCount = this.props.location.state.count;
 
     var list = Object.keys(this.state.restaurants).map(function (key) {
       var restaurant = this.state.restaurants[key].restaurant,
           name = restaurant.name,
-          address = restaurant.address;
+          address = restaurant.address,
+          id = restaurant.id;
 
       var priceCt = parseInt(restaurant.price);
       var pricing = [];
+
       for (var i = 0; i < 4; i++) {
         var klass;
         if (priceCt > 0) {
@@ -44,9 +54,9 @@ var CityIndexItem = React.createClass({
 
       return (
         <li className="restaurant-item group" key={key}>
-          <img className="restaurant-item-photo" src="http://placehold.it/80x80"/>
+          <img id={id} className="restaurant-item-photo" src="http://placehold.it/80x80" onClick={this.redirect}/>
           <div className="restaurant-item-details">
-            <h3 className="restaurant-item-name">{name}</h3>
+              <h3 id={id} className="restaurant-item-name" onClick={this.redirect}>{name}</h3>
             <span className="restaurant-item-address">{address}</span>
           </div>
           <div className="price">{pricing}</div>

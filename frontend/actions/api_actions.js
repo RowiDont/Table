@@ -15,6 +15,13 @@ var ApiAction = {
       actionType: RestaurantConstants.RESTAURANTS_RECEIVED,
       restaurants: data
     });
+  },
+
+  receiveSingleRestaurant: function (data) {
+    AppDispatcher.dispatch({
+      actionType: RestaurantConstants.RESTAURANT_RECEIVED,
+      restaurant: data
+    });
   }
 };
 

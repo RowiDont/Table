@@ -15,9 +15,10 @@ var ApiUtil = {
     });
   },
 
-  fetchRestaurants: function (id) {
+  fetchRestaurants: function (cityId) {
+
     $.ajax({
-      url: "/api/cities/" + id + "/restaurants",
+      url: "/api/cities/" + cityId + "/restaurants",
       type: "GET",
       dataType: 'json',
       success: function (data) {
@@ -27,8 +28,22 @@ var ApiUtil = {
         console.log("Restaurant fetch failed");
       }
     });
+  },
+
+  fetchSingleRestaurant: function (restId) {
+    $.ajax({
+      url: "/api/restaurants/" + restId,
+      type: "GET",
+      dataType: 'json',
+      success: function (data) {
+        console.log(data);
+        ApiAction.receiveSingleRestaurant(data);
+      },
+      errors: function () {
+        console.log("Single Restaurant fetch failed");
+      }
+    });
   }
 };
 
-window.ApiUtil = ApiUtil;
 module.exports = ApiUtil;
