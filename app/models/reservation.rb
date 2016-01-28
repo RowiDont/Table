@@ -30,8 +30,8 @@ class Reservation < ActiveRecord::Base
     id = self.time_slot.id
     limit = self.restaurant.max_people
     reservations = Reservation
-                    .where("time_id > #{id - 3}")
-                    .where("time_id < #{id + 3}")
+                    .where("time_id > ?", id - 3)
+                    .where("time_id < ?", id + 3)
                     .where(:date == self.date)
     sum_of_reservations = reservations.inject(0) { |sum, el| sum + el.head_count}
 
