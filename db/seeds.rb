@@ -1,5 +1,9 @@
 require_relative 'opentable_api.rb'
 
+# Create a User:
+test = user.new(email: "test@test.com", fname: "Rafi", lname: "Patel", password: "starwars", city_id: 1)
+test.save
+
 
 # ----------- NEW YORK -----------
 

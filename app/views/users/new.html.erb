@@ -1,0 +1,20 @@
+<h1>Welcome to Table</h1>
+
+<form class="sign-up" action="<%= users_url %>" method="post">
+  <%= auth %>
+
+
+  <input type="text" name="user[fname]" placeholder="First Name">
+
+  <label>
+    <input type="text" name="user[lname]" placeholder="Last Name">
+  </label>
+
+  <label>
+    <input type="email" name="user[email]" placeholder="Email">
+  </label>
+
+  <label>
+    <input type="password" name="user[password]" placeholder="Password">
+  </label>
+</form>
