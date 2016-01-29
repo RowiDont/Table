@@ -36,7 +36,6 @@ var ApiUtil = {
       type: "GET",
       dataType: 'json',
       success: function (data) {
-        console.log(data);
         ApiAction.receiveSingleRestaurant(data);
       },
       errors: function () {
