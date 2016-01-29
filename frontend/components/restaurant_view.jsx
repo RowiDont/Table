@@ -1,8 +1,8 @@
 var React = require('react'),
     ApiUtil = require('../util/api_util'),
-    RestaurantStore = require('../stores/restaurantStore');
+    RestaurantStore = require('../stores/restaurant_store');
 
-var Restaurant = React.createClass({
+var RestaurantView = React.createClass({
   getInitialState: function () {
     return { rest: RestaurantStore.find(this.props.params.id) };
   },
@@ -45,4 +45,4 @@ var Restaurant = React.createClass({
   }
 });
 
-module.exports = Restaurant;
+module.exports = RestaurantView;

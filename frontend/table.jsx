@@ -7,9 +7,9 @@ var React = require('react'),
     Router = ReactRouter.Router,
     Route = ReactRouter.Route,
     IndexRoute = ReactRouter.IndexRoute,
-    CityIndex = require('./components/cityIndex'),
-    CityIndexItem = require('./components/cityIndexItem'),
-    Restaurant = require('./components/restaurant');
+    index = require('./components/index'),
+    CityIndex = require('./components/city_index'),
+    RestaurantView = require('./components/restaurant_view');
 
 var App = React.createClass({
   render: function () {
@@ -23,9 +23,9 @@ var App = React.createClass({
 
 var routes = (
   <Route path="/" component={App}>
-    <IndexRoute component={CityIndex} />
-    <Route path="cities/:city_id" component={CityIndexItem} />
-    <Route path="restaurants/:id" component={Restaurant} />
+    <IndexRoute component={index} />
+    <Route path="cities/:city_id" component={CityIndex} />
+    <Route path="restaurants/:id" component={RestaurantView} />
   </Route>
 );
 

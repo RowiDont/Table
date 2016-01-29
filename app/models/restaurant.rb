@@ -5,5 +5,10 @@ class Restaurant < ActiveRecord::Base
   belongs_to :close_time, class_name: "TimeSlot", foreign_key: :close_time_id, primary_key: :id
   has_many :reservations
 
+  def max_date
+    advance = self.max_advance
+    return Time.now + advance.days
+  end
+
   # TODO: Add validations for when admins create restaurants
 end

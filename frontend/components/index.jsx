@@ -1,8 +1,8 @@
 var React = require('react'),
     ApiUtil = require('../util/api_util'),
-    CityStore = require('../stores/cityStore');
+    CityStore = require('../stores/city_store');
 
-var CityIndex = React.createClass({
+var index = React.createClass({
   getInitialState: function () {
     return { cities: CityStore.all() };
   },
@@ -64,4 +64,4 @@ var CityIndex = React.createClass({
   }
 });
 
-module.exports = CityIndex;
+module.exports = index;

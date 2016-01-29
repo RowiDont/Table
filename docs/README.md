@@ -41,7 +41,7 @@ JSON. This will cover the server side functionality for the first half of
 
 In Phase 2, the apps front end structure will be set up using Flux, React, and
 the React Router. A Restaurant store will be implemented, after which `Index`
-and `IndexItem` react views will be created. In this phase, restaurants can still
+and `CityIndex` react views will be created. In this phase, restaurants can still
 only be viewed. After the index is completed, the search function will be
 implemented to allow for search based on location (neighborhood), cuisine, and
 restaurant name. Actions to live filter the results will also be added, and

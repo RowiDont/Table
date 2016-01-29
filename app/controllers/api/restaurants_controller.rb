@@ -5,7 +5,7 @@ class Api::RestaurantsController < ApplicationController
   end
 
   def show
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.includes(:open_time, :close_time).find(params[:id])
   end
 
 end

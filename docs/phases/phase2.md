@@ -10,7 +10,7 @@
 ## Flux
 ### Views (React Components)
 * Index
-  - IndexItem
+  - CityIndex
   - Search
 * Restaurant
 
