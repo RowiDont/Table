@@ -8,8 +8,8 @@ var React = require('react'),
     Route = ReactRouter.Route,
     IndexRoute = ReactRouter.IndexRoute,
     index = require('./components/index'),
-    CityIndex = require('./components/city_index'),
-    RestaurantView = require('./components/restaurant_view');
+    CityIndex = require('./components//cities/city_index'),
+    RestaurantView = require('./components/restaurant_view/restaurant_view');
 
 var App = React.createClass({
   render: function () {

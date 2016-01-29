@@ -1,0 +1,67 @@
+.reservation-filter-form {
+  position: relative;
+  max-width: 1000px;
+}
+
+.reservation-filter-form .selector{
+  box-sizing: border-box;
+  width: 24%;
+  display: inline-block;
+}
+
+.dropdown {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 13px;
+  font-size: 13px;
+  border: 1px solid #ccc;
+  border-radius: 0 !important;
+  cursor: pointer;
+  border-right: 0;
+}
+
+.dropdown:hover {
+  border: 1px solid #d93c3c;
+}
+
+.submit {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 13px;
+  font-size: 13px;
+  border: 0;
+  border-radius: 0 !important;
+  cursor: pointer;
+  background: #da3743;
+  color: white;
+  font-family: 'Open Sans';
+  transition: background .25s ease-in-out;
+}
+
+.submit:hover {
+  background:#b8222d;
+}
+
+.reservation-filter-date > .calendar-value {
+  position: relative;
+  padding: 12px;
+  font-size: 13px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  margin: 0;
+  border-right: 0;
+}
+
+.calendar-value:hover {
+  border: 1px solid #d93c3c;
+}
+
+.calendar {
+  position: absolute;
+}
+
+.hidden {
+  display: none;
+}

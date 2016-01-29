@@ -1,0 +1,132 @@
+@mixin vertical-centre($height) {
+    height:$height;
+    line-height:$height !important;
+    display:inline-block;
+    vertical-align:middle;
+}
+
+@mixin border-box {
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+}
+
+$border-colour:#CCC;
+#calendar {
+    padding: 10px;
+    float:left;
+    display:block;
+    @include border-box;
+    background:white;
+    width:320px;
+    border:solid 1px rgb(228, 228, 228);
+    border-radius: 1%;
+    margin-bottom:10px;
+
+    $secondary-colour:white;
+    $spacing:10px;
+    $icon-width:50px;
+    $header-height:40px;
+
+    >div.header {
+        float:left;
+        width:100%;
+        background:$secondary-colour;
+        height:$header-height;
+        color:black;
+
+        >* {
+            @include vertical-centre($header-height);
+        }
+
+        >i {
+            float:left;
+            width:$icon-width;
+            font-size:1.125em;
+            font-weight:bold;
+            position:relative;
+            @include border-box;
+            padding:0 $spacing;
+            cursor:pointer;
+            color: #DA3743;
+        }
+
+        >i.fa-angle-left {
+            text-align:left;
+        }
+
+        >i.fa-angle-right {
+            text-align:right;
+            margin-left:$icon-width*-1;
+        }
+
+        >span {
+            float:left;
+            width:100%;
+            font-size: 13px;
+            @include border-box;
+            padding-left:$icon-width+$spacing;
+            margin-left:$icon-width*-1;
+            text-align:center;
+            padding-right:$icon-width;
+            color:black;
+        }
+    }
+
+    >div.week {
+        float:left;
+        width:100%;
+        // border-top:solid 1px $border-colour;
+
+        &:first-child {
+            border-top:none;
+        }
+
+        >span.day {
+            float:left;
+            width: calc((100%/7) - 10px);
+            margin: 2px 5px;
+            border-radius: 50%;
+            @include border-box;
+            font-size:0.75em;
+            text-align:center;
+            @include vertical-centre(30px);
+            background:white;
+            cursor:pointer;
+            color:black;
+
+            &:first-child {
+                border-left:none;
+            }
+
+            &.today {
+                background:#ebbdc0;
+            }
+
+            &.different-month {
+                color:#C0C0C0;
+            }
+
+            &.selected {
+                background:#DA3743;
+                color: white;
+            }
+            &:hover {
+                background:#f7d7d9;
+                color: #c8212d;
+            }
+        }
+        &.names {
+          border-bottom: 1px solid rgb(228, 228, 228);
+        }
+        &.names>span {
+            text-transform: uppercase;
+            color:#999;
+            cursor: default;
+        }
+        &.names>span:hover {
+            background:white;
+            color: #999;
+        }
+
+    }
+}

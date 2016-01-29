@@ -1,7 +1,7 @@
 var React = require('react'),
-    ApiUtil = require('../util/api_util'),
-    RestaurantStore = require('../stores/restaurant_store'),
-    ReservationFilter = require('./reservation_filter');
+    ApiUtil = require('../../util/api_util'),
+    RestaurantStore = require('../../stores/restaurant_store'),
+    ReservationFilter = require('../reservation_filter');
 
 var RestaurantView = React.createClass({
   getInitialState: function () {

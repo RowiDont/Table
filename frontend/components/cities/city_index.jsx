@@ -1,6 +1,6 @@
 var React = require('react'),
-    ApiUtil = require('../util/api_util'),
-    RestaurantStore = require('../stores/restaurant_store'),
+    ApiUtil = require('../../util/api_util'),
+    RestaurantStore = require('../../stores/restaurant_store'),
     CityIndexItem = require('./city_index_item');
 
 

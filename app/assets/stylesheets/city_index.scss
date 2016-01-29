@@ -1,67 +1,48 @@
-.city-index-welcome {
-  background: white;
-  padding: 20px 20px 20px 10px;
-  margin-bottom: 20px;
+.restaurant-item {
+  padding: 20px 20px 20px 0;
+  margin-left: 20px;
+  height: 80px;
+  border-bottom: 1px solid #eee;
 }
-
-.city-index-welcome h1 {
-  font-size: 36px;
-  font-weight: 400;
-}
-
-.city-index-welcome h2 {
-  font-size: 20px;
-}
-
-.city-grid-container {
-  background: white;
-}
-
-.city-grid-container > h2 {
-  padding: 20px;
-  font-size: 20px;
-}
-
-
-.city {
-  box-sizing: border-box;
+.restaurant-item-photo {
   float: left;
-  width: 50%;
-  text-align: center;
-  padding: 100px 0;
-  text-shadow: #CCC 1px 0 10px;
-  background: white;
-  font-weight: 300;
+  border-radius: 7%;
+  margin: 0 20px;
+  cursor: pointer;
 }
 
-.city h2 {
-  font-size: 24px;
-  color: white;
+.restaurant-item-details {
+  box-sizing: content-box;
+  float: left;
+  width: auto;
 }
 
-.city .count {
+.restaurant-item-address {
+  color: grey;
   font-size: 12px;
-  color: white;
-  text-shadow: #CCC 1px 0 10px;
 }
 
-
-.NewYork {
-  background-image: image-url("city_images/ny1.jpg");
-  background-size: cover;
+.restaurant-item-details h3 {
+  font-size: 14px;
+  margin: 10px 0;
+  cursor: pointer;
 }
 
-.SanFrancisco {
-  background-image: image-url("city_images/sf1.jpg");
-  background-size: cover;
+.price {
+  color: #ccc;
+  float: right;
+  font-size: 13px;
 }
 
-.Seattle {
-  background-image: image-url("city_images/st1.jpg");
-  background-size: cover;
+.price .selected {
+  color: black;
 }
 
-.Boston {
-  background-image: image-url("city_images/ny3.jpg");
-  background-size: cover;
+.restaurant-list-container {
+  padding: 20px 0;
+}
+
+.restaurant-count {
+  font-size: 24px;
+  padding: 0 20px;
 }

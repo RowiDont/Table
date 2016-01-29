@@ -8,14 +8,11 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "./node_modules/.bin/webpack"
   },
   "engines": {
     "node": "4.1.1",
     "npm": "2.1.x"
-  },
-  "scripts": {
-    "postinstall": "./node_modules/.bin/webpack"
   },
   "repository": {
     "type": "git",
@@ -34,6 +31,7 @@
     "babel-preset-react": "^6.3.13",
     "flux": "^2.1.1",
     "history": "^1.17.0",
+    "moment": "^2.11.1",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
     "react-router": "^1.0.3",

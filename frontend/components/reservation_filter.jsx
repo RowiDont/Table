@@ -1,10 +1,10 @@
-var React = require('react');
+var React = require('react'),
+    moment = require('moment'),
+    Calendar = require('./calendar/calendar'),
+    CalendarFilter = require('./calendar/calendar_filter');
+
 
 var ReservationFilter = React.createClass({
-
-  // componentDidMount: function () {
-  //   this.setState({ loaded: true });
-  // },
 
   render: function () {
 
@@ -13,10 +13,12 @@ var ReservationFilter = React.createClass({
     var toString = function (time) {
       var hours = Math.floor(time / 60);
       var minutes = time % 60;
-      if (hours < 10) { hours = "0" + hours; }
+      var m = hours > 11 ? " PM" : " AM";
+      hours = hours % 12;
+      if (hours === 0) { hours = 12; }
       if (minutes < 10) { minutes = "0" + minutes; }
-      
-      return hours + ":" + minutes;
+
+      return hours + ":" + minutes + m;
     };
 
     var seatingOptions = [];
@@ -30,7 +32,8 @@ var ReservationFilter = React.createClass({
       }
     }
 
-    var date = <input type="text" id="datepicker"/>;
+    var date = <CalendarFilter moment={moment().startOf("day")} />;
+
 
     var timeOptions = [];
     var start = restaurant.opens;
@@ -41,15 +44,16 @@ var ReservationFilter = React.createClass({
 
     return(
       <div className="reservation-filter-form">
-        <h2>Make a Reserrvation</h2>
+        <h2>Make a Reservation</h2>
         <form>
-          <select className="reservation-filter-people" name="people">
+          <select className="reservation-filter-people selector dropdown" name="people">
             {seatingOptions}
           </select>
           {date}
-          <select className="reservation-filter-time" name="time">
+          <select className="reservation-filter-time selector dropdown" name="time">
             {timeOptions}
           </select>
+          <button className="selector submit">Find a Table</button>
         </form>
       </div>
     );
