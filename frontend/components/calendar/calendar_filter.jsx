@@ -9,13 +9,20 @@ var CalendarFilter = React.createClass({
 
   componentDidMount: function () {
     document.addEventListener("click", function (e) {
-      if (e.target.className !== "calendar-value") {
-        this.setState({ calendarClass: "calendar hidden" });
+      if (!e.target.className.includes("calendar") &&
+          !e.target.className.includes("fa") &&
+          e.target.parentElement.className !== "header" &&
+          !e.target.className.includes("weekday"))
+      {
+        this.setState({ calendarClass: "calendar hidden"
+      });
       }
     }.bind(this));
   },
 
+
   changeSelected: function (day) {
+    this.props.changeDate(day);
     this.setState({ selected: day.date, calendarClass: "calendar hidden" });
   },
 
@@ -24,13 +31,13 @@ var CalendarFilter = React.createClass({
   },
 
   render: function () {
-    // debugger
     return(
       <div className="reservation-filter-date selector">
         <div onClick={this.revealCalendar} className="calendar-value">
           {this.state.selected.format('MMMM Do, YYYY')}
         </div>
         <div className={this.state.calendarClass}>
+          <div className="triangle"></div>
           <Calendar change={this.changeSelected} selected={this.state.selected.startOf("day")} />
         </div>
       </div>

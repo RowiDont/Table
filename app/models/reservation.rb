@@ -39,4 +39,13 @@ class Reservation < ActiveRecord::Base
       errors[:restaurant] = "cannot take that many people at that time."
     end
   end
+
+  def self.search_results(restaurant, date, time, people)
+    debugger
+    r1 = Reservation.new(user_id: 1,
+                         restaurant_id: restaurant,
+                         date: date,
+                         time_id: time,
+                         head_count: people)
+  end
 end

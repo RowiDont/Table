@@ -1,14 +1,37 @@
 .restaurant-page {
-  background: white;
   padding: 20px;
 }
 
 .restaurant-page h1 {
   font-size: 28px;
+  color: white;
 }
 
 .restaurant-page-map {
   margin: auto;
   display: block;
   padding: 20px 0;
+}
+
+.restaurant-page .header {
+  width: 100%;
+  background: rgb(238, 238, 238);
+}
+
+.header-content {
+  width: calc(100% - 200px);
+  float: right;
+}
+
+
+.restaurant-page .sidebar {
+  width: 200px;
+  height: 500px;
+  float: left;
+  background: rgb(241, 241, 241);
+}
+
+.restaurant-page .main {
+  width: calc(100% - 220px);
+  float: right;
 }

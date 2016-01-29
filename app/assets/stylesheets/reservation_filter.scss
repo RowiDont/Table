@@ -1,43 +1,75 @@
-.reservation-filter-form {
-  position: relative;
+.filter-box {
   max-width: 1000px;
+  margin: auto;
+  margin-top: 20px;
+  padding: 22px 25px 0 25px;
+  border-bottom: 1px solid #e3e3e3;
+  background: white;
+  border-radius: 2%
+}
+.filter-box h2 {
+  font-size: 1.5rem;
 }
 
-.reservation-filter-form .selector{
+.reservation-filter-form {
+  position: relative;
+  padding: 25px 0;
+}
+
+
+.reservation-filter-form .selector {
   box-sizing: border-box;
-  width: 24%;
+  width: 25%;
   display: inline-block;
+  border: 1px solid #ececec;
+}
+
+.reservation-filter-form .selector:hover {
+  border: 1px solid #d93c3c;
 }
 
 .dropdown {
   -webkit-appearance: none;
   -moz-appearance: none;
+  background: white;
   appearance: none;
-  padding: 13px;
-  font-size: 13px;
-  border: 1px solid #ccc;
-  border-radius: 0 !important;
+  padding: 12px;
+  font-size: 15px;
   cursor: pointer;
   border-right: 0;
 }
 
+
+
 .dropdown:hover {
-  border: 1px solid #d93c3c;
+
+}
+
+form .dropdown:first-child {
+  border-right: 0;
+  border-top-right-radius: 2%;
+  border-bottom-right-radius: 2%;
+}
+
+form .dropdown:nth-child(3) {
+  border-left: 0;
+  border-radius: 0 !important;
 }
 
 .submit {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  padding: 13px;
-  font-size: 13px;
-  border: 0;
-  border-radius: 0 !important;
+  padding: 12px;
+  font-size: 15px;
+  border: 0 !important;
   cursor: pointer;
   background: #da3743;
   color: white;
   font-family: 'Open Sans';
   transition: background .25s ease-in-out;
+  border-top-right-radius: 2%;
+  border-bottom-right-radius: 2%;
 }
 
 .submit:hover {
@@ -46,20 +78,31 @@
 
 .reservation-filter-date > .calendar-value {
   position: relative;
-  padding: 12px;
-  font-size: 13px;
-  border: 1px solid #ccc;
+  padding: 11px;
+  padding-top: 12px;
+  font-size: 15px;
+  // border: 1px solid #ccc;
   cursor: pointer;
   margin: 0;
   border-right: 0;
 }
 
 .calendar-value:hover {
-  border: 1px solid #d93c3c;
+  // border: 1px solid #d93c3c;
 }
 
 .calendar {
   position: absolute;
+  top: 90px;
+  left: 130px;
+}
+
+.triangle {
+  z-index: 100;
+  background: black;
+  border: 20px;
+  border-left-color: grey;
+  border-right-color: black;
 }
 
 .hidden {

@@ -5,9 +5,24 @@ var React = require('react'),
 
 
 var ReservationFilter = React.createClass({
+  getInitialState: function () {
+    return { people: "2", time: this.props.restaurant.opens.time, date: moment().startOf("day")} ;
+  },
+
+  setDate: function (day) {
+    this.setState({ date: day.date });
+  },
+
+  setPeople: function (e) {
+    this.setState({ people: e.currentTarget.value });
+  },
+
+  setTime: function (e) {
+    this.setState({ time: e.currentTarget.value });
+  },
 
   render: function () {
-
+    console.log(this.state);
     var restaurant = this.props.restaurant;
 
     var toString = function (time) {
@@ -24,37 +39,39 @@ var ReservationFilter = React.createClass({
     var seatingOptions = [];
     for (var i = 1; i < restaurant.limit; i++) {
       if (i === 1) {
-        seatingOptions.push(<option value={i}>1 Person</option>);
+        seatingOptions.push(<option key={i} value={i}>1 Person</option>);
       } else if (i === 2) {
-        seatingOptions.push(<option value={i} selected>{i} People</option>);
+        seatingOptions.push(<option key={i} value={i}>{i} People</option>);
       } else {
-        seatingOptions.push(<option value={i}>{i} People</option>);
+        seatingOptions.push(<option key={i} value={i}>{i} People</option>);
       }
     }
 
-    var date = <CalendarFilter moment={moment().startOf("day")} />;
+    var date = <CalendarFilter changeDate={this.setDate} moment={moment().startOf("day")} />;
 
 
     var timeOptions = [];
     var start = restaurant.opens;
     var end = restaurant.closes;
     for (var j = start.time; j < end.time; j += 30) {
-      timeOptions.push(<option value={j}>{toString(j)}</option>);
+      timeOptions.push(<option key={j} value={j}>{toString(j)}</option>);
     }
 
     return(
-      <div className="reservation-filter-form">
+      <div className="filter-box">
         <h2>Make a Reservation</h2>
-        <form>
-          <select className="reservation-filter-people selector dropdown" name="people">
-            {seatingOptions}
-          </select>
-          {date}
-          <select className="reservation-filter-time selector dropdown" name="time">
-            {timeOptions}
-          </select>
-          <button className="selector submit">Find a Table</button>
-        </form>
+        <div className="reservation-filter-form">
+          <form>
+            <select defaultValue="2" onChange={this.setPeople} className="reservation-filter-people selector dropdown" name="people">
+              {seatingOptions}
+            </select>
+            {date}
+            <select onChange={this.setTime} className="reservation-filter-time selector dropdown" name="time">
+              {timeOptions}
+            </select>
+            <button className="selector submit">Find a Table</button>
+          </form>
+        </div>
       </div>
     );
   }

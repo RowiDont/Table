@@ -20,7 +20,8 @@ var RestaurantView = React.createClass({
   render: function () {
     var map = <div></div>,
         header = <h1></h1>,
-        reservationFilter = <div></div>;
+        reservationFilter = <div></div>,
+        sidebar = <div></div>;
 
     if (this.state.fetched) {
       var restaurant = this.state.rest,
@@ -36,15 +37,22 @@ var RestaurantView = React.createClass({
         var altText = this.state.rest.name + " Google maps image";
 
       map = <img className="restaurant-page-map" src={url.url} alt={altText}/>;
-      header = <h1>About {this.state.rest.name}</h1>;
+      header = <div className="header-content"><h1>{this.state.rest.name}</h1></div>;
       reservationFilter = <ReservationFilter restaurant={this.state.rest}/>;
     }
 
 
     return(
-      <div className="restaurant-page">
-        {header}
-        {reservationFilter}
+      <div className="restaurant-page group">
+        <div className="header group">
+          {header}
+        </div>
+        <div className="sidebar">
+          {sidebar}
+        </div>
+        <div className="main">
+          {reservationFilter}
+        </div>
         {map}
       </div>
     );

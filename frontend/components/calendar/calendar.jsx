@@ -1,14 +1,21 @@
 var React = require('react');
 
 var Calendar = React.createClass({
-    // getInitialState: function() {
-    //     return {
-    //         month: this.props.selected.clone(),
-    //         day: this.props.selected.clone()
-    //     };
-    // },
+    getInitialState: function() {
+        return {
+            month: this.props.selected.clone(),
+            day: this.props.selected.clone()
+        };
+    },
+
+    componentWillReceiveProps: function (newProps) {
+      this.setState({ month: newProps.selected.clone(),
+        day: newProps.selected.clone()
+      });
+    },
 
     previous: function() {
+      // debugger
         var month = this.state.month;
         month.add(-1, "M");
         this.setState({ month: month });
@@ -19,12 +26,6 @@ var Calendar = React.createClass({
         month.add(1, "M");
         this.setState({ month: month });
     },
-
-    // select: function(day) {
-    //   // debugger
-    //     this.props.selected = day.date;
-    //     this.setState({ day: day.date, month: day.date });
-    // },
 
     render: function() {
       // debugger
@@ -44,12 +45,12 @@ var Calendar = React.createClass({
     renderWeeks: function() {
         var weeks = [],
             done = false,
-            date = this.props.selected.clone().startOf("month").add("w" -1).day("Sunday"),
+            date = this.state.month.clone().startOf("month").add("w" -1).day("Sunday"),
             monthIndex = date.month(),
             count = 0;
 
         while (!done) {
-            weeks.push(<Week key={date.toString()} date={date.clone()} month={this.props.selected} select={this.props.change} selected={this.props.selected} />);
+            weeks.push(<Week key={date.toString()} date={date.clone()} month={this.state.month} select={this.props.change} selected={this.props.selected} />);
             date.add(1, "w");
             done = count++ > 2 && monthIndex !== date.month();
             monthIndex = date.month();
@@ -59,7 +60,7 @@ var Calendar = React.createClass({
     },
 
     renderMonthLabel: function() {
-        return <span>{this.props.selected.format("MMMM, YYYY")}</span>;
+        return <span>{this.state.month.format("MMMM, YYYY")}</span>;
     }
 });
 
