@@ -25,7 +25,7 @@ var routes = (
   <Route path="/" component={App}>
     <IndexRoute component={index} />
     <Route path="cities/:city_id" component={CityIndex} />
-    <Route path="restaurants/:id" component={RestaurantView} />
+    <Route path="/restaurants/:id" component={RestaurantView} />
   </Route>
 );
 
