@@ -1,12 +1,22 @@
 var React = require('react'),
     moment = require('moment'),
     Calendar = require('./calendar/calendar'),
-    CalendarFilter = require('./calendar/calendar_filter');
+    CalendarFilter = require('./calendar/calendar_filter'),
+    ReservationFilterActions = require('../actions/reservation_filter_actions'),
+    ReservationFilterStore = require('../stores/reservation_filter_store'),
+    ApiUtil = require('../util/api_util');
 
 
 var ReservationFilter = React.createClass({
   getInitialState: function () {
-    return { people: "2", time: this.props.restaurant.opens.time, date: moment().startOf("day")} ;
+    return { people: "2",
+             time: this.props.restaurant.opens.time,
+             date: moment().startOf("day"),
+             id: this.props.restaurant.id } ;
+  },
+
+  updateFitlers: function () {
+    ReservationFilterActions.receiveReservationFilters(this.state);
   },
 
   setDate: function (day) {
@@ -21,8 +31,16 @@ var ReservationFilter = React.createClass({
     this.setState({ time: e.currentTarget.value });
   },
 
+  submitFilters: function (e) {
+    e.preventDefault();
+
+    if (ReservationFilterStore.empty()) {
+      this.updateFitlers();
+    }
+    ApiUtil.fetchReservationOptions();
+  },
+
   render: function () {
-    console.log(this.state);
     var restaurant = this.props.restaurant;
 
     var toString = function (time) {
@@ -36,6 +54,7 @@ var ReservationFilter = React.createClass({
       return hours + ":" + minutes + m;
     };
 
+    // people
     var seatingOptions = [];
     for (var i = 1; i < restaurant.limit; i++) {
       if (i === 1) {
@@ -47,9 +66,10 @@ var ReservationFilter = React.createClass({
       }
     }
 
+    // date
     var date = <CalendarFilter changeDate={this.setDate} moment={moment().startOf("day")} />;
 
-
+    // time
     var timeOptions = [];
     var start = restaurant.opens;
     var end = restaurant.closes;
@@ -69,7 +89,7 @@ var ReservationFilter = React.createClass({
             <select onChange={this.setTime} className="reservation-filter-time selector dropdown" name="time">
               {timeOptions}
             </select>
-            <button className="selector submit">Find a Table</button>
+            <button onClick={this.submitFilters} className="selector submit">Find a Table</button>
           </form>
         </div>
       </div>

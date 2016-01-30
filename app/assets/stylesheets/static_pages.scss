@@ -17,6 +17,10 @@ h1, img, a, div, ul, li {
   box-sizing: inherit;
 }
 
+*:focus {
+    outline: none;
+}
+
 ul {
   list-style: none;
 }

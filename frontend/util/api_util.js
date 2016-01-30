@@ -1,4 +1,5 @@
-var ApiAction = require('../actions/api_actions');
+var ApiAction = require('../actions/api_actions'),
+    ReservationFilterStore = require('../stores/reservation_filter_store');
 
 var ApiUtil = {
   fetchCities: function () {
@@ -40,6 +41,24 @@ var ApiUtil = {
       },
       errors: function () {
         console.log("Single Restaurant fetch failed");
+      }
+    });
+  },
+
+  fetchReservationOptions: function () {
+    debugger
+    var filters = ReservationFilterStore.all();
+    var id = filters.id;
+
+    $.ajax({
+      type: "GET",
+      url: "api/restaurants/" + id + "/reservations",
+      data: filters,
+      success: function (data) {
+        console.log(data);
+      },
+      errors: function () {
+        console.log("Options Fetch failed! :(");
       }
     });
   }
