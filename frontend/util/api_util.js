@@ -46,9 +46,12 @@ var ApiUtil = {
   },
 
   fetchReservationOptions: function () {
-    debugger
     var filters = ReservationFilterStore.all();
+    filters.date = filters.date.format();
+    filters.time = filters.time.toString();
     var id = filters.id;
+
+    debugger
 
     $.ajax({
       type: "GET",

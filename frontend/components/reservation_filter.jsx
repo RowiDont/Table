@@ -89,7 +89,7 @@ var ReservationFilter = React.createClass({
             <select onChange={this.setTime} className="reservation-filter-time selector dropdown" name="time">
               {timeOptions}
             </select>
-            <button onClick={this.submitFilters} className="selector submit">Find a Table</button>
+            <button disabled="true" onClick={this.submitFilters} className="selector submit">Find a Table</button>
           </form>
         </div>
       </div>
