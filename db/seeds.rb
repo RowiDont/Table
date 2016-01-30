@@ -1,6 +1,6 @@
-require_relative 'opentable_api.rb'
+require 'json'
+require 'byebug'
 
-# Create a User:
 test_user = User.new(email: "test@test.com", fname: "Rafi", lname: "Patel", password: "starwars", city_id: 1)
 test_user.save
 
@@ -8,6 +8,7 @@ start_time = 630
 end_time = 1410
 
 time = start_time
+
 until time > end_time
   TimeSlot.create(time: time)
   time += 15
@@ -23,14 +24,16 @@ QUALIFIERS = {
                 close_time_id: closings
 }
 
-# ----------- NEW YORK -----------
 
 # Make a city!
 new_york = City.create!(name: "New York");
+san_francisco = City.create!(name: "San Francisco");
+chicago = City.create!(name: "Chicago");
+seattle = City.create!(name: "Seattle");
 
 # ----------------------------- #
 
-zipcodes = [10001, 10002, 10003, 10004, 10005, 10006, 10007, 10009, 10010,
+zipcodes1 = [10001, 10002, 10003, 10004, 10005, 10006, 10007, 10009, 10010,
             10011, 10012, 10013, 10014, 10016, 10017, 10018, 10019, 10020,
             10021, 10022, 10023, 10024, 10025, 10026, 10027, 10028, 10029,
             10030, 10031, 10032, 10033, 10034, 10035, 10036, 10037, 10038,
@@ -55,195 +58,64 @@ zipcodes = [10001, 10002, 10003, 10004, 10005, 10006, 10007, 10009, 10010,
             11429, 11430, 11432, 11433, 11434, 11435, 11436, 11451, 11691,
             11692, 11693, 11694, 11697]
 
-zipcodes.each do |zip|
-  Postalcode.create!(city_id: new_york.id, code: zip)
-end
+zipcodes2 = ["94102", "94103", "94104", "94105", "94107", "94108", "94109",
+                        "94110", "94111", "94112", "94114", "94115", "94116", "94117",
+                        "94118", "94121", "94122", "94123", "94124", "94127", "94129",
+                        "94130", "94131", "94132", "94133", "94134", "94158"]
 
-# ----------------------------- #
+zipcodes3 = [60018, 60068, 60176, 60601, 60602, 60603, 60604, 60605, 60606,
+             60607, 60608, 60609, 60610, 60611, 60612, 60613, 60614, 60615,
+             60616, 60617, 60618, 60619, 60620, 60621, 60622, 60623, 60624,
+             60625, 60626, 60628, 60630, 60631, 60632, 60634, 60636, 60637,
+             60639, 60640, 60641, 60642, 60643, 60644, 60645, 60646, 60647,
+             60649, 60651, 60652, 60653, 60654, 60655, 60656, 60657, 60659,
+             60660, 60661, 60706, 60707, 60714]
 
-# Make the restaurants
-
-# API calls, careful!
-
-include OpenTable
-
-def get_data
-  # debugger
-  client = Client.new
-  client.restaurants({city: "New York"})
-end
-
-data = get_data["restaurants"]
-
-data.each do |r|
-  Restaurant.create!(
-    name: r["name"],
-    address: r["address"],
-    postal_code: r["postal_code"],
-    lat: r["lat"],
-    lng: r["lng"],
-    price: r["price"],
-    max_advance: QUALIFIERS[:max_advance].sample,
-    max_people: QUALIFIERS[:max_people].sample,
-    open_time_id: QUALIFIERS[:open_time_id].sample,
-    close_time_id: QUALIFIERS[:close_time_id].sample
-  )
-end
-
-
-
-
-
-
-
-
-
-
-# ----------- SAN FRANCISCO -----------
-
-zipcodes = ["94102", "94103", "94104", "94105", "94107", "94108", "94109",
-            "94110", "94111", "94112", "94114", "94115", "94116", "94117",
-            "94118", "94121", "94122", "94123", "94124", "94127", "94129",
-            "94130", "94131", "94132", "94133", "94134", "94158"]
+zipcodes4 = [98101, 98102, 98103, 98104, 98105, 98106, 98107, 98109, 98112,
+             98115, 98116, 98117, 98118, 98119, 98121, 98122, 98125, 98126,
+             98133, 98134, 98136, 98144, 98154, 98164, 98174, 98177, 98195,
+             98199]
 
 # Make a city!
-san_francisco = City.create!(name: "San Francisco");
 
-# ----------------------------- #
+zipcodes1.each do |zip|
+  Postalcode.create(city_id: new_york.id, code: zip)
+end
 
-# Make all the zipcodes!
-zipcodes.each do |zip|
+zipcodes2.each do |zip|
   Postalcode.create(city_id: san_francisco.id, code: zip)
 end
 
-# ----------------------------- #
-
-# Make the restaurants
-
-# API calls, careful!
-
-include OpenTable
-
-def get_data
-  # debugger
-  client = Client.new
-  client.restaurants({city: "San Francisco"})
-end
-
-data = get_data["restaurants"]
-
-data.each do |r|
-  Restaurant.create!(
-    name: r["name"],
-    address: r["address"],
-    postal_code: r["postal_code"],
-    lat: r["lat"],
-    lng: r["lng"],
-    price: r["price"],
-    max_advance: QUALIFIERS[:max_advance].sample,
-    max_people: QUALIFIERS[:max_people].sample,
-    open_time_id: QUALIFIERS[:open_time_id].sample,
-    close_time_id: QUALIFIERS[:close_time_id].sample
-  )
-end
-
-
-
-# ----------- Chicago -----------
-
-zipcodes = [60018, 60068, 60176, 60601, 60602, 60603, 60604, 60605, 60606, 60607, 60608, 60609, 60610, 60611, 60612, 60613, 60614, 60615, 60616, 60617, 60618, 60619, 60620, 60621, 60622, 60623, 60624, 60625, 60626, 60628, 60630, 60631, 60632, 60634, 60636, 60637, 60639, 60640, 60641, 60642, 60643, 60644, 60645, 60646, 60647, 60649, 60651, 60652, 60653, 60654, 60655, 60656, 60657, 60659, 60660, 60661, 60706, 60707, 60714]
-# Make a city!
-chicago = City.create!(name: "Chicago");
-
-# ----------------------------- #
-
-# Make all the zipcodes!
-zipcodes.each do |zip|
+zipcodes3.each do |zip|
   Postalcode.create(city_id: chicago.id, code: zip)
 end
 
-# ----------------------------- #
-
-# Make the restaurants
-
-# API calls, careful!
-
-include OpenTable
-
-def get_data
-  # debugger
-  client = Client.new
-  client.restaurants({city: "Chicago"})
-end
-
-data = get_data["restaurants"]
-
-data.each do |r|
-  Restaurant.create(
-    name: r["name"],
-    address: r["address"],
-    postal_code: r["postal_code"],
-    lat: r["lat"],
-    lng: r["lng"],
-    price: r["price"],
-    max_advance: QUALIFIERS[:max_advance].sample,
-    max_people: QUALIFIERS[:max_people].sample,
-    open_time_id: QUALIFIERS[:open_time_id].sample,
-    close_time_id: QUALIFIERS[:close_time_id].sample
-  )
-end
-
-
-
-# ----------- SEATTLE -----------
-
-zipcodes = [98101, 98102, 98103, 98104, 98105, 98106, 98107, 98109, 98112,
-            98115, 98116, 98117, 98118, 98119, 98121, 98122, 98125, 98126,
-            98133, 98134, 98136, 98144, 98154, 98164, 98174, 98177, 98195,
-            98199]
-
-# Make a city!
-seattle = City.create!(name: "Seattle");
-
-# ----------------------------- #
-
-# Make all the zipcodes!
-zipcodes.each do |zip|
+zipcodes4.each do |zip|
   Postalcode.create(city_id: seattle.id, code: zip)
 end
 
-# ----------------------------- #
 
-# Make the restaurants
+data = File.read("#{Rails.root}/db/restaurants.json")
 
-# API calls, careful!
+parsed = JSON.parse(data)
 
-include OpenTable
-
-def get_data
-  # debugger
-  client = Client.new
-  client.restaurants({city: "Seattle"})
-end
-
-data = get_data["restaurants"]
-
-data.each do |r|
-  Restaurant.create!(
-    name: r["name"],
-    address: r["address"],
-    postal_code: r["postal_code"],
-    lat: r["lat"],
-    lng: r["lng"],
-    price: r["price"],
-    max_advance: QUALIFIERS[:max_advance].sample,
-    max_people: QUALIFIERS[:max_people].sample,
-    open_time_id: QUALIFIERS[:open_time_id].sample,
-    close_time_id: QUALIFIERS[:close_time_id].sample
-  )
+parsed.each do |city, hash|
+  hash["restaurants"].each do |r|
+    Restaurant.create!(
+      name: r["name"],
+      address: r["address"],
+      postal_code: r["postal_code"],
+      lat: r["lat"],
+      lng: r["lng"],
+      price: r["price"],
+      max_advance: QUALIFIERS[:max_advance].sample,
+      max_people: QUALIFIERS[:max_people].sample,
+      open_time_id: QUALIFIERS[:open_time_id].sample,
+      close_time_id: QUALIFIERS[:close_time_id].sample
+    )
+  end
 end
 
 
-#-----------------------Reservations------------------lalalala
 
 r1 = Reservation.create(user_id: 1, restaurant_id: 1, date: "4/2/2016", time_id: 12, head_count: 4)
