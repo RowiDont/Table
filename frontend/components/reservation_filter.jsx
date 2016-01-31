@@ -83,9 +83,9 @@ var ReservationFilter = React.createClass({
 
     // time
     var timeOptions = [];
-    var start = restaurant.opens;
-    var end = restaurant.closes;
-    for (var j = start.time; j < end.time; j += 30) {
+    var start = restaurant.opens.time + (restaurant.opens.time % 30);
+    var end = restaurant.closes.time - (restaurant.closes.time % 30);
+    for (var j = start; j < end; j += 30) {
       timeOptions.push(<option key={j} value={j}>{toString(j)}</option>);
     }
 

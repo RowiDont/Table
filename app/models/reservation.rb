@@ -32,12 +32,12 @@ class Reservation < ActiveRecord::Base
     limit = self.restaurant.max_people
     reservations_before = Reservation
                     .where("restaurant_id = ?", self.restaurant_id)
-                    .where("time_id > ? AND time_id <= ?", id - 2, id)
+                    .where("time_id > ? AND time_id <= ?", id - 3, id)
                     .where(:date == self.date)
 
     reservations_after = Reservation
                     .where("restaurant_id = ?", self.restaurant_id)
-                    .where("time_id < ? AND time_id >= ?", id + 2, id)
+                    .where("time_id < ? AND time_id >= ?", id + 3, id)
                     .where(:date == self.date)
 
 
@@ -55,13 +55,7 @@ class Reservation < ActiveRecord::Base
       errors[:restaurant] = "cannot take that many people at that time."
     end
   end
-  #
-  # def time_is_not_taken
-  #   if Reservation.where(restaurant_id: self.restaurant_id)
-  #                 .where(time_id: self.time_id)
-  #                 .where(date: self.date)
-  #   end
-  # end
+
 
   def self.search_results(filters)
     results = [];
@@ -74,34 +68,41 @@ class Reservation < ActiveRecord::Base
 
     time = search_start
     while time <= search_end
-      # debugger
       time_slot = TimeSlot.find_by_time(time)
-      if time_slot
-        r = Reservation.new(
-          user_id: 1,
-          restaurant_id: id,
-          date: date,
-          time_id: time_slot.id,
-          head_count: people
-        )
 
-        if r.valid?
-          results.push(r)
-        end
+      if time_slot
+        r = Reservation.test_reservation(1, id, date, time_slot.id, people)
+        r.valid? ? results.push(r) : nil
       end
 
       time += 15
     end
-    return results
+
+    return filter(results, filters[:time])
   end
 
+  def self.test_reservation(user_id, restaurant_id, date, time_id, people)
+    r = Reservation.new(
+      user_id: 1,
+      restaurant_id: restaurant_id,
+      date: date,
+      time_id: time_id,
+      head_count: people
+    )
+    return r
+  end
+
+  def self.filter(results, search_time)
+    time = search_time.to_i
+    diffs = results.map do |res|
+      [(res.time_slot.time - time).abs, res]
+    end
+    diffs.sort!
+    selected = diffs.slice(0,5)
+    selected = selected.map { |arr| arr[1] }
+    selected.sort! { |x, y| x.time_slot.time <=> y.time_slot.time }
+
+    return selected
+  end
 
 end
-
-r = Reservation.new(
-  user_id: 1,
-  restaurant_id: 26,
-  date: "2016-01-30",
-  time_id: 5,
-  head_count: 2
-)
