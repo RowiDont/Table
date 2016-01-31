@@ -1,6 +1,7 @@
 var AppDispatcher = require('../dispatcher/dispatcher');
 var CityConstants = require('../constants/city_constants');
 var RestaurantConstants = require('../constants/restaurant_constants');
+var ReservationFilterConstants = require('../constants/reservation_filter_constants');
 
 var ApiAction = {
   receiveAllCities: function (data) {
@@ -21,6 +22,13 @@ var ApiAction = {
     AppDispatcher.dispatch({
       actionType: RestaurantConstants.RESTAURANT_RECEIVED,
       restaurant: data
+    });
+  },
+
+  receiveReservationOptions: function (data) {
+    AppDispatcher.dispatch({
+      actionType: ReservationFilterConstants.RESERVATION_OPTIONS_RECEIVED,
+      results: data
     });
   }
 };

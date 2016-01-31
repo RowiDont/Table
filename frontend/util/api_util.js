@@ -51,14 +51,12 @@ var ApiUtil = {
     filters.time = filters.time.toString();
     var id = filters.id;
 
-    debugger
-
     $.ajax({
       type: "GET",
       url: "api/restaurants/" + id + "/reservations",
-      data: filters,
+      data: {filters: filters},
       success: function (data) {
-        console.log(data);
+        ApiAction.receiveReservationOptions(data);
       },
       errors: function () {
         console.log("Options Fetch failed! :(");

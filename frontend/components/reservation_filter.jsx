@@ -4,7 +4,8 @@ var React = require('react'),
     CalendarFilter = require('./calendar/calendar_filter'),
     ReservationFilterActions = require('../actions/reservation_filter_actions'),
     ReservationFilterStore = require('../stores/reservation_filter_store'),
-    ApiUtil = require('../util/api_util');
+    ApiUtil = require('../util/api_util'),
+    ReservationOptions = require('./reservation_options');
 
 
 var ReservationFilter = React.createClass({
@@ -12,11 +13,24 @@ var ReservationFilter = React.createClass({
     return { people: "2",
              time: this.props.restaurant.opens.time,
              date: moment().startOf("day"),
-             id: this.props.restaurant.id } ;
+             id: this.props.restaurant.id,
+             results: {} } ;
+  },
+
+  componentDidMount: function () {
+    ReservationFilterStore.addListener(this._getResults);
   },
 
   updateFitlers: function () {
-    ReservationFilterActions.receiveReservationFilters(this.state);
+    var filters = Object.assign({}, this.state);
+    delete filters.results;
+    ReservationFilterActions.receiveReservationFilters(filters);
+  },
+
+  _getResults: function () {
+    if (ReservationFilterStore.results()) {
+      this.setState({ results: ReservationFilterStore.results() });
+    }
   },
 
   setDate: function (day) {
@@ -33,10 +47,8 @@ var ReservationFilter = React.createClass({
 
   submitFilters: function (e) {
     e.preventDefault();
+    this.updateFitlers();
 
-    if (ReservationFilterStore.empty()) {
-      this.updateFitlers();
-    }
     ApiUtil.fetchReservationOptions();
   },
 
@@ -56,7 +68,7 @@ var ReservationFilter = React.createClass({
 
     // people
     var seatingOptions = [];
-    for (var i = 1; i < restaurant.limit; i++) {
+    for (var i = 1; i <= restaurant.limit; i++) {
       if (i === 1) {
         seatingOptions.push(<option key={i} value={i}>1 Person</option>);
       } else if (i === 2) {
@@ -89,9 +101,10 @@ var ReservationFilter = React.createClass({
             <select onChange={this.setTime} className="reservation-filter-time selector dropdown" name="time">
               {timeOptions}
             </select>
-            <button disabled="true" onClick={this.submitFilters} className="selector submit">Find a Table</button>
+            <button onClick={this.submitFilters} className="selector submit">Find a Table</button>
           </form>
         </div>
+        <ReservationOptions results={this.state.results}/>
       </div>
     );
   }

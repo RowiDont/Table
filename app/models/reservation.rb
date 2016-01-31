@@ -9,6 +9,7 @@ class Reservation < ActiveRecord::Base
   validate :time_slot_is_within_restaurant_hours
   validate :date_is_within_max_advance
   validate :head_count_is_within_limit
+  # validate :time_is_not_taken
 
   def time_slot_is_within_restaurant_hours
     id = self.time_slot.id
@@ -27,25 +28,80 @@ class Reservation < ActiveRecord::Base
   end
 
   def head_count_is_within_limit
-    id = self.time_slot.id
+    id = self.time_id
     limit = self.restaurant.max_people
-    reservations = Reservation
-                    .where("time_id > ?", id - 3)
-                    .where("time_id < ?", id + 3)
+    reservations_before = Reservation
+                    .where("restaurant_id = ?", self.restaurant_id)
+                    .where("time_id > ? AND time_id <= ?", id - 2, id)
                     .where(:date == self.date)
-    sum_of_reservations = reservations.inject(0) { |sum, el| sum + el.head_count}
 
-    if sum_of_reservations + self.head_count > limit
+    reservations_after = Reservation
+                    .where("restaurant_id = ?", self.restaurant_id)
+                    .where("time_id < ? AND time_id >= ?", id + 2, id)
+                    .where(:date == self.date)
+
+
+    # two sets
+    sum_of_reservations_before = reservations_before
+                                    .inject(0) { |sum, el| sum + el.head_count} +
+                                    self.head_count
+
+    sum_of_reservations_after = reservations_after
+                                    .inject(0) { |sum, el| sum + el.head_count} +
+                                    self.head_count
+
+
+    if sum_of_reservations_before > limit ||  sum_of_reservations_after > limit
       errors[:restaurant] = "cannot take that many people at that time."
     end
   end
+  #
+  # def time_is_not_taken
+  #   if Reservation.where(restaurant_id: self.restaurant_id)
+  #                 .where(time_id: self.time_id)
+  #                 .where(date: self.date)
+  #   end
+  # end
 
-  def self.search_results(restaurant, date, time, people)
-    debugger
-    r1 = Reservation.new(user_id: 1,
-                         restaurant_id: restaurant,
-                         date: date,
-                         time_id: time,
-                         head_count: people)
+  def self.search_results(filters)
+    results = [];
+
+    # :people, :time, :date, :id
+    people, time, date, id = filters[:people], filters[:time].to_i, filters[:date], filters[:id]
+
+    search_start = time.to_i - 90
+    search_end = time.to_i + 90
+
+    time = search_start
+    while time <= search_end
+      # debugger
+      time_slot = TimeSlot.find_by_time(time)
+      if time_slot
+        r = Reservation.new(
+          user_id: 1,
+          restaurant_id: id,
+          date: date,
+          time_id: time_slot.id,
+          head_count: people
+        )
+
+        if r.valid?
+          results.push(r)
+        end
+      end
+
+      time += 15
+    end
+    return results
   end
+
+
 end
+
+r = Reservation.new(
+  user_id: 1,
+  restaurant_id: 26,
+  date: "2016-01-30",
+  time_id: 5,
+  head_count: 2
+)

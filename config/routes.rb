@@ -3,7 +3,9 @@ Rails.application.routes.draw do
     resources :cities, only: [:index] do
       resources :restaurants, only: :index
     end
-    resources :restaurants, only: :show
+    resources :restaurants, only: :show do
+      resources :reservations, only: :index
+    end
   end
 
   resources :sessions, only: [:new, :create, :destroy]
