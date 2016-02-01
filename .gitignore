@@ -19,4 +19,4 @@ bundle.map.js
 # Ignore application configuration
 /config/application.yml
 
-/app/assests/images/thumbs
+thumbs
