@@ -30,6 +30,7 @@ var ReservationView = React.createClass({
     mainData = this.state;
     optionalData = $(e.currentTarget).serializeJSON();
     ApiUtil.createReservation(mainData, optionalData);
+    this.props.history.pushState({}, "/");
   },
 
   render: function () {
