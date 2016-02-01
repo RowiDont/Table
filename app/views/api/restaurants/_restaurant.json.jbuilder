@@ -8,4 +8,5 @@ json.restaurant do
   json.zip restaurant.postal_code
   json.lat restaurant.lat
   json.lng restaurant.lng
+  json.image_url asset_path(restaurant.thumb.url)
 end

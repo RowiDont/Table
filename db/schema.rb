@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160201204100) do
+ActiveRecord::Schema.define(version: 20160201220051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,18 +34,22 @@ ActiveRecord::Schema.define(version: 20160201204100) do
   end
 
   create_table "restaurants", force: :cascade do |t|
-    t.string   "name",          null: false
-    t.string   "address",       null: false
-    t.string   "postal_code",   null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.string   "lat",           null: false
-    t.string   "lng",           null: false
-    t.integer  "price",         null: false
-    t.integer  "max_advance",   null: false
-    t.integer  "max_people",    null: false
-    t.integer  "open_time_id",  null: false
-    t.integer  "close_time_id", null: false
+    t.string   "name",               null: false
+    t.string   "address",            null: false
+    t.string   "postal_code",        null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "lat",                null: false
+    t.string   "lng",                null: false
+    t.integer  "price",              null: false
+    t.integer  "max_advance",        null: false
+    t.integer  "max_people",         null: false
+    t.integer  "open_time_id",       null: false
+    t.integer  "close_time_id",      null: false
+    t.string   "thumb_file_name"
+    t.string   "thumb_content_type"
+    t.integer  "thumb_file_size"
+    t.datetime "thumb_updated_at"
   end
 
   add_index "restaurants", ["name"], name: "index_restaurants_on_name", using: :btree

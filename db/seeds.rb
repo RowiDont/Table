@@ -1,5 +1,6 @@
 require 'json'
 require 'byebug'
+require 'active_support/inflector'
 
 test_user = User.new(email: "test@test.com", fname: "Rafi", lname: "Patel", password: "starwars")
 test_user.save
@@ -111,7 +112,8 @@ parsed.each do |city, hash|
       max_advance: QUALIFIERS[:max_advance].sample,
       max_people: QUALIFIERS[:max_people].sample,
       open_time_id: QUALIFIERS[:open_time_id].sample,
-      close_time_id: QUALIFIERS[:close_time_id].sample
+      close_time_id: QUALIFIERS[:close_time_id].sample,
+      thumb: File.new("#{Rails.root}/app/assets/images/thumbs/restaurant_thumb_#{r['name'].parameterize}.jpg")
     )
   end
 end

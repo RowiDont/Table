@@ -6,7 +6,7 @@ class Restaurant < ActiveRecord::Base
   has_many :reservations
 
   has_attached_file :thumb, default_url: "http://placehold.it/350x350"
-  
+  validates_attachment_content_type :thumb, content_type: /\Aimage\/.*\Z/
 
   def max_date
     advance = self.max_advance
