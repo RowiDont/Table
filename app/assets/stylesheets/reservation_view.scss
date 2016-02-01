@@ -1,0 +1,45 @@
+.reservation-page-header {
+  background: white;
+  border-bottom: 1px solid #e3e3e3;
+  border-radius: 2px;
+  margin-bottom: 30px;
+}
+
+.reservation-page-header h1 {
+  font-size: 36px;
+  padding: 35px;
+  font-weight: 400;
+}
+
+.reservation-page-details {
+  background: white;
+  padding: 24px;
+  border-top: 1px solid #e3e3e3;
+  border-bottom: 1px solid #d4d2d2;
+  border-radius: 2px;
+
+}
+
+.reservation-page-details li {
+  float: left;
+  padding-right: 25px;
+}
+
+.reservation-page-details h6 {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #999;
+}
+
+.reservation-page-details h4 {
+  padding-top: 3px;
+  font-size: 24px;
+}
+
+.reservation-page-details a {
+  color: #60B2D0;
+}
+
+.reservation-page-details a:hover {
+  color: #4a9cba;
+}

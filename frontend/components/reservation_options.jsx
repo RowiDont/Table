@@ -34,12 +34,13 @@ var ReservationOptions = React.createClass({
   },
 
   render: function () {
-
     var header;
-    if (this.props.results === []) {
-      header = "No Availability at that time, sorry.";
-    } else if (Object.keys(this.props.results).length === 0) {
+    var klass = "reservation-section";
+    if (this.props.results === "") {
       header = "";
+      klass = "reservation-section-hidden";
+    } else if (Object.keys(this.props.results).length === 0) {
+      header = "No Availability at that time, sorry.";
     } else {
       var date = moment(this.props.results[0].date).format('MMMM Do YYYY');
       var time = Table.timeToString(this.state.time);
@@ -52,13 +53,14 @@ var ReservationOptions = React.createClass({
     if (this.props.results) {
       resultList = Object.keys(results).map(function (idx) {
         var res = results[idx];
+        res.name = RestaurantStore.find(res.rest_id).name;
         var resDetails = JSON.stringify(res);
         return <li onClick={this.submit} data-res-details={resDetails} className="reservation-list-option" key={idx}>{Table.timeToString(res.time.time)}</li>;
       }, this);
     }
 
     return(
-      <div className="reservation-section">
+      <div className={klass}>
         <h3>{header}</h3>
         <ul className="reservation-list group">{resultList}</ul>
       </div>

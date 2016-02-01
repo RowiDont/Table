@@ -6,10 +6,20 @@ class Reservation < ActiveRecord::Base
   validates :user, presence: true
   validates :restaurant, presence: true
 
-  validate :time_slot_is_within_restaurant_hours
+  validate :time_is_not_past
   validate :date_is_within_max_advance
+  validate :time_slot_is_within_restaurant_hours
   validate :head_count_is_within_limit
-  # validate :time_is_not_taken
+
+  def time_is_not_past
+    time_now = Time.now()
+    date = self.date
+    time_then = date.to_time + self.time_slot.time.minutes
+    if time_then < time_now
+      errors[:Time] = "is unfortunately linear"
+    end
+
+  end
 
   def time_slot_is_within_restaurant_hours
     id = self.time_slot.id

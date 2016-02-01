@@ -58,8 +58,9 @@ var ApiUtil = {
       success: function (data) {
         ApiAction.receiveReservationOptions(data);
       },
-      errors: function () {
-        console.log("Options Fetch failed! :(");
+      error: function (x, e) {
+        console.log("im here");
+        ApiAction.receiveReservationOptions([]);
       }
     });
   }
