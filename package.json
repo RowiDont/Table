@@ -31,6 +31,7 @@
     "babel-preset-react": "^6.3.13",
     "flux": "^2.1.1",
     "history": "^1.17.0",
+    "jquery-serializejson": "^2.6.2",
     "moment": "^2.11.1",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",

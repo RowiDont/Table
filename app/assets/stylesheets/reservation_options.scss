@@ -1,0 +1,29 @@
+.reservation-section h3 {
+  font-size: 20px;
+  padding-bottom: 15px;
+}
+
+.reservation-list-option {
+  box-sizing: border-box;
+  float: left;
+  color: rgb(247, 247, 247);
+  text-align: center;
+  padding: 10px 0;
+  width: 90px;
+  background: #da3743;
+  transition: background .25s ease-in-out;
+  margin-right: 10px;
+  // border: 3px solid #da3743;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+.reservation-list-option:hover {
+  background:#b8222d;
+}
+
+.reservation-list {
+  padding-bottom: 20px;
+}

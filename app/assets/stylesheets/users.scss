@@ -1,3 +1,83 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+.user-panel {
+  float: right;
+  padding: 8px;
+}
+
+.user-panel > a {
+  float: left;
+  padding: 10px 15px;
+  font-size: 12px;
+}
+
+.user-panel .logout {
+  cursor: pointer;
+}
+
+.user-panel .logout:hover {
+  color: black;
+}
+
+.user-panel .signup {
+  background: #60b2d0;
+  color: rgb(245, 245, 245);
+  border-radius: 3px;
+  transition: background .25s ease-in-out;
+}
+
+.user-panel .signup:hover {
+  background: #3798bc
+
+}
+.signin {
+  box-sizing: content-box;
+  width: 460px;
+  padding: 20px;
+  background: white;
+  margin: auto;
+  margin-top: 200px;
+}
+
+.signin h1 {
+  font-size: 24px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0,0,0,.12);
+}
+
+.signin input {
+  box-sizing: border-box;
+  width: 100%;
+  display: block;
+  padding: 15px;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 3px;
+  margin: 20px 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.signin button {
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 15px;
+  font-size: 15px;
+  border: 0 !important;
+  cursor: pointer;
+  background: #da3743;
+  color: white;
+  font-family: 'Open Sans';
+  transition: background .25s ease-in-out;
+  border-radius: 3px;
+  width: 100%;
+}
+
+.signin button:hover {
+  background: #b8222d;
+}

@@ -4,23 +4,25 @@ class SessionsController < ApplicationController
   end
 
   def create
-    email = params[:user][:email]
-    password = params[:user][:password]
+    user = User.find_by_credentials(
+      params[:email],
+      params[:password]
+    )
 
-    user = User.find_by_credentials(email, password)
-
-    if user
-      sign_in(user)
-      redirect_to root_url
+    if user.nil?
+      flash.now[:alert] = "Wrong email/password combo"
+      render :new, status: 401
     else
-      flash.now[:errors] = ["Invalid username or password"]
-      render :new
-      # render :json => { errors: "Incorrect email or password" }, status: 422
+      sign_in!(user)
+      flash[:success] = "Welcome back!"
+      redirect_to root_url
     end
   end
 
   def destroy
-    sign_out
-    redirect_to root_url
+    sign_out!
+    flash[:success] = "Thank you, come again."
+    redirect_to new_session_url
   end
+
 end

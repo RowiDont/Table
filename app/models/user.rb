@@ -18,10 +18,10 @@ class User < ActiveRecord::Base
   belongs_to :city
 
 
-
   def self.find_by_credentials(email, password)
-    user = User.find_by(email: email)
+    user = User.find_by_email(email)
     return nil unless user && user.valid_password?(password)
+    return user
   end
 
   def password=(password)

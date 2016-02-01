@@ -55,17 +55,6 @@ var ReservationFilter = React.createClass({
   render: function () {
     var restaurant = this.props.restaurant;
 
-    var toString = function (time) {
-      var hours = Math.floor(time / 60);
-      var minutes = time % 60;
-      var m = hours > 11 ? " PM" : " AM";
-      hours = hours % 12;
-      if (hours === 0) { hours = 12; }
-      if (minutes < 10) { minutes = "0" + minutes; }
-
-      return hours + ":" + minutes + m;
-    };
-
     // people
     var seatingOptions = [];
     for (var i = 1; i <= restaurant.limit; i++) {
@@ -86,7 +75,7 @@ var ReservationFilter = React.createClass({
     var start = restaurant.opens.time + (restaurant.opens.time % 30);
     var end = restaurant.closes.time - (restaurant.closes.time % 30);
     for (var j = start; j < end; j += 30) {
-      timeOptions.push(<option key={j} value={j}>{toString(j)}</option>);
+      timeOptions.push(<option key={j} value={j}>{Table.timeToString(j)}</option>);
     }
 
     return(
@@ -104,7 +93,7 @@ var ReservationFilter = React.createClass({
             <button onClick={this.submitFilters} className="selector submit">Find a Table</button>
           </form>
         </div>
-        <ReservationOptions results={this.state.results}/>
+        <ReservationOptions time={this.state.time} results={this.state.results}/>
       </div>
     );
   }
