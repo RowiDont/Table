@@ -1,5 +1,5 @@
 require 'json'
-require 'byebug'
+# require 'byebug'
 require 'active_support/inflector'
 
 test_user = User.new(email: "test@test.com", fname: "Rafi", lname: "Patel", password: "starwars")
