@@ -59,10 +59,10 @@ var ReservationView = React.createClass({
           </ul>
 
           <form className="reservation-details" onSubmit={ this.submit }>
-            <h3>{currentUser.fname + " " + currentUser.lname}</h3>
-            <input placeholder="phone number" name="number"/>
-            <input placeholder="email" defaultValue={currentUser.email} name="email"/>
-            <textarea placeholder="Add a special request (optional)" name="request"></textarea>
+            <h3 className="hidden">{currentUser.fname + " " + currentUser.lname}</h3>
+            <input type="hidden" placeholder="phone number" name="number"/>
+            <input type="hidden" placeholder="email" defaultValue={currentUser.email} name="email"/>
+            <textarea className="hidden" placeholder="Add a special request (optional)" name="request"></textarea>
             <button>Complete Reservation</button>
           </form>
         </div>

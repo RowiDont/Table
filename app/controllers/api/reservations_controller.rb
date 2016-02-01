@@ -11,7 +11,7 @@ class Api::ReservationsController < ApplicationController
       time_id: params[:reservation][:time][:id],
       head_count: reservation_params[:head_count]
     }
-    debugger
+
     res = Reservation.new(attrs)
     if res.save
       render json: res.to_json.target!
