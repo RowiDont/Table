@@ -1,8 +1,6 @@
 class Api::SessionsController < ApplicationController
 
   def show
-    sleep 2
-
     if current_user
       @user = current_user
       render "api/users/show"

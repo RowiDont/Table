@@ -7,7 +7,7 @@ class EmailValidator < ActiveModel::EachValidator
 end
 
 class User < ActiveRecord::Base
-  validates_presence_of :password_digest, :fname, :lname, :city_id
+  validates_presence_of :password_digest, :fname, :lname
   validates :email, presence: true, email: true
   validates :password, length: { minimum: 5, allow_nil: true }
 
@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
   has_many :sessions
   has_many :reservations
-  belongs_to :city
+  # belongs_to :city
 
 
   def self.find_by_credentials(email, password)

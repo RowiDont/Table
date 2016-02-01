@@ -1,13 +1,14 @@
 class Api::UsersController < ApplicationController
 
-  def index
-    @users = User.all
-    render :index
-  end
+  def create
+    @user = User.new(user_params)
 
-  def show
-    @user = User.find(params[:id])
-    render :show
+    if @user.save
+      sign_in!(@user)
+      render "api/users/show"
+    else
+      render json: @user.errors, status: 401
+    end
   end
 
 
@@ -15,6 +16,6 @@ class Api::UsersController < ApplicationController
   protected
 
   def user_params
-    self.params.require(:user).permit(:email, :password)
+    self.params.require(:user).permit(:email, :password, :fname, :lname)
   end
 end

@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
 
   def sign_in!(user)
     @current_user = user
+    # debugger
     session = Session.create(user_id: user.id,
                              session_token: Session.generate_unique_token)
 
@@ -26,8 +27,6 @@ class ApplicationController < ActionController::Base
 
   def ensure_user_logged_in
     unless current_user
-      # flash[:alert] = "Must be logged in for that!"
-      # redirect_to new_session_url
       render json: ["Nope."]
     end
   end

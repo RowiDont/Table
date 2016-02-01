@@ -55,6 +55,7 @@ var index = React.createClass({
         <ul className="city-grid group">{cities}</ul>
       </div>
     );
+
     return(
       <div>
         {welcome}

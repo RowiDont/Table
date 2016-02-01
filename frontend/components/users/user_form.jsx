@@ -7,8 +7,10 @@ var UserForm = React.createClass({
 
   submit: function (e) {
     e.preventDefault();
-
-    debugger;
+    var attrs = $(e.currentTarget).serializeJSON();
+    UsersApiUtil.createUser(attrs, function () {
+      this.history.pushState({}, "/");
+    }.bind(this));
   },
 
   render: function() {
@@ -16,7 +18,7 @@ var UserForm = React.createClass({
     return (
       <form className="signin" onSubmit={ this.submit }>
 
-        <h1>Sign Up!</h1>
+        <h1>Welcome to OpenTable!</h1>
 
         <label>
           <input placeholder="First name" type="text" name="fname" />
