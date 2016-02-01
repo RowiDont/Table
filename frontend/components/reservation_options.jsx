@@ -1,6 +1,7 @@
 var React = require('react'),
     History = require('react-router').History,
     ApiUtil = require('../util/api_util'),
+    RestaurantStore = require('../stores/restaurant_store'),
     moment = require('moment');
 
 Table.timeToString = function (time) {
