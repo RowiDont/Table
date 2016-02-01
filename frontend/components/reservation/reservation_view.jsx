@@ -52,7 +52,7 @@ var ReservationView = React.createClass({
             <h1>Complete your reservation</h1>
           </div>
           <ul className="reservation-page-details group">
-            <li><img src="http://placehold.it/60x60"></img></li>
+            <li><img src={this.state.image_url}></img></li>
             { guests }
             { date }
             { time }

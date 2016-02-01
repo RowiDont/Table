@@ -15,20 +15,55 @@
 
 .restaurant-page .header {
   width: 100%;
-  background: rgb(238, 238, 238);
+  height: 125px;
+  background: rgba(73, 72, 72, 1);
 }
 
 .header-content {
   width: calc(100% - 200px);
   float: right;
+  color: rgb(241, 241, 241);
 }
 
+.header-content h1 {
+  font-size: 36px;
+  font-weight: 300;
+  margin-top: 35px;
+}
+
+.header-content h4 {
+  display: inline-block;
+  padding: 0 10px 0 0;
+}
+
+.header-content .bar {
+  display: inline-block;
+}
+
+.header-content .price {
+  padding: 0 10px;
+  float: none;
+  display: inline-block;
+  color: grey;
+}
+
+.header-content .selected {
+  color: white;
+}
 
 .restaurant-page .sidebar {
   width: 200px;
   height: 500px;
   float: left;
   background: rgb(241, 241, 241);
+}
+
+.sidebar img {
+  width: 140px;
+  height: 140px;
+  padding: 30px;
+  margin-top: -130px;
+  border-radius: 20%;
 }
 
 .restaurant-page .main {

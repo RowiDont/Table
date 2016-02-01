@@ -12,4 +12,6 @@ json.restaurant do
   json.date_limit restaurant.max_advance
   json.opens restaurant.open_time
   json.closes restaurant.close_time
+  json.image_url asset_path(restaurant.thumb.url)
+  json.city restaurant.city.name
 end

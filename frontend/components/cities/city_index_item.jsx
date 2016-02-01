@@ -22,10 +22,11 @@ var CityIndexItem = React.createClass({
     }
 
     var url = "#/restaurants/" + this.props.restaurant.id;
+    var img_url = restaurant.image_url;
 
     return(
       <li className="restaurant-item group">
-        <a href={url}><img id={id} className="restaurant-item-photo" src="http://placehold.it/80x80"/></a>
+        <a href={url}><img id={id} className="restaurant-item-photo" src={img_url}/></a>
         <div className="restaurant-item-details">
           <a href={url}><h3 id={id} className="restaurant-item-name">{name}</h3></a>
           <span className="restaurant-item-address">{address}</span>

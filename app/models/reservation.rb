@@ -74,6 +74,7 @@ class Reservation < ActiveRecord::Base
       reservation.date date
       reservation.head_count head_count
       reservation.time time_slot.to_jbuilder
+      reservation.image_url restaurant.thumb.url
     end
   end
 

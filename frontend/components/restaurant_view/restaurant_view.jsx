@@ -28,9 +28,23 @@ var RestaurantView = React.createClass({
         sidebar = <div></div>;
 
     if (this.state.fetched) {
+
       var restaurant = this.state.rest,
           lat = restaurant.lat,
           lng = restaurant.lng;
+
+      var priceCt = parseInt(restaurant.price);
+      var pricing = [];
+      for (var i = 0; i < 4; i++) {
+        var klass;
+        if (priceCt > 0) {
+          klass = "selected";
+        } else {
+          klass = "";
+        }
+        pricing.push(<span key={i} className={klass}>$</span>);
+        priceCt--;
+      }
 
       var url = {
         url: "https://maps.googleapis.com/maps/api/staticmap?center=" +
@@ -41,7 +55,21 @@ var RestaurantView = React.createClass({
         var altText = this.state.rest.name + " Google maps image";
 
       map = <img className="restaurant-page-map" src={url.url} alt={altText}/>;
-      header = <div className="header-content"><h1>{this.state.rest.name}</h1></div>;
+      header = (
+        <div className="header-content">
+          <h1>{this.state.rest.name}</h1>
+          <h4>{this.state.rest.city}</h4>
+          <span className="bar">|</span>
+          <div className="price group">{pricing}</div>
+        </div>
+      );
+
+      sidebar = (
+        <div className="sidebar">
+          <img src={this.state.rest.image_url} alt="image thumbnail" />
+        </div>
+      );
+
       reservationFilter = <ReservationFilter restaurant={this.state.rest}/>;
     }
 
@@ -51,9 +79,7 @@ var RestaurantView = React.createClass({
         <div className="header group">
           {header}
         </div>
-        <div className="sidebar">
-          {sidebar}
-        </div>
+        {sidebar}
         <div className="main">
           {reservationFilter}
         </div>
