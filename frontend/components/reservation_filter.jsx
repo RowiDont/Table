@@ -18,7 +18,11 @@ var ReservationFilter = React.createClass({
   },
 
   componentDidMount: function () {
-    ReservationFilterStore.addListener(this._getResults);
+    this.token = ReservationFilterStore.addListener(this._getResults);
+  },
+
+  componentWillUnmount: function () {
+    this.token.remove();
   },
 
   updateFitlers: function () {
@@ -50,6 +54,10 @@ var ReservationFilter = React.createClass({
     this.updateFitlers();
 
     ApiUtil.fetchReservationOptions();
+  },
+
+  reAddClick: function (e) {
+    $(e.currentTarget).on('click', this.submitFilters);
   },
 
   render: function () {

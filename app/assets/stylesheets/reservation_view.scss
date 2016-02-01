@@ -43,3 +43,65 @@
 .reservation-page-details a:hover {
   color: #4a9cba;
 }
+
+.reservation-details {
+  padding: 25px 0;
+  // border: 1px solid #ccc;
+  width: 60%;
+  color: black;
+}
+
+.reservation-details h3 {
+  padding: 10px 2px;
+  font-size: 18px;
+}
+
+.reservation-details input {
+  box-sizing: border-box;
+  width: calc(50% - 10px);
+  background: white;
+  padding: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  border: 1px solid rgba(0,0,0,.12);
+}
+
+.reservation-details input:nth-of-type(1) {
+  margin-right: 10px;
+}
+
+.reservation-details input:nth-of-type(2) {
+  margin-left: 10px;
+}
+
+.reservation-details textarea {
+  margin: 10px 0;
+  appearance: none;
+  border: 1px solid rgba(0,0,0,.12);
+  box-sizing: border-box;
+  padding: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  width: 100%;
+}
+
+.reservation-details button {
+  display: inline-block;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin-top: -4px;
+  padding: 15px 25px;
+  font-size: 14px;
+  border: 0 !important;
+  cursor: pointer;
+  background: #da3743;
+  color: rgb(241, 241, 241);
+  font-family: 'Open Sans';
+  transition: background .25s ease-in-out;
+  border-radius: 3px;
+}
+
+.reservation-details button:hover {
+  background:#b8222d;
+}

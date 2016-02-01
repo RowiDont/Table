@@ -55,8 +55,10 @@ function _ensureLoggedIn(nextState, replace, callback) {
   }
 
   function _redirectIfNotLoggedIn() {
+    // TODO: store reservation in session data
     if (!CurrentUserStore.isLoggedIn()) {
-      replace({}, "/login");
+      // debugger
+      replace({redirect: true}, "/login");
     }
     callback();
   }

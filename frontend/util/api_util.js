@@ -50,7 +50,6 @@ var ApiUtil = {
     filters.date = filters.date.format();
     filters.time = filters.time.toString();
     var id = filters.id;
-
     $.ajax({
       type: "GET",
       url: "api/restaurants/" + id + "/reservations",
@@ -59,8 +58,49 @@ var ApiUtil = {
         ApiAction.receiveReservationOptions(data);
       },
       error: function (x, e) {
-        console.log("im here");
         ApiAction.receiveReservationOptions([]);
+      }
+    });
+  },
+
+  setTempReservation: function (data) {
+    $.ajax({
+      type: "POST",
+      url: "api/reservations/temp_set",
+      data: {reservation: data},
+      success: function (data) {
+        ApiAction.receiveReservationOptions(data);
+      },
+      error: function (x, e) {
+        ApiAction.receiveReservationOptions([]);
+      }
+    });
+  },
+
+  getTempReservation: function () {
+    $.ajax({
+      type: "GET",
+      url: "api/reservations/temp_get",
+      success: function (data) {
+        ApiAction.receiveTempReservation(data);
+      }
+    });
+  },
+
+  createReservation: function (mainData, optionalData) {
+
+
+    $.ajax({
+      type: "POST",
+      url: "api/reservations",
+      dataType: 'json',
+      data: {reservation: mainData, options: optionalData},
+      success: function (data) {
+        console.log(data);
+        // ApiAction.receiveReservation(data);
+      },
+      errors: function (data) {
+        debugger
       }
     });
   }

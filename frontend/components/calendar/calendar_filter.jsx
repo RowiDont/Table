@@ -6,18 +6,23 @@ var CalendarFilter = React.createClass({
   getInitialState: function () {
     return { selected: this.props.moment, calendarClass: "calendar hidden" };
   },
+  offClickHandle: function (e) {
+    if (!e.target.className.includes("calendar") &&
+        !e.target.className.includes("fa") &&
+        e.target.parentElement.className !== "header" &&
+        !e.target.className.includes("weekday"))
+    {
+      this.setState({ calendarClass: "calendar hidden"
+    });
+    }
+  },
 
   componentDidMount: function () {
-    document.addEventListener("click", function (e) {
-      if (!e.target.className.includes("calendar") &&
-          !e.target.className.includes("fa") &&
-          e.target.parentElement.className !== "header" &&
-          !e.target.className.includes("weekday"))
-      {
-        this.setState({ calendarClass: "calendar hidden"
-      });
-      }
-    }.bind(this));
+    document.addEventListener("click", this.offClickHandle);
+  },
+
+  componentWillUnmount: function () {
+    document.removeEventListener("click", this.offClickHandle);
   },
 
 

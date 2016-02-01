@@ -1,15 +1,19 @@
 var React = require('react');
-var History = require('react-router').History;
+// var History = require('react-router').History;
 var SessionsApiUtil = require('./../../util/sessions_api_util');
 
 var SessionForm = React.createClass({
-  mixins: [History],
+  // mixins: [History],
 
   submit: function (e) {
     e.preventDefault();
     var credentials = $(e.currentTarget).serializeJSON();
     SessionsApiUtil.login(credentials, function () {
-      this.history.pushState({}, "/");
+      if (this.props.location.state) {
+        this.props.history.pushState({}, "/reservation");
+      } else {
+        this.props.history.goBack();
+      }
     }.bind(this));
   },
 

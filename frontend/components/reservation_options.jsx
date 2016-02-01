@@ -2,6 +2,7 @@ var React = require('react'),
     History = require('react-router').History,
     ApiUtil = require('../util/api_util'),
     RestaurantStore = require('../stores/restaurant_store'),
+    ReservationTempStore = require('../stores/reservation_temp_store'),
     moment = require('moment');
 
 Table.timeToString = function (time) {
@@ -25,7 +26,8 @@ var ReservationOptions = React.createClass({
 
   submit: function (e) {
     data = JSON.parse(e.target.dataset.resDetails);
-    this.context.history.pushState(data, "/reservation");
+    ApiUtil.setTempReservation(data);
+    this.context.history.pushState({}, "/reservation");
   },
 
   componentWillReceiveProps: function (newProps) {

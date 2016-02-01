@@ -1,0 +1,2 @@
+module Api::TempreservationsHelper
+end

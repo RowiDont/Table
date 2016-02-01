@@ -1,5 +1,6 @@
 class Api::RestaurantsController < ApplicationController
   def index
+    # TODO: order by id or filter
     city = City.find(params[:city_id])
     @restaurants = city.restaurants
   end

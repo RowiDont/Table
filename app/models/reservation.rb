@@ -66,8 +66,19 @@ class Reservation < ActiveRecord::Base
     end
   end
 
+  def to_json
+    Jbuilder.new do |reservation|
+      reservation.name restaurant.name
+      reservation.user_id user_id
+      reservation.rest_id restaurant_id
+      reservation.date date
+      reservation.head_count head_count
+      reservation.time time_slot.to_jbuilder
+    end
+  end
 
   def self.search_results(filters)
+
     results = [];
 
     # :people, :time, :date, :id
@@ -76,16 +87,13 @@ class Reservation < ActiveRecord::Base
     search_start = time.to_i - 90
     search_end = time.to_i + 90
 
-    time = search_start
-    while time <= search_end
-      time_slot = TimeSlot.find_by_time(time)
+    time = TimeSlot.where('time >= ? AND time <= ?', search_start, search_end)
 
-      if time_slot
-        r = Reservation.test_reservation(1, id, date, time_slot.id, people)
-        r.valid? ? results.push(r) : nil
-      end
+    time.each do |time|
+      time_slot = time
 
-      time += 15
+      r = Reservation.test_reservation(1, id, date, time_slot.id, people)
+      r.valid? ? results.push(r) : nil
     end
 
     return filter(results, filters[:time])

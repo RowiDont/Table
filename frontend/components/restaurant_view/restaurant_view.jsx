@@ -13,8 +13,12 @@ var RestaurantView = React.createClass({
   },
 
   componentDidMount: function () {
-    RestaurantStore.addListener(this._onChange);
+    this.token = RestaurantStore.addListener(this._onChange);
     ApiUtil.fetchSingleRestaurant(this.props.params.id);
+  },
+
+  componentWillUnmount: function () {
+    this.token.remove();
   },
 
   render: function () {

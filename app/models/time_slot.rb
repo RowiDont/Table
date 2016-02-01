@@ -9,4 +9,10 @@ class TimeSlot < ActiveRecord::Base
 
     return string
   end
+
+  def to_jbuilder
+    Jbuilder.new do |time_slot|
+      time_slot.(self, :id, :time)
+    end
+  end
 end
