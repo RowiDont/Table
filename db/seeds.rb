@@ -1,7 +1,7 @@
 require 'json'
 require 'byebug'
 
-test_user = User.new(email: "test@test.com", fname: "Rafi", lname: "Patel", password: "starwars", city_id: 1)
+test_user = User.new(email: "test@test.com", fname: "Rafi", lname: "Patel", password: "starwars")
 test_user.save
 
 start_time = 630

@@ -26,6 +26,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'rails_12factor', group: :production
 
+gem "paperclip", "~> 4.3"
+gem "figaro"
+gem 'aws-sdk', '~> 1.6'
+
 gem 'faraday'
 gem 'faraday_middleware'
 

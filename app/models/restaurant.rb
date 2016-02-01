@@ -5,6 +5,9 @@ class Restaurant < ActiveRecord::Base
   belongs_to :close_time, class_name: "TimeSlot", foreign_key: :close_time_id, primary_key: :id
   has_many :reservations
 
+  has_attached_file :thumb, default_url: "http://placehold.it/350x350"
+  
+
   def max_date
     advance = self.max_advance
     return Time.now + advance.days
