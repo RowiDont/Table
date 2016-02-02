@@ -63,14 +63,14 @@ var ApiUtil = {
     });
   },
 
-  setTempReservation: function (data) {
+  setTempReservation: function (data, callback) {
     $.ajax({
       type: "POST",
       url: "api/reservations/temp_set",
       data: {reservation: data},
       success: function (data) {
         ApiAction.receiveTempReservation(data);
-        ApiUtil.getTempReservation();
+        callback();
       },
       error: function (x, e) {
         ApiAction.receiveReservationOptions([]);

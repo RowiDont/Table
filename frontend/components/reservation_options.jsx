@@ -26,8 +26,9 @@ var ReservationOptions = React.createClass({
 
   submit: function (e) {
     data = JSON.parse(e.target.dataset.resDetails);
-    ApiUtil.setTempReservation(data);
-    this.context.history.pushState({}, "/reservation");
+    ApiUtil.setTempReservation(data, function () {
+      this.context.history.pushState({}, "/reservation");
+    }.bind(this));
   },
 
   componentWillReceiveProps: function (newProps) {
