@@ -75,6 +75,14 @@ label span {
   padding: 5px;
 }
 
+.update-user .preview {
+  width: 100px;
+  height: auto;
+  margin: auto;
+  display: block;
+}
+
+.update-user a,
 .update-user button {
   box-sizing: border-box;
   -webkit-appearance: none;
@@ -96,11 +104,13 @@ label span {
   background: #b8222d;
 }
 
-.update-user .cancel {
+.update-user a.cancel {
+  display: block;
+  text-align: center;
   margin-top: 20px;
   background: rgb(81, 160, 194);
 }
 
-.update-user .cancel:hover {
+.update-user a.cancel:hover {
   background: rgb(43, 123, 157);
 }

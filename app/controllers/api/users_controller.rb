@@ -12,8 +12,9 @@ class Api::UsersController < ApplicationController
     end
   end
 
-  def index
+  def show
     @user = User.find(current_user.id)
+    @reservations = @user.reservations.includes(:restaurant).order('date').order('time_id')
     render :index
   end
 
@@ -22,6 +23,7 @@ class Api::UsersController < ApplicationController
     @user.update(user_params)
     render :index
   end
+
 
 
 

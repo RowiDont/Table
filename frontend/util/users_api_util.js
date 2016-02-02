@@ -3,7 +3,7 @@ var CurrentUserActions = require('../actions/current_user_actions');
 var UsersApiUtil = {
   fetchUser: function (id) {
     $.ajax({
-      url: 'api/users/' + id,
+      url: 'api/users/',
       type: 'GET',
       dataType: 'json',
       success: function (user) {
@@ -28,11 +28,13 @@ var UsersApiUtil = {
   updateUser: function (data, callback) {
     $.ajax({
       type: "PATCH",
-      url: "api/users/update",
+      url: "api/users",
+      processData: false,
+      contentType: false,
       dataType: "json",
       data: data,
       success: function (data) {
-        CurrentUserActions.receiveCurrentUser(user);
+        CurrentUserActions.receiveCurrentUser(data);
         callback();
       }
     });

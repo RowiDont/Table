@@ -22,12 +22,21 @@ var UserView = React.createClass({
     this.props.history.pushState(this.state.user, "/user/edit");
   },
 
+  redirectToReservations: function () {
+    this.props.history.pushState(this.state.user.reservations, "/user/reservations");
+  },
+
   render: function () {
     var name = (
       <h1 className="username">
         {this.state.user.fname} {this.state.user.lname}
       </h1>
     );
+
+    var image = <div></div>;
+    if (this.state.user.avatar) {
+      image = <img src={this.state.user.avatar} alt="user profile pic" />;
+    }
 
     var email = (
       <div className="email">
@@ -37,8 +46,8 @@ var UserView = React.createClass({
 
     var sideLinks = (
       <ul>
-        <li onClick={this.redirectToEdit}>Edit Profile</li>
         <li onClick={this.redirectToReservations}>Reservations</li>
+        <li onClick={this.redirectToEdit}>Edit Profile</li>
         <li onClick={this.redirectToFavorites}>Favorites</li>
       </ul>
     );
@@ -46,6 +55,7 @@ var UserView = React.createClass({
     return(
       <div className="user-page">
         <div className="user-show-header">
+          {image}
           {name}
         </div>
         <div className="sidebar">

@@ -1,17 +1,17 @@
 var React = require('react');
-var ApiUtil = require('../../util/api_util.js');
+var UsersApiUtil = require('../../util/users_api_util.js');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
 
 var UserUpdate = React.createClass({
   getInitialState: function() {
     var user = this.props.location.state;
-    return { email: user.email,
-             fname: user.fname,
-             lname: user.lname,
+    return { email: "",
+             fname: "",
+             lname: "",
              imageFile: null,
-             imageUrl: "",
-             imageClass: ""};
+             imageUrl: user.avatar,
+             imageClass: "preview"};
   },
 
   componentWillReceiveProps: function (newProps) {
@@ -26,29 +26,33 @@ var UserUpdate = React.createClass({
     this.props.history.goBack();
   },
 
+  redirectToView: function () {
+    this.props.history.pushState({}, "/user/reservations");
+  },
+
   render: function() {
+    var user = this.props.location.state;
     form = (
       <div className="update-user">
         <h2>Edit your profile</h2>
 
         <form onSubmit={this.handleSubmit}>
           <label className="name">First name
-            <input type="text" onChange={this.changeFname} value={this.state.fname} />
+            <input placeholder={user.fname} type="text" onChange={this.changeFname} />
           </label>
           <label className="name">Last name
-            <input type="text" onChange={this.changeLname} value={this.state.lname} />
+            <input placeholder={user.lname} type="text" onChange={this.changeLname} />
           </label>
           <label className="email">Email
-            <input type="text" onChange={this.changeEmail} value={this.state.email} />
+            <input placeholder={user.email} type="text" onChange={this.changeEmail} />
           </label>
 
           <label>Profile picture:
-            <img className={this.state.imageClass} src={this.state.imageUrl}/>
             <input type="file" onChange={this.changeFile} />
           </label>
 
           <button>Save changes</button>
-          <button className="cancel" onClick={this.goBack}>Cancel</button>
+          <a className="cancel" onClick={this.goBack}>Cancel</a>
         </form>
 
       </div>
@@ -89,12 +93,12 @@ var UserUpdate = React.createClass({
 
     var formData = new FormData();
 
-    formData.append("user[email]", this.state.email);
-    formData.append("user[fname]", this.state.fname);
-    formData.append("user[lname]", this.state.lname);
-    formData.append("user[avatar]", this.state.imageFile);
+    if (this.state.email) {formData.append("user[email]", this.state.email);}
+    if (this.state.fname) {formData.append("user[fname]", this.state.fname);}
+    if (this.state.lname) {formData.append("user[lname]", this.state.lname);}
+    if (this.state.imageFile) {formData.append("user[avatar]", this.state.imageFile);}
 
-    ApiUtil.updateUser(formData, this.resetForm);
+    UsersApiUtil.updateUser(formData, this.redirectToView);
   },
 
   resetForm: function() {

@@ -3,7 +3,8 @@ class Api::SessionsController < ApplicationController
   def show
     if current_user
       @user = current_user
-      render "api/users/show"
+      @reservations = @user.reservations.includes(:restaurant).order('date').order('time_id')
+      render "api/users/index"
     else
       render json: {}
     end
@@ -19,7 +20,7 @@ class Api::SessionsController < ApplicationController
       render json: ["Wrong email/password combo!"], status: 401
     else
       sign_in!(@user)
-      render "api/users/show"
+      render "api/users/index"
     end
   end
 

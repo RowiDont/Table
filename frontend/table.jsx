@@ -18,7 +18,8 @@ var React = require('react'),
     ReservationView = require('./components/reservation/reservation_view'),
     ReservationConfirmation = require('./components/reservation/reservation_confirmation'),
     UserView = require('./components/users/show.jsx'),
-    UserUpdate = require('./components/users/user_update_form.jsx'),
+    UserUpdate = require('./components/users/user_update_form'),
+    UserReservations = require('./components/users/user_reservations'),
     CurrentUserStore = require('./stores/current_user_store'),
     SessionsApiUtil = require('./util/sessions_api_util');
 
@@ -44,6 +45,7 @@ var routes = (
       <Route path="confirmation" component={ ReservationConfirmation } />
     </Route>
     <Route path="user" component={ UserView }>
+      <Route path="reservations" component={ UserReservations } />
       <Route path="edit" component={ UserUpdate } />
     </Route>
   </Route>

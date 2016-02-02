@@ -6,9 +6,20 @@
 }
 
 .user-show-header h1 {
+  width: 300px;
+  display: inline-block;
   font-size: 36px;
   padding: 35px;
+  padding-left: 0;
   font-weight: 400;
+}
+
+.user-show-header img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  float: left;
+  margin: 30px;
 }
 
 .sidebar ul {
@@ -30,20 +41,20 @@
   color: #b8222d;
 }
 
-.example-enter {
-  opacity: 0.01;
-}
-
-.example-enter.example-enter-active {
-  opacity: 1;
-  transition: opacity 1000ms ease-in;
-}
-
-.example-leave {
-  opacity: 1;
-}
-
-.example-leave.example-leave-active {
-  opacity: 0.01;
-  transition: opacity 300ms ease-in;
-}
+// .example-enter {
+//   opacity: 0.01;
+// }
+//
+// .example-enter.example-enter-active {
+//   opacity: 1;
+//   transition: opacity 1000ms ease-in;
+// }
+//
+// .example-leave {
+//   opacity: 1;
+// }
+//
+// .example-leave.example-leave-active {
+//   opacity: 0.01;
+//   transition: opacity 300ms ease-in;
+// }
