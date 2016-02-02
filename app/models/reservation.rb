@@ -15,7 +15,7 @@ class Reservation < ActiveRecord::Base
     time_now = Time.now()
     date = self.date
     time_then = date.to_time + self.time_slot.time.minutes
-    if time_then < time_now
+    if time_then < time_now.in_time_zone('Eastern Time (US & Canada)')
       errors[:Time] = "is unfortunately linear"
     end
 
