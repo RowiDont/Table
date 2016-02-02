@@ -29,7 +29,6 @@ class Api::ReservationsController < ApplicationController
       head_count: reservation_params[:head_count]
     }
     res = Reservation.new(attrs)
-    session[:reservation] = nil
     session[:reservation] = res.to_json.target!
     render json: session[:reservation]
   end

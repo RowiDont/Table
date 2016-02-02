@@ -69,7 +69,8 @@ var ApiUtil = {
       url: "api/reservations/temp_set",
       data: {reservation: data},
       success: function (data) {
-        ApiAction.receiveReservationOptions(data);
+        ApiAction.receiveTempReservation(data);
+        ApiUtil.getTempReservation();
       },
       error: function (x, e) {
         ApiAction.receiveReservationOptions([]);
@@ -88,19 +89,16 @@ var ApiUtil = {
   },
 
   createReservation: function (mainData, optionalData) {
-
-
     $.ajax({
       type: "POST",
       url: "api/reservations",
       dataType: 'json',
       data: {reservation: mainData, options: optionalData},
       success: function (data) {
-        console.log(data);
+        // console.log(data);
         // ApiAction.receiveReservation(data);
       },
       errors: function (data) {
-        debugger
       }
     });
   }
