@@ -39,6 +39,7 @@ var ReservationView = React.createClass({
       var rest_url = "#/restaurants/" + this.state.rest_id;
       var rest_link = <a href={rest_url}>{rest}</a>;
       var headerText = "Complete your reservation";
+      var detailClass = "reservation-page-details group";
 
       var restaurant = <li className="rest"><h6>Restaurant</h6><h4>{rest_link}</h4></li>,
           time = <li className="time"><h6>Time</h6><h4>{Table.timeToString(this.state.time.time)}</h4></li>,
@@ -61,16 +62,17 @@ var ReservationView = React.createClass({
         form = "";
         var greeting = languages[Math.floor(Math.random() * languages.length)];
         headerText = "Reservation Complete, " + greeting + "!";
+        detailClass = "reservation-page-details group grey";
       }
 
 
       return(
         <div className="reservation-page">
           <div className="reservation-page-header">
-            <h1>{headerText}</h1>
+            <h1>{ headerText }</h1>
           </div>
-          <ul className="reservation-page-details group">
-            <li><img src={this.state.image_url}></img></li>
+          <ul className={ detailClass }>
+            <li><img src={ this.state.image_url }></img></li>
             { guests }
             { date }
             { time }
@@ -79,7 +81,7 @@ var ReservationView = React.createClass({
 
           { form }
 
-          {this.props.children}
+          { this.props.children }
         </div>
       );
     } else {

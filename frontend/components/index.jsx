@@ -44,7 +44,7 @@ var index = React.createClass({
                  key={index}
                  onClick={this.clickRedirect}>
                <h2>{city.name}</h2>
-               <div className="count">(Restaurants: {city.count})</div>
+               <div className="count">{city.count} restaurants</div>
               </a>
              );
     }.bind(this));
