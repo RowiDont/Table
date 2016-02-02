@@ -16,6 +16,7 @@ var React = require('react'),
     CityIndex = require('./components//cities/city_index'),
     RestaurantView = require('./components/restaurant_view/restaurant_view'),
     ReservationView = require('./components/reservation/reservation_view'),
+    ReservationConfirmation = require('./components/reservation/reservation_confirmation'),
     UserView = require('./components/users/show.jsx'),
     CurrentUserStore = require('./stores/current_user_store'),
     SessionsApiUtil = require('./util/sessions_api_util');
@@ -38,7 +39,9 @@ var routes = (
     <Route path="users/new" component={ UserForm } />
     <Route path="cities/:city_id" component={ CityIndex } />
     <Route path="/restaurants/:id" component={ RestaurantView } />
-    <Route path="reservation" component={ ReservationView } onEnter={ _ensureLoggedIn }/>
+    <Route path="reservation" component={ ReservationView } onEnter={ _ensureLoggedIn }>
+      <Route path="confirmation" component={ ReservationConfirmation } />
+    </Route>
     <Route path="user" component={ UserView } />
   </Route>
 );

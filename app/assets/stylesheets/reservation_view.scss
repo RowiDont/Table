@@ -114,3 +114,30 @@
   width: 60px;
   height: 60px;
 }
+
+.button-to-home {
+  padding-top: 50px;
+  margin: auto;
+}
+
+.button-to-home a {
+  display: inline-block;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0 auto;
+  margin-top: -4px;
+  padding: 15px 25px;
+  font-size: 14px;
+  border: 0 !important;
+  cursor: pointer;
+  background: #da3743;
+  color: rgb(241, 241, 241);
+  font-family: 'Open Sans';
+  transition: background .25s ease-in-out;
+  border-radius: 3px;
+}
+
+.button-to-home a:hover {
+  background:#b8222d;
+}

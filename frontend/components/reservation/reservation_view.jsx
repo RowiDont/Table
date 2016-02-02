@@ -26,11 +26,10 @@ var ReservationView = React.createClass({
   submit: function (e) {
     e.preventDefault();
 
-    console.log("im here");
     mainData = this.state;
     optionalData = $(e.currentTarget).serializeJSON();
     ApiUtil.createReservation(mainData, optionalData);
-    this.props.history.pushState({}, "/");
+    this.props.history.pushState({}, "/reservation/confirmation");
   },
 
   render: function () {
@@ -39,17 +38,36 @@ var ReservationView = React.createClass({
       var rest = this.state.name;
       var rest_url = "#/restaurants/" + this.state.rest_id;
       var rest_link = <a href={rest_url}>{rest}</a>;
+      var headerText = "Complete your reservation";
 
       var restaurant = <li className="rest"><h6>Restaurant</h6><h4>{rest_link}</h4></li>,
           time = <li className="time"><h6>Time</h6><h4>{Table.timeToString(this.state.time.time)}</h4></li>,
           guests = <li className="guests"><h6>Guests</h6><h4>{this.state.head_count}</h4></li>,
           date = <li className="date"><h6>Date</h6><h4>{moment(this.state.date).format('dddd, MMMM Do, YYYY')}</h4></li>;
 
+      var form = (
+        <form className="reservation-details" onSubmit={ this.submit }>
+          <h3 className="hidden">{currentUser.fname + " " + currentUser.lname}</h3>
+          <input type="hidden" placeholder="phone number" name="number"/>
+          <input type="hidden" placeholder="email" defaultValue={currentUser.email} name="email"/>
+          <textarea className="hidden" placeholder="Add a special request (optional)" name="request"></textarea>
+          <button>Complete Reservation</button>
+        </form>
+      );
+
+      var languages = ["吃好 (chī hǎo)", "Bon appetit", "Buon appetito", "Eet Smakelijk", "いただきます (itadakimasu)", "בתיאבון (be'te-avon)"];
+
+      if (this.props.location.pathname === "/reservation/confirmation") {
+        form = "";
+        var greeting = languages[Math.floor(Math.random() * languages.length)];
+        headerText = "Reservation Complete, " + greeting + "!";
+      }
+
 
       return(
         <div className="reservation-page">
           <div className="reservation-page-header">
-            <h1>Complete your reservation</h1>
+            <h1>{headerText}</h1>
           </div>
           <ul className="reservation-page-details group">
             <li><img src={this.state.image_url}></img></li>
@@ -59,13 +77,9 @@ var ReservationView = React.createClass({
             { restaurant }
           </ul>
 
-          <form className="reservation-details" onSubmit={ this.submit }>
-            <h3 className="hidden">{currentUser.fname + " " + currentUser.lname}</h3>
-            <input type="hidden" placeholder="phone number" name="number"/>
-            <input type="hidden" placeholder="email" defaultValue={currentUser.email} name="email"/>
-            <textarea className="hidden" placeholder="Add a special request (optional)" name="request"></textarea>
-            <button>Complete Reservation</button>
-          </form>
+          { form }
+
+          {this.props.children}
         </div>
       );
     } else {
