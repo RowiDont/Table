@@ -31,7 +31,8 @@ var UserReservations = React.createClass({
 
 
     return(
-      <ul>
+      <ul className="reservation-list">
+        <h1>Reservations:</h1>
         {ress}
       </ul>
     );

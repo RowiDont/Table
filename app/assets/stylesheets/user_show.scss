@@ -41,6 +41,40 @@
   color: #b8222d;
 }
 
+.reservation-list {
+  padding-left: 20px;
+  width: 880px;
+  float: right;
+  font-size: 75% !important;
+  background: white;
+}
+.reservation-list ul {
+  border-bottom: 0;
+}
+
+.reservation-list .date {
+  width: 275px;
+}
+
+.reservation-list .time {
+  width: 125px;
+}
+
+.reservation-list h1 {
+  font-size: 30px;
+  padding: 15px;
+}
+
+.reservation-list h6 {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #999;
+}
+
+.reservation-list h4 {
+  padding-top: 3px;
+  font-size: 18px;
+}
 // .example-enter {
 //   opacity: 0.01;
 // }
