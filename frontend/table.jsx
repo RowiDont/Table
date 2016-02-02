@@ -18,6 +18,7 @@ var React = require('react'),
     ReservationView = require('./components/reservation/reservation_view'),
     ReservationConfirmation = require('./components/reservation/reservation_confirmation'),
     UserView = require('./components/users/show.jsx'),
+    UserUpdate = require('./components/users/user_update_form.jsx'),
     CurrentUserStore = require('./stores/current_user_store'),
     SessionsApiUtil = require('./util/sessions_api_util');
 
@@ -42,7 +43,9 @@ var routes = (
     <Route path="reservation" component={ ReservationView } onEnter={ _ensureLoggedIn }>
       <Route path="confirmation" component={ ReservationConfirmation } />
     </Route>
-    <Route path="user" component={ UserView } />
+    <Route path="user" component={ UserView }>
+      <Route path="edit" component={ UserUpdate } />
+    </Route>
   </Route>
 );
 

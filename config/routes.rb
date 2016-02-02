@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       resources :reservations, only: :index
     end
     resource :sessions, only: [:create, :destroy, :show]
-    resources :users, only: :create
+    resource :users, only: [:create, :update, :show]
     resources :reservations, only: :create do
       collection do
         get :temp_get

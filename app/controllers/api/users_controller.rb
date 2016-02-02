@@ -1,4 +1,5 @@
 class Api::UsersController < ApplicationController
+  # TODO: BEFORE ACTION! (except for create)
 
   def create
     @user = User.new(user_params)
@@ -11,11 +12,22 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def index
+    @user = User.find(current_user.id)
+    render :index
+  end
+
+  def update
+    @user = current_user
+    @user.update(user_params)
+    render :index
+  end
+
 
 
   protected
 
   def user_params
-    self.params.require(:user).permit(:email, :password, :fname, :lname)
+    self.params.require(:user).permit(:email, :password, :fname, :lname, :avatar)
   end
 end

@@ -1,0 +1,106 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+.update-user {
+  box-sizing: border-box;
+  width: 600px;
+  padding: 20px;
+  // background: white;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.update-user h2 {
+  font-size: 24px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0,0,0,.12);
+  margin-bottom: 15px;
+}
+
+.update-user label {
+  box-sizing: border-box;
+  width: calc(50% - 10px);
+  float: left;
+  margin: 10px 0;
+}
+
+.update-user label:nth-of-type(1) {
+  margin-right: 10px;
+}
+
+.update-user label:nth-of-type(2) {
+  margin-left: 10px;
+}
+
+.update-user label:nth-of-type(4) {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.update-user .email {
+  width: 100%;
+}
+
+label span {
+  display: block;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 14px;
+  color: rgb(189, 189, 189);
+}
+
+.update-user input {
+  box-sizing: border-box;
+  width: 100%;
+  background: white;
+  padding: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 4px;
+}
+
+// .update-user label span {
+//   float: left;
+// }
+
+.update-user .preview-image {
+  width: 100px;
+  height: auto;
+  margin: auto;
+  display: block;
+  padding: 5px;
+}
+
+.update-user button {
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 15px;
+  font-size: 15px;
+  border: 0 !important;
+  cursor: pointer;
+  background: #da3743;
+  color: white;
+  font-family: 'Open Sans';
+  transition: background .25s ease-in-out;
+  border-radius: 3px;
+  width: 100%;
+}
+
+.update-user button:hover {
+  background: #b8222d;
+}
+
+.update-user .cancel {
+  margin-top: 20px;
+  background: rgb(81, 160, 194);
+}
+
+.update-user .cancel:hover {
+  background: rgb(43, 123, 157);
+}
