@@ -56,6 +56,14 @@ var ReservationView = React.createClass({
         </form>
       );
 
+      var cancel;
+      if (this.props.location.pathname !== "/reservation/confirmation") {
+        cancel = <a className="cancel" href={rest_url}><button>Cancel</button></a>;
+      } else {
+        cancel = "";
+      }
+
+
       var languages = ["吃好 (chī hǎo)", "Smacznego", "Buen Provecho", "Bon appetit", "Buon appetito", "Eet Smakelijk", "いただきます (itadakimasu)", "בתיאבון (be'te-avon)"];
 
       if (this.props.location.pathname === "/reservation/confirmation") {
@@ -77,9 +85,11 @@ var ReservationView = React.createClass({
             { date }
             { time }
             { restaurant }
+            { cancel }
           </ul>
 
           { form }
+
 
           { this.props.children }
         </div>

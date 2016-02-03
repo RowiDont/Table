@@ -48,7 +48,6 @@ var UserView = React.createClass({
       <ul>
         <li onClick={this.redirectToReservations}>Reservations</li>
         <li onClick={this.redirectToEdit}>Edit Profile</li>
-        <li onClick={this.redirectToFavorites}>Favorites</li>
       </ul>
     );
 

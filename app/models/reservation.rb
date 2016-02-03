@@ -15,9 +15,7 @@ class Reservation < ActiveRecord::Base
     time_now = Time.zone.now()
     date = self.date
     time_then = date.in_time_zone('EST') + self.time_slot.time.minutes
-    
-    puts "Time_then: #{time_then}"
-    puts "Time_now: #{time_now}"
+
     if time_then < time_now
       errors[:Time] = "is unfortunately linear"
     end

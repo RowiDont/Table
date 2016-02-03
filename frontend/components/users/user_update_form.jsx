@@ -57,7 +57,7 @@ var UserUpdate = React.createClass({
           </label>
 
           <button>Save changes</button>
-          <a className="cancel" href="/user/reservation">Cancel</a>
+          <a className="cancel" href="#/user/reservations">Cancel</a>
         </form>
 
       </div>
