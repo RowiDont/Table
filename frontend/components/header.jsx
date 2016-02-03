@@ -30,7 +30,7 @@ var Header = React.createClass({
     var login = "";
     var signup = "";
     if (CurrentUserStore.isLoggedIn()) {
-      user = <a className="username" href="#/user/reservations">{this.state.user.fname}</a>;
+      user = <a className="username" href="#/user/reservations">Hi, {this.state.user.fname}</a>;
       logout = <a onClick={this.signout} className="logout">Logout</a>;
     } else {
       signup = <a href="#/users/new" className="signup">Sign up</a>;

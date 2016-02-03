@@ -64,12 +64,12 @@ var ReservationView = React.createClass({
       }
 
 
-      var languages = ["吃好 (chī hǎo)", "Smacznego", "Buen Provecho", "Bon appetit", "Buon appetito", "Eet Smakelijk", "いただきます (itadakimasu)", "בתיאבון (be'te-avon)"];
+      var languages = ["吃好 (chī hǎo)", "Smacznego", "Buen Provecho", "Buon appetito", "Eet Smakelijk", "いただきます (itadakimasu)", "בתיאבון (be'te-avon)"];
 
       if (this.props.location.pathname === "/reservation/confirmation") {
         form = "";
         var greeting = languages[Math.floor(Math.random() * languages.length)];
-        headerText = "Reservation Complete, " + greeting + "!";
+        headerText = "Reservation Complete, " + greeting + "! (enjoy your meal)";
         detailClass = "reservation-page-details group grey";
       }
 

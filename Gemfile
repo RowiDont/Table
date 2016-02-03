@@ -32,6 +32,8 @@ gem 'aws-sdk', '~> 1.6'
 
 gem 'omniauth-google-oauth2'
 
+gem 'pg_search'
+gem 'kaminari'
 
 gem 'faraday'
 gem 'faraday_middleware'
