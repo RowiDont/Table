@@ -2,10 +2,10 @@ require 'json'
 # require 'byebug'
 require 'active_support/inflector'
 
-User.destroy_all
-test_user = User.new(email: "test@test.com", fname: "Rafi", lname: "Patel", password: "starwars")
-test_user.save
 
+# test_user = User.new(email: "test@test.com", fname: "Rafi", lname: "Patel", password: "starwars")
+# test_user.save
+#
 # start_time = 630
 # end_time = 1410
 #
@@ -121,4 +121,6 @@ test_user.save
 #
 #
 #
-# r1 = Reservation.create(user_id: 1, restaurant_id: 1, date: "4/2/2016", time_id: 12, head_count: 4)
+# r1 = Reservation.create(user_id: User.first.id, restaurant_id: Restaurant.first.id, date: "4/2/2016", time_id: 12, head_count: 4)
+
+PgSearch.multisearch_options = { :using => { :tsearch => {:prefix => true, :dictionary => "english"} } }

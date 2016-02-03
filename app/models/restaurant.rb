@@ -10,13 +10,20 @@ class Restaurant < ActiveRecord::Base
   has_attached_file :thumb, default_url: "http://placehold.it/350x350"
   validates_attachment_content_type :thumb, content_type: /\Aimage\/.*\Z/
 
-  pg_search_scope :search_by_name,
-                   against: :name,
-                   using: :trigram
 
-  pg_search_scope :search_by_city,
-                  associated_against: { :city => :name },
-                  using: :trigram
+  # TODO: step 1: search by name and city and collect head count, date, time
+  # =>    step 2: use that search result to actually search restaurants
+
+  multisearchable against: :name
+
+
+  # pg_search_scope :search_by_name,
+  #                  against: :name,
+  #                  using: :trigram
+  #
+  # pg_search_scope :search_by_city,
+  #                 associated_against: { :city => :name },
+  #                 using: :trigram
 
 
   def max_date

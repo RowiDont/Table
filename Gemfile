@@ -34,6 +34,8 @@ gem 'omniauth-google-oauth2'
 
 gem 'pg_search'
 gem 'kaminari'
+gem 'textacular', '~> 3.0'
+
 
 gem 'faraday'
 gem 'faraday_middleware'
