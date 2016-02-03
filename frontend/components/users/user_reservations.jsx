@@ -23,7 +23,7 @@ var UserReservations = React.createClass({
   },
 
   render: function () {
-    var reservationMap;
+    var reservationMap = <div>You have no reservations at this time.</div>;
     if (Object.keys(this.state.user).length !== 0) {
       var reservations = this.state.user.reservations;
       if (reservations) {
@@ -46,8 +46,6 @@ var UserReservations = React.createClass({
           return reservation;
         });
       }
-    } else {
-      reservationMap = <div></div>;
     }
 
 
