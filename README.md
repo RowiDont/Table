@@ -13,7 +13,7 @@ Once on a restaurant page, the user selects from a number of filters to find an 
 After selecting a reservation option, the user has one more chance to cancel before they submit. After submittal, the reservation will be available to view in the users profile page, accessible from the header at the top of the page.
 
 ### Core technologies
-- Rails 4.2.4
+- Rails v4.2.4
 - React v0.14
 - Flux
 
@@ -25,3 +25,4 @@ After selecting a reservation option, the user has one more chance to cancel bef
 - BCrypt - safe user password storage
 - JBuilder - seamless creation of JSON rails views
 - Omniauth-google - oauth2 for google
+- moment.js - unparalleled date manipulation
