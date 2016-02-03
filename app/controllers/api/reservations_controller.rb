@@ -1,4 +1,5 @@
 class Api::ReservationsController < ApplicationController
+
   def index
     @results = Reservation.search_results(params[:filters])
   end
@@ -18,6 +19,15 @@ class Api::ReservationsController < ApplicationController
     else
       render json: res.errors
     end
+  end
+
+  def destroy
+    reservation = Reservation.find(params[:id])
+    reservation.destroy!
+    
+    @user = current_user
+    @reservations = @user.reservations.includes(:restaurant).order('date').order('time_id')
+    render "api/users/index"
   end
 
   def temp_set

@@ -43,13 +43,14 @@
 
 .reservation-list {
   padding-left: 20px;
-  width: 880px;
+  width: calc(100% - 220px);
   float: right;
   font-size: 75% !important;
   background: white;
 }
 .reservation-list ul {
   border-bottom: 0;
+  padding: 10px;
 }
 
 .reservation-list .date {
@@ -69,26 +70,33 @@
   font-size: 12px;
   text-transform: uppercase;
   color: #999;
+  padding-top: 10px;
 }
 
 .reservation-list h4 {
   padding-top: 3px;
   font-size: 18px;
 }
-// .example-enter {
-//   opacity: 0.01;
-// }
-//
-// .example-enter.example-enter-active {
-//   opacity: 1;
-//   transition: opacity 1000ms ease-in;
-// }
-//
-// .example-leave {
-//   opacity: 1;
-// }
-//
-// .example-leave.example-leave-active {
-//   opacity: 0.01;
-//   transition: opacity 300ms ease-in;
-// }
+
+.reservation-list .cancel {
+  float: right;
+}
+
+.cancel button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 10px;
+  font-size: 13px;
+  border: 0 !important;
+  cursor: pointer;
+  background: #da3743;
+  color: white;
+  transition: background .25s ease-in-out;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+.cancel button:hover {
+  background:#b8222d;
+}

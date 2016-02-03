@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     end
     resource :sessions, only: [:create, :destroy, :show]
     resource :users, only: [:create, :update, :show]
-    resources :reservations, only: :create do
+    resources :reservations, only: [:create, :destroy] do
       collection do
         get :temp_get
         post :temp_set

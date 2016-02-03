@@ -22,6 +22,12 @@ var UserReservations = React.createClass({
     this.token.remove();
   },
 
+  cancel: function (e) {
+    e.preventDefault();
+    var id = e.currentTarget.id;
+    UsersApiUtil.destroyReservation(id);
+  },
+
   render: function () {
     var reservationMap = <div>You have no reservations at this time.</div>;
     if (Object.keys(this.state.user).length !== 0) {
@@ -40,11 +46,12 @@ var UserReservations = React.createClass({
               <li className="date"><h6>Date</h6><h4>{moment(res.date).format('dddd, MMMM Do, YYYY')}</h4></li>
               <li className="time"><h6>Time</h6><h4>{Table.timeToString(res.time.time)}</h4></li>
               <li className="rest"><h6>Restaurant</h6><h4>{rest_link}</h4></li>
+              <li className="cancel"><a id={res.id} onClick={this.cancel}><button>cancel</button></a></li>
             </ul>
           );
 
           return reservation;
-        });
+        }, this);
       }
     }
 

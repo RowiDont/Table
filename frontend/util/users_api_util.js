@@ -38,6 +38,17 @@ var UsersApiUtil = {
         callback();
       }
     });
+  },
+
+  destroyReservation: function (id) {
+    $.ajax({
+      type: 'DELETE',
+      url: 'api/reservations/' + id,
+      dataType: 'json',
+      success: function (data) {
+        CurrentUserActions.receiveCurrentUser(data);
+      }
+    });
   }
 };
 

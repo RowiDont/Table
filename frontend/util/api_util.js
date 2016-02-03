@@ -95,8 +95,6 @@ var ApiUtil = {
       dataType: 'json',
       data: {reservation: mainData, options: optionalData},
       success: function (data) {
-        // console.log(data);
-        // ApiAction.receiveReservation(data);
       },
       errors: function (data) {
       }
