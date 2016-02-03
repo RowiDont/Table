@@ -1,25 +1,30 @@
 var React = require('react');
 var UsersApiUtil = require('../../util/users_api_util.js');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
+var CurrentUserStore = require('../../stores/current_user_store');
 
 
 var UserUpdate = React.createClass({
   getInitialState: function() {
-    var user = this.props.location.state;
     return { email: "",
              fname: "",
              lname: "",
              imageFile: null,
-             imageUrl: user.avatar,
-             imageClass: "preview"};
+             imageUrl: "",
+             imageClass: "preview",
+             user: CurrentUserStore.currentUser() };
   },
 
-  componentWillReceiveProps: function (newProps) {
-    this.setState({
-              email: newProps.user.email,
-              fname: newProps.user.fname,
-              lname: newProps.user.lname,
-    });
+  componentDidMount: function () {
+    this.token = CurrentUserStore.addListener(this.onChange);
+  },
+
+  onChange: function () {
+    this.setState({ user: CurrentUserStore.currentUser() });
+  },
+
+  componentWillUnmount: function () {
+    this.token.remove();
   },
 
   goBack: function () {
@@ -52,7 +57,7 @@ var UserUpdate = React.createClass({
           </label>
 
           <button>Save changes</button>
-          <a className="cancel" onClick={this.goBack}>Cancel</a>
+          <a className="cancel" href="/user/reservation">Cancel</a>
         </form>
 
       </div>
@@ -92,12 +97,13 @@ var UserUpdate = React.createClass({
     e.preventDefault();
 
     var formData = new FormData();
+    var count = 0;
+    if (this.state.email) {formData.append("user[email]", this.state.email); count++;}
+    if (this.state.fname) {formData.append("user[fname]", this.state.fname); count++;}
+    if (this.state.lname) {formData.append("user[lname]", this.state.lname); count++;}
+    if (this.state.imageFile) {formData.append("user[avatar]", this.state.imageFile); count++;}
 
-    if (this.state.email) {formData.append("user[email]", this.state.email);}
-    if (this.state.fname) {formData.append("user[fname]", this.state.fname);}
-    if (this.state.lname) {formData.append("user[lname]", this.state.lname);}
-    if (this.state.imageFile) {formData.append("user[avatar]", this.state.imageFile);}
-
+    if (count === 0) { formData.append("user[monster]", "trux"); }
     UsersApiUtil.updateUser(formData, this.redirectToView);
   },
 

@@ -21,6 +21,7 @@ class Api::UsersController < ApplicationController
   def update
     @user = current_user
     @user.update(user_params)
+    @reservations = @user.reservations.includes(:restaurant).order('date').order('time_id')
     render :index
   end
 

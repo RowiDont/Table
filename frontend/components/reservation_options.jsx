@@ -66,7 +66,7 @@ var ReservationOptions = React.createClass({
     return(
       <div className={klass}>
         <h3>{header}</h3>
-        <ul className="reservation-list group">{resultList}</ul>
+        <ul className="reservation-lists group">{resultList}</ul>
       </div>
     );
   }
