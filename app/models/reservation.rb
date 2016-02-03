@@ -14,7 +14,8 @@ class Reservation < ActiveRecord::Base
   def time_is_not_past
     time_now = Time.zone.now()
     date = self.date
-    time_then = date.to_time + self.time_slot.time.minutes
+    time_then = date.in_time_zone('EST') + self.time_slot.time.minutes
+    debugger
     puts "Time_then: #{time_then}"
     puts "Time_now: #{time_now}"
     if time_then < time_now
