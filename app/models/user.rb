@@ -22,8 +22,29 @@ class User < ActiveRecord::Base
 
   def self.find_by_credentials(email, password)
     user = User.find_by_email(email)
+    return nil if user.uid != nil
     return nil unless user && user.valid_password?(password)
     return user
+  end
+
+  def self.find_or_create_by_auth_hash(auth_hash)
+    debugger
+    provider = auth_hash[:provider]
+    uid = auth_hash[:uid]
+
+    user = User.find_by(provider: provider, uid: uid)
+
+    return user if user
+
+    User.create(
+      provider: provider,
+      uid: uid,
+      email: auth_hash[:info][:email],
+      fname: auth_hash[:info][:first_name],
+      lname: auth_hash[:info][:last_name],
+      avatar: auth_hash[:extra][:raw_info][:picture],
+      password: "changeme"
+    )
   end
 
   def password=(password)

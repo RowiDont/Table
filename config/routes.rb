@@ -16,6 +16,9 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'auth/google_oauth2/callback', to: 'api/sessions#omniauth_google'
+
+
 
   root "static_pages#root"
 end

@@ -43,6 +43,8 @@ var SessionForm = React.createClass({
             <input value="starwars" type="hidden" name="password" />
           <button>Sign in as guest</button>
         </form>
+
+        <a href="/auth/google_oauth2"></a>
       </div>
 
     );

@@ -37,6 +37,8 @@ var UserForm = React.createClass({
         </label>
 
         <button>Sign up</button>
+
+        <a href="/auth/google_oauth2"></a>
       </form>
     );
   },

@@ -30,6 +30,9 @@ gem "paperclip", "~> 4.3"
 gem "figaro"
 gem 'aws-sdk', '~> 1.6'
 
+gem 'omniauth-google-oauth2'
+
+
 gem 'faraday'
 gem 'faraday_middleware'
 

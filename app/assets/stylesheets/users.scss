@@ -50,6 +50,26 @@
   margin-top: 200px;
 }
 
+.signin img {
+  width: 50%;
+  height: auto;
+  display: block;
+}
+
+.signin a {
+  width: 193px;
+  height: 48px;
+  background: url("https://s3.amazonaws.com/table-pictures/google-web/1x/btn_google%2B_signin_dark_normal_web.png");
+  background-size: cover;
+  display: block;
+  margin: auto;
+  margin-top: 15px;
+}
+
+.signin a:hover {
+  background: url("https://s3.amazonaws.com/table-pictures/google-web/1x/btn_google%2B_signin_dark_pressed_web.png");
+}
+
 .signin h1 {
   font-size: 24px;
   padding-bottom: 10px;
@@ -79,7 +99,7 @@
   cursor: pointer;
   background: #da3743;
   color: white;
-  font-family: 'Open Sans';
+  font-family: 'Source Sans Pro';
   transition: background .25s ease-in-out;
   border-radius: 3px;
   width: 100%;
