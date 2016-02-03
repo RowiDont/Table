@@ -3,7 +3,6 @@ require './opentable_api.rb'
 include OpenTable
 
 def get_data
-  # debugger
   client = Client.new
   client.restaurants({city: "New York"})
 end

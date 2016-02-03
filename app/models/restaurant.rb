@@ -24,5 +24,4 @@ class Restaurant < ActiveRecord::Base
     return Time.now + advance.days
   end
 
-  # TODO: Add validations for when admins create restaurants
 end

@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
-  # TODO: BEFORE ACTION! (except for create)
 
+  before_action :ensure_user_logged_in, only: [:show, :update]
   def create
     @user = User.new(user_params)
 

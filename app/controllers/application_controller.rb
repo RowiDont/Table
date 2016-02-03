@@ -17,7 +17,6 @@ class ApplicationController < ActionController::Base
 
   def sign_in!(user)
     @current_user = user
-    # debugger
     session = Session.create(user_id: user.id,
                              session_token: Session.generate_unique_token)
 
@@ -32,7 +31,7 @@ class ApplicationController < ActionController::Base
 
   def ensure_user_logged_in
     unless current_user
-      render json: ["Nope."]
+      redirect_to root_url
     end
   end
 

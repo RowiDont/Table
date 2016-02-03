@@ -11,7 +11,6 @@ def get_data(city)
 end
 
 data = {}
-# debugger
 
 cities.each do |city|
   data[city] = get_data(city)
@@ -23,7 +22,6 @@ end
 
 
 # def get_data
-#   # debugger
 #   client = Client.new
 #   client.restaurants({city: "San Francisco"})
 # end
@@ -54,7 +52,6 @@ end
 # include OpenTable
 #
 # def get_data
-#   # debugger
 #   client = Client.new
 #   client.restaurants({city: "Chicago"})
 # end
@@ -78,7 +75,6 @@ end
 #
 #
 # def get_data
-#   # debugger
 #   client = Client.new
 #   client.restaurants({city: "Seattle"})
 # end

@@ -15,7 +15,6 @@ var Calendar = React.createClass({
     },
 
     previous: function() {
-      // debugger
         var month = this.state.month;
         month.add(-1, "M");
         this.setState({ month: month });
@@ -28,7 +27,6 @@ var Calendar = React.createClass({
     },
 
     render: function() {
-      // debugger
         return(
           <div id="calendar">
             <div className="header">

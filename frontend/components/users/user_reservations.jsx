@@ -34,7 +34,6 @@ var UserReservations = React.createClass({
       var reservations = this.state.user.reservations;
       if (reservations) {
          reservationMap = reservations.map(function (res, i) {
-          // debugger
           var rest = res.restaurant;
           var rest_url = "#/restaurants/" + res.restaurant_id;
           var rest_link = <a href={rest_url}>{rest}</a>;
