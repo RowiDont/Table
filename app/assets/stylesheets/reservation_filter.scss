@@ -39,12 +39,6 @@
   border-right: 0;
 }
 
-
-
-.dropdown:hover {
-
-}
-
 form .dropdown:first-child {
   border-right: 0;
   border-top-right-radius: 2%;
@@ -66,7 +60,6 @@ form .dropdown:nth-child(3) {
   cursor: pointer;
   background: #da3743;
   color: white;
-  font-family: 'Open Sans';
   transition: background .25s ease-in-out;
   border-top-right-radius: 2%;
   border-bottom-right-radius: 2%;
@@ -81,15 +74,14 @@ form .dropdown:nth-child(3) {
   padding: 11px;
   padding-top: 12px;
   font-size: 15px;
-  // border: 1px solid #ccc;
   cursor: pointer;
   margin: 0;
   border-right: 0;
 }
 
-.calendar-value:hover {
-  // border: 1px solid #d93c3c;
-}
+// .calendar-value:hover {
+//   // border: 1px solid #d93c3c;
+// }
 
 .calendar {
   position: absolute;
