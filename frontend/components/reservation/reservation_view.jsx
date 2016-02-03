@@ -56,7 +56,7 @@ var ReservationView = React.createClass({
         </form>
       );
 
-      var languages = ["吃好 (chī hǎo)", "Bon appetit", "Buon appetito", "Eet Smakelijk", "いただきます (itadakimasu)", "בתיאבון (be'te-avon)"];
+      var languages = ["吃好 (chī hǎo)", "Smacznego", "Buen Provecho", "Bon appetit", "Buon appetito", "Eet Smakelijk", "いただきます (itadakimasu)", "בתיאבון (be'te-avon)"];
 
       if (this.props.location.pathname === "/reservation/confirmation") {
         form = "";

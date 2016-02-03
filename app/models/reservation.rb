@@ -102,7 +102,7 @@ class Reservation < ActiveRecord::Base
 
   def self.test_reservation(user_id, restaurant_id, date, time_id, people)
     r = Reservation.new(
-      user_id: 1,
+      user_id: User.first.id,
       restaurant_id: restaurant_id,
       date: date,
       time_id: time_id,

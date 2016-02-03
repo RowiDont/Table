@@ -22,7 +22,7 @@ class Api::ReservationsController < ApplicationController
 
   def temp_set
     attrs = {
-      user_id: 1,
+      user_id: User.first.id,
       restaurant_id: reservation_params[:rest_id],
       date: reservation_params[:date],
       time_id: params[:reservation][:time][:id],
