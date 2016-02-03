@@ -12,10 +12,10 @@ class Reservation < ActiveRecord::Base
   validate :head_count_is_within_limit
 
   def time_is_not_past
-    time_now = Time.now()
+    time_now = Time.zone.now()
     date = self.date
     time_then = date.to_time + self.time_slot.time.minutes
-    if time_then < time_now.in_time_zone('Eastern Time (US & Canada)')
+    if time_then < time_now
       errors[:Time] = "is unfortunately linear"
     end
 
