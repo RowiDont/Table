@@ -22,11 +22,32 @@
   background-position: 0;
 }
 
+.search label {
+  position: relative;
+}
+
 .search h2 {
   font-size: 30px;
   position: absolute;
   bottom: 75px;
   text-shadow: #262626 1px 0 10px;
+}
+
+.search-results {
+  z-index: 50;
+  color: black;
+  position: absolute;
+  left: 0;
+  background: white;
+  width: 100%;
+}
+
+.search-item {
+  padding: 5px 5px 5px 10px;
+}
+
+.search-item:hover {
+  background: #eee;
 }
 
 .reservation-filter-form {

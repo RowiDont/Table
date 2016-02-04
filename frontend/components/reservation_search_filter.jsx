@@ -4,27 +4,34 @@ var React = require('react'),
     CalendarFilter = require('./calendar/calendar_filter'),
     ReservationFilterActions = require('../actions/reservation_filter_actions'),
     ReservationFilterStore = require('../stores/reservation_filter_store'),
+    RestaurantStore = require('../stores/restaurant_store'),
     ApiUtil = require('../util/api_util'),
-    ReservationOptions = require('./reservation_options');
+    ReservationOptions = require('./reservation_options'),
+    History = require('react-router').History;
 
 
 var ReservationSearchFilter = React.createClass({
+  mixins: [ History ],
+
   getInitialState: function () {
     return { people: "2",
              time: this.props.restaurant.opens.time,
              date: moment().startOf("day"),
              id: 0,
              results: "",
-             searchTerm: "Orsay"
+             searchTerm: "",
+             searchOptions: []
            };
   },
 
   componentDidMount: function () {
     this.token = ReservationFilterStore.addListener(this._getResults);
+    this.token2 = RestaurantStore.addListener(this._getSearchResults);
   },
 
   componentWillUnmount: function () {
     this.token.remove();
+    this.token2.remove();
   },
 
   updateFitlers: function () {
@@ -36,6 +43,14 @@ var ReservationSearchFilter = React.createClass({
   _getResults: function () {
     if (ReservationFilterStore.results()) {
       this.setState({ results: ReservationFilterStore.results() });
+    }
+  },
+
+  _getSearchResults: function () {
+    var results = RestaurantStore.results();
+    this.setState({ searchOptions: results });
+    if (results.length === 1) {
+      this.setState({ id: results[0].searchable_id });
     }
   },
 
@@ -52,20 +67,31 @@ var ReservationSearchFilter = React.createClass({
   },
 
   setSearch: function (e) {
-    this.setState({ searchTerm: e.currentTarget.value });
+    var query = e.currentTarget.value;
+    this.setState({ searchTerm: query });
+    ApiUtil.searchFilter(query);
+  },
+
+  routeToRestaurant: function () {
+    var url = "restaurants/" + this.state.id;
+    this.context.history.pushState({}, url);
   },
 
   submitFilters: function (e) {
     e.preventDefault();
     this.updateFitlers();
 
-    debugger
-    // TODO: Make a new ApiUtil function
-    // ApiUtil.fetchReservationOptions();
+    ApiUtil.indexFilter(this.routeToRestaurant);
   },
 
   reAddClick: function (e) {
     $(e.currentTarget).on('click', this.submitFilters);
+  },
+
+  fillForm: function (e) {
+    var id = e.currentTarget.id;
+    var text = e.currentTarget.innerText;
+    this.setState( { searchTerm: text, id: id, searchOptions: [] });
   },
 
   render: function () {
@@ -94,6 +120,11 @@ var ReservationSearchFilter = React.createClass({
       timeOptions.push(<option key={j} value={j}>{Table.timeToString(j)}</option>);
     }
 
+    var resultList = this.state.searchOptions.map(function (item, idx) {
+      var id = item.searchable_id;
+      return <li onClick={this.fillForm} id={id} className="search-item" key={idx}>{item.content}</li>;
+    }, this);
+
     return(
       <div className="filter-box search">
         <h2>Already know where you want to go? Make a Reservation now</h2>
@@ -107,7 +138,11 @@ var ReservationSearchFilter = React.createClass({
               <select onChange={this.setTime} className="reservation-filter-time selector dropdown" name="time">
                 {timeOptions}
               </select>
-              <input type="text" placeholder="Resturant or City" id="searchbox" className="selector" onChange={this.setSearch} value={this.state.searchTerm} />
+              <label>
+                <input autoComplete="off" type="text" placeholder="Resturant name" id="searchbox" className="selector" onChange={this.setSearch} value={this.state.searchTerm} />
+                <ul className="search-results">{resultList}</ul>
+              </label>
+
               <button onClick={this.submitFilters} className="selector submit">Find a Table</button>
             </div>
           </form>

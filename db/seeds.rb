@@ -124,3 +124,4 @@ require 'active_support/inflector'
 # r1 = Reservation.create(user_id: User.first.id, restaurant_id: Restaurant.first.id, date: "4/2/2016", time_id: 12, head_count: 4)
 
 PgSearch.multisearch_options = { :using => { :tsearch => {:prefix => true, :dictionary => "english"} } }
+PgSearch::Multisearch.rebuild(Restaurant)

@@ -45,6 +45,13 @@ var ApiAction = {
       actionType: ReservationConstants.RESERVATION_RECEIVED,
       reservation: data
     });
+  },
+
+  receiveSearchResults: function (data) {
+    AppDispatcher.dispatch({
+      actionType: RestaurantConstants.RESULTS_RECEIVED,
+      results: data
+    });
   }
 };
 

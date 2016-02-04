@@ -99,6 +99,44 @@ var ApiUtil = {
       errors: function (data) {
       }
     });
+  },
+
+  searchFilter: function (string) {
+    $.ajax({
+      type: "GET",
+      url: "/api/searchbar",
+      dataType: "json",
+      data: { query: string },
+      success: function (data) {
+        ApiAction.receiveSearchResults(data);
+      },
+      error: function () {
+        console.log("I failed");
+      }
+    });
+  },
+
+  indexFilter: function (callback) {
+    var filters = ReservationFilterStore.all();
+    filters.date = filters.date.format();
+    filters.time = filters.time.toString();
+
+    $.ajax({
+      type: "GET",
+      url: "/api/index_filter",
+      dataType: "json",
+      data: {filters: filters},
+      success: function (data) {
+        ApiAction.receiveSingleRestaurant(data.restaurant);
+        callback();
+        setTimeout(function () {
+          ApiAction.receiveReservationOptions(data.results);
+        }, 100);
+      },
+      error: function () {
+        console.log("Filter search failed");
+      }
+    });
   }
 };
 

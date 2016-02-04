@@ -85,7 +85,7 @@ var ReservationFilter = React.createClass({
     for (var j = start; j < end; j += 30) {
       timeOptions.push(<option key={j} value={j}>{Table.timeToString(j)}</option>);
     }
-
+    // debugger
     return(
       <div className="filter-box">
         <h2>Make a Reservation</h2>

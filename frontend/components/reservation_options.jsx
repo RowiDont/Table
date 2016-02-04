@@ -3,6 +3,7 @@ var React = require('react'),
     ApiUtil = require('../util/api_util'),
     RestaurantStore = require('../stores/restaurant_store'),
     ReservationTempStore = require('../stores/reservation_temp_store'),
+    ReservationFilterStore = require('../stores/reservation_filter_store'),
     moment = require('moment');
 
 Table.timeToString = function (time) {
@@ -21,7 +22,7 @@ var ReservationOptions = React.createClass({
   mixins: [ History ],
 
   getInitialState: function () {
-    return { time: this.props.time };
+    return { time: ReservationFilterStore.all().time };
   },
 
   submit: function (e) {
@@ -32,9 +33,7 @@ var ReservationOptions = React.createClass({
   },
 
   componentWillReceiveProps: function (newProps) {
-    if (newProps.results !== this.props.results) {
-      this.setState({ time: this.props.time });
-    }
+    this.setState({ time: ReservationFilterStore.all().time });
   },
 
   render: function () {

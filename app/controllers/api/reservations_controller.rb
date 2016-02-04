@@ -24,7 +24,7 @@ class Api::ReservationsController < ApplicationController
   def destroy
     reservation = Reservation.find(params[:id])
     reservation.destroy!
-    
+
     @user = current_user
     @reservations = @user.reservations.includes(:restaurant).order('date').order('time_id')
     render "api/users/index"
