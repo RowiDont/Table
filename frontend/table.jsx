@@ -38,7 +38,7 @@ var routes = (
   <Route path="/" component={ App }  onEnter={ _checkIfLoggedIn }>
     <IndexRoute component={ index } />
     <Route path="login" component={ SessionForm } />
-    <Route path="users/new" component={ UserForm } />
+    <Route path="users/new" component={ UserForm } onEnter= { _redirectToIndexIfLoggedIn }/>
     <Route path="cities/:city_id" component={ CityIndex } />
     <Route path="/restaurants/:id" component={ RestaurantView } />
     <Route path="reservation" component={ ReservationView } onEnter={ _ensureLoggedIn }>
@@ -54,6 +54,21 @@ var routes = (
 function _checkIfLoggedIn() {
   if (!CurrentUserStore.userHasBeenFetched()) {
     SessionsApiUtil.fetchCurrentUser();
+  }
+}
+
+function _redirectToIndexIfLoggedIn (nextState, replace, callback) {
+  if (CurrentUserStore.userHasBeenFetched()) {
+    _redirectIfLoggedIn();
+  } else {
+    SessionsApiUtil.fetchCurrentUser(_redirectIfLoggedIn);
+  }
+
+  function _redirectIfLoggedIn() {
+    if (CurrentUserStore.isLoggedIn()) {
+      replace({redirect: true}, "/");
+    }
+    callback();
   }
 }
 

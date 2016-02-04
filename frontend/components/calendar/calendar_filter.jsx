@@ -6,9 +6,12 @@ var CalendarFilter = React.createClass({
   getInitialState: function () {
     return { selected: this.props.moment, calendarClass: "calendar hidden" };
   },
+
   offClickHandle: function (e) {
+    // debugger
     if (!e.target.className.includes("calendar") &&
         !e.target.className.includes("fa") &&
+        e.target.parentElement &&
         e.target.parentElement.className !== "header" &&
         !e.target.className.includes("weekday"))
     {

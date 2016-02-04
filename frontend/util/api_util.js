@@ -132,7 +132,6 @@ var ApiUtil = {
         callback();
       },
       error: function () {
-        console.log("Filter search failed");
       }
     });
   }
