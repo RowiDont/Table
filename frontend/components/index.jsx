@@ -1,6 +1,7 @@
 var React = require('react'),
     ApiUtil = require('../util/api_util'),
-    CityStore = require('../stores/city_store');
+    CityStore = require('../stores/city_store'),
+    ReservationSearchFilter = require('./reservation_search_filter');
 
 var index = React.createClass({
   getInitialState: function () {
@@ -51,6 +52,20 @@ var index = React.createClass({
              );
     }.bind(this));
 
+    var restaurant = {
+      date_limit: 120,
+      limit: 14,
+      opens: {
+        id: 1,
+        time: 630
+      },
+      closes: {
+        id: 53,
+        time: 1410
+      }
+    };
+
+
     var cityGrid = (
       <div className="city-grid-container">
         <h2>Featured Cities</h2>
@@ -61,6 +76,7 @@ var index = React.createClass({
     return(
       <div>
         {welcome}
+        <ReservationSearchFilter restaurant={restaurant}/>
         {cityGrid}
       </div>
     );

@@ -11,17 +11,65 @@
   font-size: 1.5rem;
 }
 
+.search {
+  position: relative;
+  max-width: 100%;
+  height: 300px;
+  font-weight: 300;
+  color: white;
+  background-image: image-url('fancy-plate1.jpg');
+  // background-size: cover;
+  background-position: 0;
+}
+
+.search h2 {
+  font-size: 30px;
+  position: absolute;
+  bottom: 75px;
+  text-shadow: #262626 1px 0 10px;
+}
+
 .reservation-filter-form {
   position: relative;
   padding: 25px 0;
 }
 
+.search .reservation-filter-form {
+  width: 90%;
+  position: absolute;
+  bottom: 0;
+}
 
 .reservation-filter-form .selector {
   box-sizing: border-box;
   width: 25%;
   display: inline-block;
   border: 1px solid #ececec;
+}
+
+// .search {
+//   max-width: 100%;
+//   background: rgb(70, 70, 70);
+// }
+
+.search-filter .selector {
+  width: 15%;
+}
+
+.search ::-webkit-input-placeholder {
+  font-weight: 300 !important;
+  color: #e2dddd;
+}
+
+#searchbox {
+  width: 40%;
+  padding: 12px;
+  font-size: 15px;
+  border-left: 0;
+}
+
+#searchbox:hover {
+  border-left: 1px solid #d93c3c;
 }
 
 .reservation-filter-form .selector:hover {
@@ -37,12 +85,13 @@
   font-size: 15px;
   cursor: pointer;
   border-right: 0;
+  border-radius: 0;
 }
 
 form .dropdown:first-child {
   border-right: 0;
-  border-top-right-radius: 2%;
-  border-bottom-right-radius: 2%;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
 }
 
 form .dropdown:nth-child(3) {
@@ -61,8 +110,8 @@ form .dropdown:nth-child(3) {
   background: #da3743;
   color: white;
   transition: background .25s ease-in-out;
-  border-top-right-radius: 2%;
-  border-bottom-right-radius: 2%;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 
 .submit:hover {
@@ -77,11 +126,10 @@ form .dropdown:nth-child(3) {
   cursor: pointer;
   margin: 0;
   border-right: 0;
+  background: white;
+  color: black;
+  font-weight: 400;
 }
-
-// .calendar-value:hover {
-//   // border: 1px solid #d93c3c;
-// }
 
 .calendar {
   position: absolute;
