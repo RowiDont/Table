@@ -128,10 +128,8 @@ var ApiUtil = {
       data: {filters: filters},
       success: function (data) {
         ApiAction.receiveSingleRestaurant(data.restaurant);
+        ApiAction.receiveReservationOptions(data.results);
         callback();
-        setTimeout(function () {
-          ApiAction.receiveReservationOptions(data.results);
-        }, 100);
       },
       error: function () {
         console.log("Filter search failed");

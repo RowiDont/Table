@@ -14,7 +14,7 @@ var ReservationFilter = React.createClass({
              time: this.props.restaurant.opens.time,
              date: moment().startOf("day"),
              id: this.props.restaurant.id,
-             results: "" } ;
+             results: ReservationFilterStore.results() } ;
   },
 
   componentDidMount: function () {

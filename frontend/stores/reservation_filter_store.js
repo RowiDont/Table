@@ -3,7 +3,7 @@ var Store = require('flux/utils').Store,
     ReservationFilterConstants = require('../constants/reservation_filter_constants');
 
 var _filters = {};
-var _results = {};
+var _results = "";
 
 var ReservationFilterStore = new Store(AppDispatcher);
 
