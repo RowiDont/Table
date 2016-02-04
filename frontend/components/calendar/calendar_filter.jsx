@@ -12,8 +12,7 @@ var CalendarFilter = React.createClass({
         e.target.parentElement.className !== "header" &&
         !e.target.className.includes("weekday"))
     {
-      this.setState({ calendarClass: "calendar hidden"
-    });
+      this.setState({ calendarClass: "calendar hidden" });
     }
   },
 
@@ -32,7 +31,11 @@ var CalendarFilter = React.createClass({
   },
 
   revealCalendar: function (e) {
-    this.setState({ calendarClass: "calendar revealed" });
+    if (this.state.calendarClass !== "calendar revealed") {
+      this.setState({ calendarClass: "calendar revealed" });
+    } else {
+      this.setState({ calendarClass: "calendar hidden" });
+    }
   },
 
   render: function () {
