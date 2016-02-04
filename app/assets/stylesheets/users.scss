@@ -50,6 +50,32 @@
   margin-top: 200px;
 }
 
+.errors {
+  // text-align: center;
+  color: #b8222d;
+  position: absolute;
+  width: 300px;
+  top: 14px;
+  left: 100px;
+  z-index: 30;
+}
+
+.errors-first {
+  // text-align: center;
+  color: #b8222d;
+  position: absolute;
+  width: 300px;
+  top: 34px;
+  left: 100px;
+  z-index: 30;
+}
+
+
+
+.signin .hidden {
+  display: none;
+}
+
 .signin img {
   width: 50%;
   height: auto;
@@ -116,4 +142,8 @@
 
 .signin .guest button:hover {
   background: rgb(43, 123, 157);
+}
+
+.signin label {
+  position: relative;
 }

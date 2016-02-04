@@ -21,6 +21,9 @@ var UsersApiUtil = {
       success: function (user) {
         CurrentUserActions.receiveCurrentUser(user);
         callback && callback();
+      },
+      error: function (XHR, textStatus, errorThrown) {
+        CurrentUserActions.receiveErrors(XHR.responseJSON);
       }
     });
   },

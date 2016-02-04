@@ -7,6 +7,13 @@ var CurrentUserActions = {
       actionType: CurrentUserConstants.RECEIVE_CURRENT_USER,
       currentUser: currentUser
     });
+  },
+
+  receiveErrors: function (errors) {
+    Dispatcher.dispatch({
+      actionType: "RECEIVE_ERRORS",
+      errors: errors
+    });
   }
 };
 

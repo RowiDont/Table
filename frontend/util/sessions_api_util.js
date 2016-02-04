@@ -10,8 +10,10 @@ var SessionsApiUtil = {
       success: function (currentUser) {
         CurrentUserActions.receiveCurrentUser(currentUser);
         success && success();
+      },
+      error: function (XHR, textStatus, errorThrown) {
+        CurrentUserActions.receiveErrors(XHR.responseJSON);
       }
-
     });
   },
 

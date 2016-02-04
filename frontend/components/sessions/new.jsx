@@ -1,9 +1,23 @@
 var React = require('react');
-// var History = require('react-router').History;
 var SessionsApiUtil = require('./../../util/sessions_api_util');
+var ErrorStore = require('../../stores/error_store');
 
 var SessionForm = React.createClass({
-  // mixins: [History],
+  getInitialState: function () {
+    return { errors: {} };
+  },
+
+  componentDidMount: function () {
+    this.token = ErrorStore.addListener(this.onChange);
+  },
+
+  componentWillUnmount: function () {
+    this.token.remove();
+  },
+
+  onChange: function () {
+    this.setState({ errors: ErrorStore.all() });
+  },
 
   submit: function (e) {
     e.preventDefault();
@@ -19,6 +33,10 @@ var SessionForm = React.createClass({
 
 
   render: function() {
+    var errorClass = "errors";
+    if (Object.keys(this.state.errors).length !== 0) {
+      errorClass = "errors";
+    }
 
     return (
       <div className="signin">
@@ -27,6 +45,7 @@ var SessionForm = React.createClass({
           <h1>Please sign in</h1>
 
           <label>
+            <div className="errors-first">{this.state.errors[0]}</div>
             <input placeholder="Email" type="text" name="email" />
           </label>
 
