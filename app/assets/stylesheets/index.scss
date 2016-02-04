@@ -35,6 +35,17 @@
   font-weight: 300;
 }
 
+.city-overlay {
+  background:rgba(0,0,0,0.6);
+  opacity:1;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+}
+
+.city-overlay:hover {
+  opacity:0.85;
+}
+
 .city h2 {
   font-size: 36px;
   color: white;

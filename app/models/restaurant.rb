@@ -17,14 +17,6 @@ class Restaurant < ActiveRecord::Base
   multisearchable against: :name
 
 
-  # pg_search_scope :search_by_name,
-  #                  against: :name,
-  #                  using: :trigram
-  #
-  # pg_search_scope :search_by_city,
-  #                 associated_against: { :city => :name },
-  #                 using: :trigram
-
 
   def max_date
     advance = self.max_advance

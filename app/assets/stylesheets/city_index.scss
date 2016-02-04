@@ -3,7 +3,15 @@
   margin-left: 20px;
   height: 80px;
   border-bottom: 1px solid #eee;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
 }
+
+.restaurant-item:hover {
+  opacity: 0.8;
+  background: #fffcfc;
+}
+
 .restaurant-item-photo {
   width: 80px;
   height: 80px;

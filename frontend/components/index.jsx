@@ -38,7 +38,8 @@ var index = React.createClass({
     var cities = this.state.cities.map(function (city, index) {
       var link = "#cities/" + city.id;
       var klass = "city " + city.name.replace(/ /g,'');
-      return (<a href={link}
+      return (<div key={index} className="city-overlay">
+              <a href={link}
                  id={city.id}
                  className={klass}
                  key={index}
@@ -46,6 +47,7 @@ var index = React.createClass({
                <h2>{city.name}</h2>
                <div className="count">{city.count} restaurants</div>
               </a>
+              </div>
              );
     }.bind(this));
 

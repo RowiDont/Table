@@ -14,6 +14,7 @@ Rails.application.routes.draw do
         post :temp_set
       end
     end
+    get "searchbar", to: "utils#searchbar"
   end
 
   get 'auth/google_oauth2/callback', to: 'api/sessions#omniauth_google'
