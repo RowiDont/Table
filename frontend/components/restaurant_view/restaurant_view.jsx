@@ -1,7 +1,8 @@
 var React = require('react'),
     ApiUtil = require('../../util/api_util'),
     RestaurantStore = require('../../stores/restaurant_store'),
-    ReservationFilter = require('../reservation_filter');
+    ReservationFilter = require('../reservation_filter'),
+    Map = require('./map');
 
 var RestaurantView = React.createClass({
   getInitialState: function () {
@@ -55,7 +56,7 @@ var RestaurantView = React.createClass({
 
         var altText = this.state.rest.name + " Google maps image";
 
-      map = <img className="restaurant-page-map" src={url.url} alt={altText}/>;
+      map = <Map lat={lat} lng={lng}/>;
       header = (
         <div className="header-content">
           <h1>{this.state.rest.name}</h1>
