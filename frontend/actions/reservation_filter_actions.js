@@ -7,7 +7,8 @@ var ReservationFilterActions = {
       actionType: ReservationFilterConstants.RESERVATION_FILTERS_RECEIVED,
       filters: data
     });
-  },
+  }
+
 };
 
 module.exports = ReservationFilterActions;

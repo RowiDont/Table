@@ -3,6 +3,7 @@ var React = require('react'),
     Calendar = require('./calendar/calendar'),
     CalendarFilter = require('./calendar/calendar_filter'),
     ReservationFilterActions = require('../actions/reservation_filter_actions'),
+    ApiAction = require('../actions/api_actions'),
     ReservationFilterStore = require('../stores/reservation_filter_store'),
     ApiUtil = require('../util/api_util'),
     ReservationOptions = require('./reservation_options');
@@ -14,15 +15,17 @@ var ReservationFilter = React.createClass({
              time: this.props.restaurant.opens.time,
              date: moment().startOf("day"),
              id: this.props.restaurant.id,
-             results: ReservationFilterStore.results() } ;
+             results: "" } ;
   },
 
   componentDidMount: function () {
     this.token = ReservationFilterStore.addListener(this._getResults);
+    this.setState({ results: ReservationFilterStore.results() });
   },
 
   componentWillUnmount: function () {
     this.token.remove();
+    ApiAction.receiveReservationOptions("");
   },
 
   updateFitlers: function () {
@@ -85,7 +88,16 @@ var ReservationFilter = React.createClass({
     for (var j = start; j < end; j += 30) {
       timeOptions.push(<option key={j} value={j}>{Table.timeToString(j)}</option>);
     }
-    // debugger
+    var results = this.state.results;
+
+    // if (results) {
+    //   var id = results[0].rest_id;
+    //   if (this.state.id === id) {
+    //     results = results;
+    //   } else {
+    //     results = "";
+    //   }
+    // }
     return(
       <div className="filter-box">
         <h2>Make a Reservation</h2>
@@ -101,7 +113,7 @@ var ReservationFilter = React.createClass({
             <button onClick={this.submitFilters} className="selector submit">Find a Table</button>
           </form>
         </div>
-        <ReservationOptions time={this.state.time} results={this.state.results}/>
+        <ReservationOptions time={this.state.time} results={results}/>
       </div>
     );
   }

@@ -7,7 +7,7 @@ var React = require('react'),
 var CityIndex = React.createClass({
   getInitialState: function () {
     window.scrollTo(0, 0);
-    return { restaurants: RestaurantStore.all() };
+    return { restaurants: {} };
   },
 
   _onChange: function () {

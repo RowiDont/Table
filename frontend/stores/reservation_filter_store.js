@@ -12,7 +12,8 @@ ReservationFilterStore.all = function () {
 };
 
 ReservationFilterStore.results = function () {
-  return _results;
+  answer = _results;
+  return answer;
 };
 
 ReservationFilterStore.setResults = function (results) {
