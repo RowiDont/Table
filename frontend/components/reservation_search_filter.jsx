@@ -14,6 +14,10 @@ var ReservationSearchFilter = React.createClass({
   mixins: [ History ],
 
   getInitialState: function () {
+    var backgroundClasses = ["bg1", "bg2", "bg3"];
+
+    this.searchClass = "filter-box search " + backgroundClasses[Math.floor(Math.random() * backgroundClasses.length)];
+
     return { people: "2",
              time: this.props.restaurant.opens.time,
              date: moment().startOf("day"),
@@ -141,8 +145,12 @@ var ReservationSearchFilter = React.createClass({
       }
     }, this);
 
+    // var backgroundClasses = ["bg1", "bg2", "bg3"];
+
+    // var searchClass = "filter-box search " + backgroundClasses[Math.floor(Math.random() * backgroundClasses.length)];
+
     return(
-      <div className="filter-box search">
+      <div className={this.searchClass}>
         <h2>Already know where you want to go? Make a Reservation now</h2>
         <div className="reservation-filter-form">
           <form>
