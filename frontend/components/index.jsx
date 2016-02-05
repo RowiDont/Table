@@ -32,7 +32,7 @@ var index = React.createClass({
     var welcome = (
       <div className="city-index-welcome">
         <h1>Make restaurant reservations the easy way</h1>
-        <h2>Our network connects diners with more than 50 restaurants worldwide!</h2>
+        <h2>Our network connects diners with more than 75 restaurants nationwide!</h2>
       </div>
     );
 

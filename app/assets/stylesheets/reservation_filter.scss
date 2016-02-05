@@ -1,3 +1,34 @@
+$primary-color: #da3743;
+
+@media (max-width: 1150px) {
+  .search .reservation-filter-date {
+    width: 20% !important;
+  }
+
+  #searchbox {
+    width: 35% !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .search h2 {
+    font-size: 1.5em !important;
+  }
+
+  .submit {
+    font-size: 12px !important;
+  }
+
+  .selector {
+    font-size: 12px !important;
+  }
+
+  .reservation-filter-date > .calendar-value {
+    font-size: 12px !important;
+    padding: 12px !important;
+  }
+}
+
 .filter-box {
   max-width: 1000px;
   margin: auto;
@@ -44,10 +75,12 @@
 
 .search-item {
   padding: 5px 5px 5px 10px;
+  cursor: pointer;
 }
 
 .search-item:hover {
-  background: #eee;
+  color: white;
+  background: $primary-color;
 }
 
 .reservation-filter-form {
@@ -56,7 +89,7 @@
 }
 
 .search .reservation-filter-form {
-  width: 90%;
+  width: 95%;
   position: absolute;
   bottom: 0;
 }
@@ -154,8 +187,8 @@ form .dropdown:nth-child(3) {
 
 .calendar {
   position: absolute;
-  top: 68px;
-  left: 215px;
+  z-index: 40;
+  font-weight: normal;
 }
 
 .triangle {
@@ -168,4 +201,8 @@ form .dropdown:nth-child(3) {
 
 .hidden {
   display: none;
+}
+
+.fa {
+  padding-right: 5px;
 }

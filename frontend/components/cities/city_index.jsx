@@ -6,7 +6,8 @@ var React = require('react'),
 
 var CityIndex = React.createClass({
   getInitialState: function () {
-    return { restaurants: {} };
+    window.scrollTo(0, 0);
+    return { restaurants: RestaurantStore.all() };
   },
 
   _onChange: function () {
@@ -31,7 +32,12 @@ var CityIndex = React.createClass({
   },
 
   render: function () {
-    var restaurantCount = this.props.location.state.count;
+
+    var restaurantCount = Object.keys(this.state.restaurants).length;
+    var city = "";
+    if (restaurantCount > 0) {
+      city = this.state.restaurants[0].restaurant.city.name;
+    }
 
     var list = Object.keys(this.state.restaurants).map(function (key) {
       var rest = this.state.restaurants[key].restaurant;
@@ -40,7 +46,7 @@ var CityIndex = React.createClass({
 
     return(
       <div className="restaurant-list-container">
-        <h2 className="restaurant-count">{restaurantCount} tables available</h2>
+        <h2 className="restaurant-count">{restaurantCount} tables available in {city}</h2>
         <ul className="restaurant-list">{list}</ul>
       </div>
     );

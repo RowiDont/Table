@@ -23,7 +23,7 @@ RestaurantStore.resetRestaurants = function (data) {
 
 RestaurantStore.updateRestaurant = function (data) {
   var id = data.restaurant.id;
-  _restaurants[id] = data.restaurant;
+  _restaurants[id - 1] = data;
   RestaurantStore.__emitChange();
 };
 
@@ -33,7 +33,7 @@ RestaurantStore.updateResults = function (results) {
 };
 
 RestaurantStore.find = function (id) {
-  return _restaurants[id];
+  return _restaurants[id - 1];
 };
 
 RestaurantStore.__onDispatch = function (payload) {

@@ -4,7 +4,7 @@ class City < ActiveRecord::Base
   has_many :postalcodes
   has_many :restaurants, through: :postalcodes
 
-  # multisearchable against: :name
+  multisearchable against: :name
 
 
   def count

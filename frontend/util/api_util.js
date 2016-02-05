@@ -127,9 +127,17 @@ var ApiUtil = {
       dataType: "json",
       data: {filters: filters},
       success: function (data) {
-        ApiAction.receiveSingleRestaurant(data.restaurant);
-        ApiAction.receiveReservationOptions(data.results);
-        callback();
+        var id;
+        if (data[0]) {
+          id = data[0].restaurant.city.id;
+          ApiAction.receiveRestaurants(data);
+          callback("cities", id);
+        } else {
+          id = data.restaurant.id;
+          ApiAction.receiveSingleRestaurant(data.restaurant);
+          ApiAction.receiveReservationOptions(data.results);
+          callback("restaurants", id);
+        }
       },
       error: function () {
       }

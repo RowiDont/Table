@@ -20,7 +20,9 @@ var ReservationSearchFilter = React.createClass({
              id: 0,
              results: "",
              searchTerm: "",
-             searchOptions: []
+             searchOptions: [],
+             searchClass: "search-results",
+             type: ""
            };
   },
 
@@ -72,8 +74,8 @@ var ReservationSearchFilter = React.createClass({
     ApiUtil.searchFilter(query);
   },
 
-  routeToRestaurant: function () {
-    var url = "restaurants/" + this.state.id;
+  routeToRestaurant: function (type, id) {
+    var url = type + "/" + this.state.id;
     this.context.history.pushState({}, url);
   },
 
@@ -84,14 +86,22 @@ var ReservationSearchFilter = React.createClass({
     ApiUtil.indexFilter(this.routeToRestaurant);
   },
 
-  reAddClick: function (e) {
-    $(e.currentTarget).on('click', this.submitFilters);
-  },
-
   fillForm: function (e) {
     var id = e.currentTarget.id;
     var text = e.currentTarget.innerText;
+    var type = e.currentTarget.dataset.type;
     this.setState( { searchTerm: text, id: id, searchOptions: [] });
+  },
+
+  hide: function (e) {
+    setTimeout(
+      function () {this.setState({ searchClass: "hidden" });}.bind(this),
+      1000
+    );
+  },
+
+  revealList: function () {
+    this.setState({ searchClass: "search-results" });
   },
 
   render: function () {
@@ -121,8 +131,14 @@ var ReservationSearchFilter = React.createClass({
     }
 
     var resultList = this.state.searchOptions.map(function (item, idx) {
+      // debugger
+      var type = item.searchable_type;
       var id = item.searchable_id;
-      return <li onClick={this.fillForm} id={id} className="search-item" key={idx}>{item.content}</li>;
+      if (type === "Restaurant") {
+        return <li onClick={this.fillForm} data-type={type} id={id} className="search-item" key={idx}><i className="fa fa-cutlery"></i>{item.content}</li>;
+      } else {
+        return <li onClick={this.fillForm} data-type={type} id={id} className="search-item" key={idx}><i className="fa fa-map-marker"></i>{item.content}</li>;
+      }
     }, this);
 
     return(
@@ -134,13 +150,15 @@ var ReservationSearchFilter = React.createClass({
               <select defaultValue="2" onChange={this.setPeople} className="reservation-filter-people selector dropdown" name="people">
                 {seatingOptions}
               </select>
-              {date}
+              <label>
+                {date}
+              </label>
               <select onChange={this.setTime} className="reservation-filter-time selector dropdown" name="time">
                 {timeOptions}
               </select>
               <label>
-                <input autoComplete="off" type="text" placeholder="Resturant name" id="searchbox" className="selector" onChange={this.setSearch} value={this.state.searchTerm} />
-                <ul className="search-results">{resultList}</ul>
+                <input onBlur={this.hide} onClick={this.revealList} autoComplete="off" type="text" placeholder="Resturant name" id="searchbox" className="selector" onChange={this.setSearch} value={this.state.searchTerm} />
+                <ul className={this.state.searchClass}>{resultList}</ul>
               </label>
 
               <button onClick={this.submitFilters} className="selector submit">Find a Table</button>

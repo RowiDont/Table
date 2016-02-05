@@ -5,11 +5,12 @@ var React = require('react'),
 
 var RestaurantView = React.createClass({
   getInitialState: function () {
-    return { rest: RestaurantStore.find(this.props.params.id) };
+    window.scrollTo(0, 0);
+    return { rest: {} };
   },
 
   _onChange: function () {
-    this.setState({ rest: RestaurantStore.find(this.props.params.id), fetched: true });
+    this.setState({ rest: RestaurantStore.find(this.props.params.id).restaurant, fetched: true });
   },
 
   componentDidMount: function () {

@@ -9,4 +9,6 @@ json.restaurant do
   json.lat restaurant.lat
   json.lng restaurant.lng
   json.image_url asset_path(restaurant.thumb.url)
+  json.type "index"
+  json.city restaurant.city
 end

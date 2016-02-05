@@ -12,7 +12,7 @@ ReservationFilterStore.all = function () {
 };
 
 ReservationFilterStore.results = function () {
-  return Object.assign({}, _results);
+  return _results;
 };
 
 ReservationFilterStore.setResults = function (results) {

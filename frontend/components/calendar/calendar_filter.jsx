@@ -8,7 +8,6 @@ var CalendarFilter = React.createClass({
   },
 
   offClickHandle: function (e) {
-    // debugger
     if (!e.target.className.includes("calendar") &&
         !e.target.className.includes("fa") &&
         e.target.parentElement &&
