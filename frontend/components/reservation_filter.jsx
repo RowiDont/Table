@@ -90,14 +90,6 @@ var ReservationFilter = React.createClass({
     }
     var results = this.state.results;
 
-    // if (results) {
-    //   var id = results[0].rest_id;
-    //   if (this.state.id === id) {
-    //     results = results;
-    //   } else {
-    //     results = "";
-    //   }
-    // }
     return(
       <div className="filter-box">
         <h2>Make a Reservation</h2>

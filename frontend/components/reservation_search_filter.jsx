@@ -157,7 +157,7 @@ var ReservationSearchFilter = React.createClass({
                 {timeOptions}
               </select>
               <label>
-                <input onBlur={this.hide} onClick={this.revealList} autoComplete="off" type="text" placeholder="Resturant name" id="searchbox" className="selector" onChange={this.setSearch} value={this.state.searchTerm} />
+                <input onBlur={this.hide} onClick={this.revealList} autoComplete="off" type="text" placeholder="Resturant or City" id="searchbox" className="selector" onChange={this.setSearch} value={this.state.searchTerm} />
                 <ul className={this.state.searchClass}>{resultList}</ul>
               </label>
 
