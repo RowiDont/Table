@@ -16,12 +16,12 @@ var ApiUtil = {
     });
   },
 
-  fetchRestaurants: function (cityId) {
-
+  fetchRestaurants: function (cityId, page) {
     $.ajax({
       url: "/api/cities/" + cityId + "/restaurants",
       type: "GET",
       dataType: 'json',
+      data: { page: page },
       success: function (data) {
         ApiAction.receiveRestaurants(data);
       },
@@ -128,8 +128,8 @@ var ApiUtil = {
       data: {filters: filters},
       success: function (data) {
         var id;
-        if (data[0]) {
-          id = data[0].restaurant.city.id;
+        if (data.type === "index") {
+          id = data.city_id;
           ApiAction.receiveRestaurants(data);
           callback("cities", id);
         } else {

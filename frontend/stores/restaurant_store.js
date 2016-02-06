@@ -3,13 +3,21 @@ var AppDispatcher = require('../dispatcher/dispatcher');
 var RestaurantConstants = require('../constants/restaurant_constants');
 
 
-var _restaurants = {};
+var _restaurants = null;
 var _searchResults = [];
 
 var RestaurantStore = new Store(AppDispatcher);
 
 RestaurantStore.all = function () {
-  return _restaurants;
+  return _restaurants.restaurants;
+};
+
+RestaurantStore.count = function () {
+  return _restaurants.count;
+};
+
+RestaurantStore.city = function () {
+  return _restaurants.city;
 };
 
 RestaurantStore.results = function () {
@@ -22,8 +30,15 @@ RestaurantStore.resetRestaurants = function (data) {
 };
 
 RestaurantStore.updateRestaurant = function (data) {
-  var id = data.restaurant.id;
-  _restaurants[id - 1] = data;
+  if (_restaurants) {
+    for (var i = 0; i < _restaurants.restaurants.length; i++) {
+      if (_restaurants.restaurants[i].id == data.id) {
+        $.extend(_restaurants.restaurants[i], data);
+      }
+    }
+  } else {
+    _restaurants = {restaurants: [data]};
+  }
   RestaurantStore.__emitChange();
 };
 
@@ -33,7 +48,11 @@ RestaurantStore.updateResults = function (results) {
 };
 
 RestaurantStore.find = function (id) {
-  return _restaurants[id - 1];
+  for (var i = 0; i < _restaurants.restaurants.length; i++) {
+    if (_restaurants.restaurants[i].id == id) {
+      return _restaurants.restaurants[i];
+    }
+  }
 };
 
 RestaurantStore.__onDispatch = function (payload) {

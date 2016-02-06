@@ -1,7 +1,8 @@
 class Api::RestaurantsController < ApplicationController
   def index
-    city = City.find(params[:city_id])
-    @restaurants = city.restaurants.includes(:city).order('id')
+    @city = City.find(params[:city_id])
+    page = params[:page]
+    @restaurants = @city.restaurants.order('id').page(page).per(10)
   end
 
   def show

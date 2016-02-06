@@ -13,8 +13,10 @@ class Api::UtilsController < ApplicationController
     cities = City.all.map { |city| city.name.downcase }
     query = filter_params[:searchTerm].downcase
     if cities.include?(query)
-      city = City.find_by_name(query.titleize)
-      @restaurants = city.restaurants.includes(:city).order('id')
+      @city = City.find_by_name(query.titleize)
+      page = 1
+      @restaurants = @city.restaurants.order('id').page(page).per(10)
+      # @restaurants = city.restaurants.includes(:city).order('id')
       render "api/restaurants/index"
     else
       @results = Reservation.search_results(params[:filters])

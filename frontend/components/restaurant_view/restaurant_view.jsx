@@ -11,7 +11,7 @@ var RestaurantView = React.createClass({
   },
 
   _onChange: function () {
-    this.setState({ rest: RestaurantStore.find(this.props.params.id).restaurant, fetched: true });
+    this.setState({ rest: RestaurantStore.find(this.props.params.id), fetched: true });
   },
 
   componentDidMount: function () {
