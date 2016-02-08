@@ -4,7 +4,7 @@ var ErrorStore = require('../../stores/error_store');
 
 var SessionForm = React.createClass({
   getInitialState: function () {
-    return { errors: {} };
+    return { errors: "" };
   },
 
   componentDidMount: function () {
@@ -16,7 +16,7 @@ var SessionForm = React.createClass({
   },
 
   onChange: function () {
-    this.setState({ errors: ErrorStore.all() });
+    this.setErrors();
   },
 
   submit: function (e) {
@@ -29,6 +29,15 @@ var SessionForm = React.createClass({
         this.props.history.goBack();
       }
     }.bind(this));
+  },
+
+  hideError: function (e) {
+    this.setState({ errors: "" });
+  },
+
+  setErrors: function() {
+    var errors = ErrorStore.all();
+    this.setState({errors: errors});
   },
 
 
@@ -44,7 +53,7 @@ var SessionForm = React.createClass({
 
           <h1>Please sign in</h1>
 
-          <label>
+          <label onClick={this.hideError}>
             <div className="errors-first">{this.state.errors[0]}</div>
             <input placeholder="Email" type="text" name="email" />
           </label>
@@ -58,8 +67,8 @@ var SessionForm = React.createClass({
         </form>
 
         <form className="guest" onSubmit={ this.submit }>
-            <input value="test@test.com" type="hidden" name="email" />
-            <input value="starwars" type="hidden" name="password" />
+          <input value="test@test.com" type="hidden" name="email" />
+          <input value="starwars" type="hidden" name="password" />
           <button>Sign in as guest</button>
         </form>
 
