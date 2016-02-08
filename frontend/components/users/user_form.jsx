@@ -1,6 +1,7 @@
 var React = require('react');
 var History = require('react-router').History;
 var UsersApiUtil = require('../../util/users_api_util');
+var SessionsApiUtil = require('./../../util/sessions_api_util');
 var ErrorStore = require('../../stores/error_store');
 
 var UserForm = React.createClass({
@@ -32,6 +33,18 @@ var UserForm = React.createClass({
     var attrs = $(e.currentTarget).serializeJSON();
     UsersApiUtil.createUser(attrs, function () {
       this.history.pushState({}, "/");
+    }.bind(this));
+  },
+
+  submitGuest: function (e) {
+    e.preventDefault();
+    var credentials = $(e.currentTarget).serializeJSON();
+    SessionsApiUtil.login(credentials, function () {
+      if (this.props.location.state) {
+        this.props.history.pushState({}, "/reservation");
+      } else {
+        this.props.history.goBack();
+      }
     }.bind(this));
   },
 
@@ -86,7 +99,7 @@ var UserForm = React.createClass({
           <button>Sign up</button>
         </form>
 
-        <form className="guest" onSubmit={ this.submit }>
+        <form className="guest" onSubmit={ this.submitGuest }>
           <input value="test@test.com" type="hidden" name="email" />
           <input value="starwars" type="hidden" name="password" />
           <button>Sign in as guest</button>

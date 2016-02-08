@@ -37,7 +37,7 @@ var App = React.createClass({
 var routes = (
   <Route path="/" component={ App }  onEnter={ _checkIfLoggedIn }>
     <IndexRoute component={ index } />
-    <Route path="login" component={ SessionForm } />
+    <Route path="login" component={ SessionForm } onEnter= { _redirectToIndexIfLoggedIn }/>
     <Route path="users/new" component={ UserForm } onEnter= { _redirectToIndexIfLoggedIn }/>
     <Route path="cities/:city_id" component={ CityIndex } />
     <Route path="/restaurants/:id" component={ RestaurantView } />
