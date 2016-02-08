@@ -84,8 +84,8 @@ var RestaurantView = React.createClass({
         {sidebar}
         <div className="main">
           {reservationFilter}
+          {map}
         </div>
-        {map}
       </div>
     );
   }

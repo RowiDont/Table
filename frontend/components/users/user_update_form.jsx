@@ -6,8 +6,7 @@ var CurrentUserStore = require('../../stores/current_user_store');
 
 var UserUpdate = React.createClass({
   getInitialState: function() {
-    return { email: "",
-             fname: "",
+    return { fname: "",
              lname: "",
              imageFile: null,
              imageUrl: "",
@@ -48,9 +47,6 @@ var UserUpdate = React.createClass({
           <label className="name">Last name
             <input placeholder={user.lname} type="text" onChange={this.changeLname} />
           </label>
-          <label className="email">Email
-            <input placeholder={user.email} type="text" onChange={this.changeEmail} />
-          </label>
 
           <label>Profile picture:
             <input type="file" onChange={this.changeFile} />
@@ -64,10 +60,6 @@ var UserUpdate = React.createClass({
     );
 
     return form;
-  },
-
-  changeEmail: function(e) {
-    this.setState({ email: e.currentTarget.value });
   },
 
   changeFname: function(e) {
@@ -98,7 +90,6 @@ var UserUpdate = React.createClass({
 
     var formData = new FormData();
     var count = 0;
-    if (this.state.email) {formData.append("user[email]", this.state.email); count++;}
     if (this.state.fname) {formData.append("user[fname]", this.state.fname); count++;}
     if (this.state.lname) {formData.append("user[lname]", this.state.lname); count++;}
     if (this.state.imageFile) {formData.append("user[avatar]", this.state.imageFile); count++;}
@@ -108,8 +99,7 @@ var UserUpdate = React.createClass({
   },
 
   resetForm: function() {
-    this.setState({ email: this.props.email,
-                    fname: this.props.fname,
+    this.setState({ fname: this.props.fname,
                     lname: this.props.lname,
                     imageFile: null,
                     imageUrl: ""});
