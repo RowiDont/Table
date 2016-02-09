@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       end
     end
     get "searchbar", to: "utils#searchbar"
-    get "index_filter", to: "utils#filter_search"
+    post "index_filter", to: "utils#filter_search"
   end
 
   get 'auth/google_oauth2/callback', to: 'api/sessions#omniauth_google'

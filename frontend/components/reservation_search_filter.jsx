@@ -26,7 +26,9 @@ var ReservationSearchFilter = React.createClass({
              searchTerm: "",
              searchOptions: [],
              searchClass: "search-results",
-             type: ""
+             type: "",
+             clicked: false,
+             searchTermHidden: ""
            };
   },
 
@@ -38,6 +40,7 @@ var ReservationSearchFilter = React.createClass({
   componentWillUnmount: function () {
     this.token.remove();
     this.token2.remove();
+    window.clearTimeout(this.timer);
   },
 
   updateFitlers: function () {
@@ -55,8 +58,11 @@ var ReservationSearchFilter = React.createClass({
   _getSearchResults: function () {
     var results = RestaurantStore.results();
     this.setState({ searchOptions: results });
-    if (results.length === 1) {
-      this.setState({ id: results[0].searchable_id });
+    // if (results.length === 1) {
+    //   this.setState({ id: results[0].searchable_id });
+    // }
+    if (results.length >= 1) {
+      this.setState({ id: results[0].searchable_id, searchTermHidden: results[0].content });
     }
   },
 
@@ -78,27 +84,29 @@ var ReservationSearchFilter = React.createClass({
     ApiUtil.searchFilter(query);
   },
 
-  routeToRestaurant: function (type, id) {
-    var url = type + "/" + this.state.id;
-    this.context.history.pushState({}, url);
+  routeToRestaurant: function (type, id, state) {
+    var oldState = state ? state : {};
+    var url = type + "/" + id;
+    this.context.history.pushState(oldState, url);
   },
 
   submitFilters: function (e) {
     e.preventDefault();
-    this.updateFitlers();
-
-    ApiUtil.indexFilter(this.routeToRestaurant);
+    if (this.state.searchOptions.length >= 1 || this.state.clicked === true) {
+      this.updateFitlers();
+      ApiUtil.indexFilter(this.routeToRestaurant);
+    }
   },
 
   fillForm: function (e) {
     var id = e.currentTarget.id;
     var text = e.currentTarget.innerText;
     var type = e.currentTarget.dataset.type;
-    this.setState( { searchTerm: text, id: id, searchOptions: [] });
+    this.setState( { searchTerm: text, id: id, searchTermHidden: text, searchOptions: [], clicked: true });
   },
 
   hide: function (e) {
-    setTimeout(
+    this.timer = setTimeout(
       function () {this.setState({ searchClass: "hidden" });}.bind(this),
       1000
     );
@@ -138,10 +146,15 @@ var ReservationSearchFilter = React.createClass({
       // debugger
       var type = item.searchable_type;
       var id = item.searchable_id;
+      var klass = "search-item";
+      if (this.state.searchTermHidden === item.content) {
+        klass = "search-item selected";
+      }
+
       if (type === "Restaurant") {
-        return <li onClick={this.fillForm} data-type={type} id={id} className="search-item" key={idx}><i className="fa fa-cutlery"></i>{item.content}</li>;
+        return <li onClick={this.fillForm} data-type={type} id={id} className={klass} key={idx}><i className="fa fa-cutlery"></i>{item.content}</li>;
       } else {
-        return <li onClick={this.fillForm} data-type={type} id={id} className="search-item" key={idx}><i className="fa fa-map-marker"></i>{item.content}</li>;
+        return <li onClick={this.fillForm} data-type={type} id={id} className={klass} key={idx}><i className="fa fa-map-marker"></i>{item.content}</li>;
       }
     }, this);
 

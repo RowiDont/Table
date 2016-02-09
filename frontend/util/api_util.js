@@ -122,7 +122,7 @@ var ApiUtil = {
     filters.time = filters.time.toString();
 
     $.ajax({
-      type: "GET",
+      type: "POST",
       url: "/api/index_filter",
       dataType: "json",
       data: {filters: filters},
@@ -133,13 +133,15 @@ var ApiUtil = {
           ApiAction.receiveRestaurants(data);
           callback("cities", id);
         } else {
-          id = data.restaurant.id;
+          id = data.restaurant.restaurant.id;
           ApiAction.receiveSingleRestaurant(data.restaurant);
           ApiAction.receiveReservationOptions(data.results);
           callback("restaurants", id);
         }
       },
       error: function () {
+        debugger
+        callback("", "", {error: "invalid search term"});
       }
     });
   }
