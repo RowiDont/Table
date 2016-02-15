@@ -74,7 +74,7 @@ var UserForm = React.createClass({
       <div className="signin">
         <form onSubmit={ this.submit }>
 
-          <h1>Welcome to OpenTable!</h1>
+          <h1>Welcome to Table!</h1>
 
           <label onClick={this.hideError}>
             <div className="errors-first">{ fname }</div>
