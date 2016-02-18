@@ -5,6 +5,8 @@ A clone of OpenTable's web platform for restaurant search and reservations. Buil
 
 http://www.getTable.top (running on Heroku)
 
+![screenshot](screenshot.jpg)
+
 ### Code walkthrough
 The frontend folder contains all the javascript and React/Flux elements of this website. A flux structure was used throughout this project. The only HTML served by the rails app can be seen in `app/views/static_pages/root.html.erb`. It contains only this:
 
