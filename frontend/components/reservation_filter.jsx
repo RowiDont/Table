@@ -19,6 +19,33 @@ var ReservationFilter = React.createClass({
   },
 
   componentDidMount: function () {
+    values = this.currentTime();
+    currentTime = values[1];
+    timeNow = values[0];
+
+    shiftDay = this.isClosed(timeNow);
+
+
+    this.token = ReservationFilterStore.addListener(this._getResults);
+    if (shiftDay) {
+      newDate = moment().startOf("day").add(1, 'days');
+      this.setState({ results: ReservationFilterStore.results(), date: newDate, time: currentTime});
+    } else {
+      this.setState({ results: ReservationFilterStore.results(), time: currentTime});
+    }
+  },
+
+  isClosed: function (timeNow) {
+    var restaurant = this.props.restaurant;
+    var end = restaurant.closes.time - (restaurant.closes.time % 30);
+    var nextDay = false;
+    if (timeNow > end ) {
+      nextDay = true;
+    }
+    return nextDay;
+  },
+
+  currentTime: function () {
     var restaurant = this.props.restaurant;
 
     this.timeOptions = [];
@@ -36,8 +63,7 @@ var ReservationFilter = React.createClass({
       }
     }
 
-    this.token = ReservationFilterStore.addListener(this._getResults);
-    this.setState({ results: ReservationFilterStore.results(), time: current_time});
+    return [minutes, current_time];
   },
 
   componentWillUnmount: function () {
@@ -100,7 +126,8 @@ var ReservationFilter = React.createClass({
     }
 
     // date
-    var date = <CalendarFilter changeDate={this.setDate} moment={moment().startOf("day")} />;
+    console.log(this.state.date);
+    var date = <CalendarFilter changeDate={this.setDate} moment={this.state.date} />;
 
     var results = this.state.results;
 

@@ -26,6 +26,9 @@ var CalendarFilter = React.createClass({
     document.removeEventListener("click", this.offClickHandle);
   },
 
+  componentWillReceiveProps: function (newProps) {
+    this.setState({ selected: newProps.moment.clone() });
+  },
 
   changeSelected: function (day) {
     this.props.changeDate(day);
