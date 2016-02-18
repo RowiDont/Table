@@ -19,8 +19,25 @@ var ReservationFilter = React.createClass({
   },
 
   componentDidMount: function () {
+    var restaurant = this.props.restaurant;
+
+    this.timeOptions = [];
+    var start = restaurant.opens.time + (restaurant.opens.time % 30);
+    var end = restaurant.closes.time - (restaurant.closes.time % 30);
+    current_time = start;
+    for (var j = start; j < end; j += 30) {
+      this.timeOptions.push(<option key={j} value={j}>{Table.timeToString(j)}</option>);
+      now = moment();
+      midnight = now.clone().startOf('day');
+      minutes = now.clone().diff(midnight, 'minutes');
+      diff = Math.abs(j - minutes);
+      if (diff <= 30) {
+        current_time = j.toString();
+      }
+    }
+
     this.token = ReservationFilterStore.addListener(this._getResults);
-    this.setState({ results: ReservationFilterStore.results() });
+    this.setState({ results: ReservationFilterStore.results(), time: current_time});
   },
 
   componentWillUnmount: function () {
@@ -46,6 +63,10 @@ var ReservationFilter = React.createClass({
 
   setPeople: function (e) {
     this.setState({ people: e.currentTarget.value });
+  },
+
+  setDefaultTime: function (time) {
+    this.setState({ time: time });
   },
 
   setTime: function (e) {
@@ -81,13 +102,6 @@ var ReservationFilter = React.createClass({
     // date
     var date = <CalendarFilter changeDate={this.setDate} moment={moment().startOf("day")} />;
 
-    // time
-    var timeOptions = [];
-    var start = restaurant.opens.time + (restaurant.opens.time % 30);
-    var end = restaurant.closes.time - (restaurant.closes.time % 30);
-    for (var j = start; j < end; j += 30) {
-      timeOptions.push(<option key={j} value={j}>{Table.timeToString(j)}</option>);
-    }
     var results = this.state.results;
 
     return(
@@ -99,8 +113,8 @@ var ReservationFilter = React.createClass({
               {seatingOptions}
             </select>
             {date}
-            <select onChange={this.setTime} className="reservation-filter-time selector dropdown" name="time">
-              {timeOptions}
+            <select value={this.state.time} onChange={this.setTime} className="reservation-filter-time selector dropdown" name="time">
+              {this.timeOptions}
             </select>
             <button onClick={this.submitFilters} className="selector submit">Find a Table</button>
           </form>

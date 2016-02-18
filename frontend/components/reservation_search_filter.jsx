@@ -33,8 +33,26 @@ var ReservationSearchFilter = React.createClass({
   },
 
   componentDidMount: function () {
+    var restaurant = this.props.restaurant;
+
+    this.timeOptions = [];
+    var start = restaurant.opens.time + (restaurant.opens.time % 30);
+    var end = restaurant.closes.time - (restaurant.closes.time % 30);
+    current_time = start;
+    for (var j = start; j < end; j += 30) {
+      this.timeOptions.push(<option key={j} value={j}>{Table.timeToString(j)}</option>);
+      now = moment();
+      midnight = now.clone().startOf('day');
+      minutes = now.clone().diff(midnight, 'minutes');
+      diff = Math.abs(j - minutes);
+      if (diff <= 30) {
+        current_time = j.toString();
+      }
+    }
+
     this.token = ReservationFilterStore.addListener(this._getResults);
     this.token2 = RestaurantStore.addListener(this._getSearchResults);
+    this.setState({ time: current_time });
   },
 
   componentWillUnmount: function () {
@@ -174,7 +192,7 @@ var ReservationSearchFilter = React.createClass({
               <label>
                 {date}
               </label>
-              <select onChange={this.setTime} className="reservation-filter-time selector dropdown" name="time">
+              <select value={this.state.time} onChange={this.setTime} className="reservation-filter-time selector dropdown" name="time">
                 {timeOptions}
               </select>
               <label>
