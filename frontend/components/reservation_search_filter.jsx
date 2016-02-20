@@ -150,7 +150,7 @@ var ReservationSearchFilter = React.createClass({
     }
 
     // date
-    var date = <CalendarFilter changeDate={this.setDate} moment={moment().startOf("day")} />;
+    var date = <CalendarFilter changeDate={this.setDate} moment={this.state.date} />;
 
     // time
     var timeOptions = [];
