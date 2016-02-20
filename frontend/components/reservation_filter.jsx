@@ -126,7 +126,6 @@ var ReservationFilter = React.createClass({
     }
 
     // date
-    console.log(this.state.date);
     var date = <CalendarFilter changeDate={this.setDate} moment={this.state.date} />;
 
     var results = this.state.results;
