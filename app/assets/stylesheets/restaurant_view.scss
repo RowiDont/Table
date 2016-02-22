@@ -1,3 +1,7 @@
+@media (max-width: 1) {
+
+}
+
 .restaurant-page {
   padding: 20px;
 }
@@ -53,9 +57,9 @@
 
 .sidebar {
   width: 200px;
-  height: 500px;
-  float: left;
+  height: 0px;
   background: rgb(241, 241, 241);
+  margin-bottom: 50px;
 }
 
 .sidebar img {
@@ -67,8 +71,9 @@
 }
 
 .restaurant-page .main {
-  width: calc(100% - 220px);
-  float: right;
+  // width: calc(100% - 220px);
+  // float: right;
+  width: 100%;
 }
 
 .map-container {

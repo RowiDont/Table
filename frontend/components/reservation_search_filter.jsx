@@ -126,7 +126,7 @@ var ReservationSearchFilter = React.createClass({
   hide: function (e) {
     this.timer = setTimeout(
       function () {this.setState({ searchClass: "hidden" });}.bind(this),
-      1000
+      200
     );
   },
 

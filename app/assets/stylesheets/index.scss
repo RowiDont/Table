@@ -1,7 +1,41 @@
+@media (min-width: 766px) {
+  .city-index-welcome {
+    padding: 20px 20px 20px 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .city {
+    width: 100% !important;
+    height: 260px;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .city h2 {
+    line-height: 250px;
+  }
+
+  .city .count {
+    margin-top: -110px;
+  }
+
+  .city-index-welcome h1 {
+    font-size: 28px !important;
+    text-align: center;
+  }
+
+  .city-index-welcome h2 {
+    padding-top: 10px;
+    font-size: 21px !important;
+    text-align: center;
+
+  }
+}
 .city-index-welcome {
   background: white;
-  padding: 20px 20px 20px 10px;
   margin-bottom: 20px;
+  padding: 20px 20px 20px 20px;
 }
 
 .city-index-welcome h1 {
@@ -31,7 +65,7 @@
   width: 50%;
   text-align: center;
   padding: 10% 0;
-  text-shadow: #262626 1px 0 10px;
+  text-shadow: #262626 2px 0 7px;
   background: white;
   font-weight: 300;
 }

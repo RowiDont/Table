@@ -2,7 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
+@media (max-width: 500px) {
+  .signin {
+    width: calc(100% - 40px) !important;
+    margin-top: 0 !important;
+  }
+}
 
 .user-panel {
   float: right;

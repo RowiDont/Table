@@ -1,6 +1,7 @@
 $primary-color: #da3743;
+$form-hover: #d93c3c;
 
-@media (max-width: 1150px) {
+@media (max-width: 1220px) {
   .search .reservation-filter-date {
     width: 20% !important;
   }
@@ -10,7 +11,7 @@ $primary-color: #da3743;
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 950px) {
   .search h2 {
     font-size: 1.5em !important;
   }
@@ -26,17 +27,103 @@ $primary-color: #da3743;
   .reservation-filter-date > .calendar-value {
     font-size: 12px !important;
     padding: 12px !important;
+    line-height: 15px !important;
   }
+}
+
+@media (max-width: 765px) {
+  .selector {
+    display: block !important;
+    width: 100% !important;
+    border-radius: 0 !important;
+    font-size: 15px !important;
+  }
+
+  .search .reservation-filter-date {
+    width: 100% !important;
+  }
+
+  .reservation-filter-form .reservation-filter-date {
+    width: 100% !important;
+  }
+
+  #searchbox {
+    width: 100% !important;
+  }
+
+  .search-results {
+    width: calc(100vw - 55px) !important;
+  }
+
+  .reservation-filter-date > .calendar-value {
+    font-size: 15px !important;
+    line-height: 18px !important;
+  }
+
+  .search h2 {
+    position: static !important;
+  }
+
+  .reservation-filter-form {
+    position: relative !important;
+    padding: 5px 0 !important;
+    width: 100% !important;
+  }
+
+  form .dropdown:nth-child(3) {
+    border-left: 1px solid #ececec !important;
+    border-radius: 0 !important;
+  }
+
+  form .dropdown:nth-child(3):hover {
+    border-left: 1px solid $form-hover !important;
+    border-radius: 0 !important;
+  }
+
+  form .dropdown:first-child {
+    border-right: 1px solid #ececec !important;
+  }
+
+  form .dropdown:first-child:hover {
+    border-right: 1px solid $form-hover !important;
+  }
+
+  .reservation-filter-form select {
+    border-bottom: 1px solid white !important;
+  }
+
+  .reservation-filter-form select:hover {
+    border-bottom: 1px solid $form-hover !important;
+  }
+
+  .reservation-filter-form .reservation-filter-date {
+    border-bottom: 1px solid white !important;
+  }
+
+  .reservation-filter-form .reservation-filter-date:hover {
+    border-bottom: 1px solid $form-hover !important;
+  }
+
+  .reservation-section {
+    margin-top: 15px;
+    color: rgb(71, 71, 71);
+  }
+
+  .reservation-list-option {
+    margin: 6px 0;
+  }
+
 }
 
 .filter-box {
   margin: auto;
   margin-top: 20px;
-  padding: 22px 25px 0 20px;
+  padding: 22px 20px 0 20px;
   border-bottom: 1px solid #e3e3e3;
   background: white;
   border-radius: 2px;
 }
+
 .filter-box h2 {
   font-size: 1.5rem;
 }
@@ -97,6 +184,11 @@ $primary-color: #da3743;
   width: 25%;
   display: inline-block;
   border: 1px solid #ececec;
+  margin: 0;
+}
+
+.reservation-filter-form .reservation-filter-date {
+  width: 25%;
 }
 
 // .search {
@@ -105,6 +197,10 @@ $primary-color: #da3743;
 // }
 
 .search-filter .selector {
+  width: 15%;
+}
+
+.search-filter .reservation-filter-date {
   width: 15%;
 }
 
@@ -121,11 +217,11 @@ $primary-color: #da3743;
 }
 
 #searchbox:hover {
-  border-left: 1px solid #d93c3c;
+  border-left: 1px solid $form-hover;
 }
 
 .reservation-filter-form .selector:hover {
-  border: 1px solid #d93c3c;
+  border: 1px solid $form-hover;
 }
 
 .dropdown {
@@ -141,13 +237,13 @@ $primary-color: #da3743;
 }
 
 form .dropdown:first-child {
-  border-right: 0;
+  border-right: 1px solid #fff;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
 
 form .dropdown:nth-child(3) {
-  border-left: 0;
+  border-left: 1px solid #fff;
   border-radius: 0 !important;
 }
 
@@ -159,7 +255,7 @@ form .dropdown:nth-child(3) {
   font-size: 15px;
   border: 0 !important;
   cursor: pointer;
-  background: #da3743;
+  background: $primary-color;
   color: white;
   transition: background .25s ease-in-out;
   border-top-right-radius: 3px;
@@ -170,17 +266,27 @@ form .dropdown:nth-child(3) {
   background:#b8222d;
 }
 
+.reservation-filter-date {
+  display: inline-block;
+  width: 25%;
+  border: 1px solid #ececec;
+  box-sizing: border-box;
+}
+
+.reservation-filter-date:hover {
+  border: 1px solid #d93c3c;
+}
+
 .reservation-filter-date > .calendar-value {
   position: relative;
-  padding: 11px;
-  padding-top: 12px;
-  font-size: 15px;
+  padding: 12px;
   cursor: pointer;
   margin: 0;
   border-right: 0;
   background: white;
   color: black;
   font-weight: 400;
+  line-height: 18px;
 }
 
 .calendar {

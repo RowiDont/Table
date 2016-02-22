@@ -1,3 +1,17 @@
+@media (max-width: 765px) {
+  .reservation-details button {
+    margin-left: 20px;
+  }
+
+  .reservation-page-details li {
+    float: none !important;
+    padding: 5px 0;
+  }
+
+  .reservation-page-details .cancel {
+    float: none !important;
+  }
+}
 .reservation-page-header {
   background: white;
   border-bottom: 1px solid #e3e3e3;
@@ -118,7 +132,7 @@
 }
 
 .reservation-page-details a.cancel {
-  float: right !important;
+  float: right;
 }
 
 .hidden {

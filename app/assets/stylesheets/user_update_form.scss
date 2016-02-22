@@ -2,7 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
+@media (max-width: 765px) {
+  .update-user {
+    width: 100% !important;
+    // box-sizing: border-box;
+  }
+}
 
 .update-user {
   box-sizing: border-box;

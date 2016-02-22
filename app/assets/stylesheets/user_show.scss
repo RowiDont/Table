@@ -1,3 +1,30 @@
+@media (max-width: 765px) {
+  .user-show-header h1 {
+    width: auto !important;
+  }
+  .sidebar ul {
+    width: 100vw !important;
+    box-sizing: border-box;
+  }
+
+  .sidebar li {
+    display: inline-block;
+    padding: 5px 10px !important;
+    border-top: 1px solid #e3e3e3;
+  }
+
+  .reservation-list {
+    float: none !important;
+    width: 100vw !important;
+    margin-top: 100px !important;
+    padding-left: 20px !important;
+  }
+
+  .reservation-list h2 {
+    width: auto !important;
+  }
+}
+
 .user-show-header {
   background: white;
   border-bottom: 1px solid #e3e3e3;
@@ -42,6 +69,7 @@
 }
 
 .reservation-list {
+  margin-top: -35px;
   padding-left: 20px;
   width: calc(100% - 220px);
   float: right;
