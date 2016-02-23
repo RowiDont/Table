@@ -11,10 +11,12 @@
 /log/*
 !/log/.keep
 /tmp
+.byebug_history
 
 node_modules
 bundle.js
 bundle.map.js
+bundle.js.map
 
 # Ignore application configuration
 /config/application.yml
