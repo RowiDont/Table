@@ -2,7 +2,8 @@ var React = require('react'),
     ApiUtil = require('../../util/api_util'),
     ReservationTempStore = require('../../stores/reservation_temp_store'),
     CurrentUserStore = require('../../stores/current_user_store'),
-    moment = require('moment');
+    moment = require('moment'),
+    ReservationItem = require('./reservation_item');
 
 
 var ReservationView = React.createClass({
@@ -32,19 +33,18 @@ var ReservationView = React.createClass({
     this.props.history.pushState({}, "/reservation/confirmation");
   },
 
+  cancel: function (e) {
+    var rest_url = "restaurants/" + this.state.rest_id;
+    // debugger
+    this.props.history.pushState({}, rest_url);
+  },
+
   render: function () {
     if (Object.keys(this.state).length !== 0) {
       var currentUser = CurrentUserStore.currentUser();
-      var rest = this.state.name;
-      var rest_url = "#/restaurants/" + this.state.rest_id;
-      var rest_link = <a href={rest_url}>{rest}</a>;
+      // var rest_link = <a href={rest_url}>{rest}</a>;
       var headerText = "Complete your reservation";
       var detailClass = "reservation-page-details group";
-
-      var restaurant = <li className="rest"><h6>Restaurant</h6><h4>{rest_link}</h4></li>,
-          time = <li className="time"><h6>Time</h6><h4>{Table.timeToString(this.state.time.time)}</h4></li>,
-          guests = <li className="guests"><h6>Guests</h6><h4>{this.state.head_count}</h4></li>,
-          date = <li className="date"><h6>Date</h6><h4>{moment(this.state.date).format('dddd, MMMM Do, YYYY')}</h4></li>;
 
       var form = (
         <form className="reservation-details" onSubmit={ this.submit }>
@@ -56,14 +56,6 @@ var ReservationView = React.createClass({
         </form>
       );
 
-      var cancel;
-      if (this.props.location.pathname !== "/reservation/confirmation") {
-        cancel = <a className="cancel" href={rest_url}><button>Cancel</button></a>;
-      } else {
-        cancel = "";
-      }
-
-
       var languages = ["吃好 (chī hǎo)", "Smacznego", "Buen Provecho", "Buon appetito", "Eet Smakelijk", "いただきます (itadakimasu)", "בתיאבון (be'te-avon)"];
 
       if (this.props.location.pathname === "/reservation/confirmation") {
@@ -73,24 +65,15 @@ var ReservationView = React.createClass({
         detailClass = "reservation-page-details group grey";
       }
 
+      var reservation = <ReservationItem res={this.state} cancel={this.cancel} klass={detailClass}/>;
 
       return(
         <div className="reservation-page">
           <div className="reservation-page-header">
             <h1>{ headerText }</h1>
           </div>
-          <ul className={ detailClass }>
-            <li><img src={ this.state.image_url }></img></li>
-            { guests }
-            { date }
-            { time }
-            { restaurant }
-            { cancel }
-          </ul>
-
+          { reservation }
           { form }
-
-
           { this.props.children }
         </div>
       );
