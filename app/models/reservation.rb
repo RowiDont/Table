@@ -19,7 +19,6 @@ class Reservation < ActiveRecord::Base
     if time_then < time_now
       errors[:Time] = "is unfortunately linear"
     end
-
   end
 
   def time_slot_is_within_restaurant_hours

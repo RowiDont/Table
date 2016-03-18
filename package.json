@@ -1,14 +1,14 @@
 {
   "name": "Table",
   "version": "1.0.0",
-  "description": "",
+  "description": "A clone of OpenTable's web platform for restaurant search and reservations. Built in Ruby on Rails and ReactJS.",
   "main": "index.js",
   "directories": {
     "doc": "docs",
     "test": "test"
   },
   "scripts": {
-    "postinstall": "./node_modules/.bin/webpack"
+    "postinstall": "webpack"
   },
   "engines": {
     "node": "4.1.1",
@@ -38,5 +38,6 @@
     "react-dom": "^0.14.6",
     "react-router": "^1.0.3",
     "webpack": "^1.12.12"
-  }
+  },
+  "devDependencies": {}
 }
