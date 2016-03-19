@@ -9,7 +9,10 @@ var ReservationConfirmation = React.createClass({
 
   render: function () {
     return(
-      <div className="button-to-home"><a href="#/">Go back to the homepage</a></div>
+      <div>
+        <div className="button-to-home"><a href="#/">Go back to the homepage</a></div>
+        <div className="button-to-user"><a href="#/user/reservations">See your reservations</a></div>
+      </div>
     );
   }
 });

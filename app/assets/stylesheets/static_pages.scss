@@ -95,3 +95,11 @@ header {
 button {
   font-family: 'Open Sans';
 }
+
+
+@media (max-width: 370px) {
+  .nav-logo {
+    padding-right: 5px !important;
+    margin-right: 7px;
+  }
+}

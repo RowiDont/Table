@@ -18,9 +18,9 @@
 }
 
 .restaurant-page .header {
-  width: 100%;
+  width: calc(100% - 40px);
   background: rgba(73, 72, 72, 1);
-  padding: 0 20px 20px 0;
+  padding: 0 20px 20px 20px;
 }
 
 .header-content {
@@ -33,6 +33,8 @@
   font-size: 40px;
   font-weight: 300;
   margin-top: 30px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .header-content h4 {
@@ -87,4 +89,18 @@
 #map {
   width: 100%;
   height: 200px;
+}
+
+@media (max-width: 500px) {
+  .header-content {
+    width: 100%;
+    float: none;
+    margin-bottom: 100px;
+  }
+
+  .header-content h1 {
+    display: block;
+    padding-top: 15px;
+    margin-top: 0;
+  }
 }
