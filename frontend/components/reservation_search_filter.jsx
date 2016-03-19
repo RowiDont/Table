@@ -202,6 +202,7 @@ var ReservationSearchFilter = React.createClass({
     return(
       <div className={this.searchClass}>
         <h2>Already know where you want to go? Make a Reservation now</h2>
+        <h2 className="mobile-search-header">Book now</h2>
         <div className="reservation-filter-form">
           <form>
             <div className="search-filter">

@@ -18,8 +18,6 @@ $form-hover: #d93c3c;
   position: relative;
   max-width: 100%;
   height: 300px;
-  // font-weight: 300;
-  // color: white;
   background-repeat: no-repeat;
   background-position: 0;
 }
@@ -35,6 +33,10 @@ $form-hover: #d93c3c;
   position: absolute;
   bottom: 75px;
   text-shadow: #262626 1px 0 10px;
+}
+
+.mobile-search-header {
+  display: none;
 }
 
 .search-results {
@@ -64,7 +66,7 @@ $form-hover: #d93c3c;
 }
 
 .search .reservation-filter-form {
-  width: 95%;
+  width: calc(100% - 40px);
   position: absolute;
   bottom: 0;
 }
@@ -73,7 +75,6 @@ $form-hover: #d93c3c;
   box-sizing: border-box;
   width: 25%;
   display: inline-block;
-  // border: 1px solid #ececec;
   margin: 0;
   line-height: 20px;
 }
@@ -83,7 +84,7 @@ $form-hover: #d93c3c;
   color: inherit;
   background: white;
   padding: 12px;
-  border: 1px solid #ececec;
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .selector:hover {
@@ -105,14 +106,9 @@ form div.selector:first-child {
   cursor: pointer;
 }
 
-.reservation-filter-form .reservation-filter-date {
-  width: 25%;
+.search {
+  max-width: 100%;
 }
-
-// .search {
-//   max-width: 100%;
-//   background: rgb(70, 70, 70);
-// }
 
 .search-filter .selector {
   width: 15%;
@@ -124,31 +120,16 @@ form div.selector:first-child {
 
 #searchbox {
   width: 35%;
-  border-left: 0;
+  border-left: 1px solid white;
 }
 
 #searchbox:hover {
   border: 1px solid $form-hover;
 }
 
-// .reservation-filter-form .selector:hover {
-//   border: 1px solid $form-hover;
-// }
-
 form .dropdown:first-child {
-  // border-right: 1px solid #fff;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
-}
-
-form .dropdown:nth-child(3) {
-  // border-left: 1px solid #fff;
-  border-radius: 0 !important;
-}
-
-input::-moz-focus-inner {
-  border: 0;
-  padding: 0;
 }
 
 .submit {
@@ -170,14 +151,10 @@ input::-moz-focus-inner {
   display: inline-block;
   width: 25%;
   box-sizing: border-box;
-  border-left: 0;
-  border-right: 0;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
   padding: 0;
 }
-
-// .reservation-filter-date:hover {
-//   border: 1px solid #d93c3c;
-// }
 
 .reservation-filter-date > .calendar-value {
   padding: 12px;
@@ -216,116 +193,96 @@ li.selected {
   background: rgb(255, 231, 231);
 }
 
-// @media (max-width: 1220px) {
-//   .search .reservation-filter-date {
-//     width: 20% !important;
-//   }
-//
-//   #searchbox {
-//     width: 35% !important;
-//   }
-// }
-//
-// @media (max-width: 950px) {
-//   .search h2 {
-//     font-size: 1.5em !important;
-//   }
-//
-//   .submit {
-//     font-size: 12px !important;
-//   }
-//
-//   .selector {
-//     font-size: 12px !important;
-//   }
-//
-//   .reservation-filter-date > .calendar-value {
-//     font-size: 12px !important;
-//     padding: 12px !important;
-//     line-height: 15px !important;
-//   }
-// }
-//
-@media (max-width: 765px) {
-  .selector {
-    display: block !important;
-    width: 100% !important;
-    border-radius: 0 !important;
-    font-size: 15px !important;
-  }
-
-  .search .reservation-filter-date {
-    width: 100% !important;
-  }
-
-  .reservation-filter-form .reservation-filter-date {
-    width: 100% !important;
+@media screen and (min-width: 670px) and (max-width: 900px) {
+  .search .selector:last-child {
+    width: 20%;
   }
 
   #searchbox {
-    width: 100% !important;
+    width: 30%;
   }
+}
 
-  .search-results {
-    width: calc(100vw - 55px) !important;
-  }
-
-  .reservation-filter-date > .calendar-value {
-    font-size: 15px !important;
-    line-height: 18px !important;
-  }
-
+@media screen and (max-width: 669px) {
   .search h2 {
-    position: static !important;
+    position: relative;
+    bottom: 0;
   }
 
-  .reservation-filter-form {
-    position: relative !important;
-    padding: 5px 0 !important;
-    width: 100% !important;
+  .search-filter .selector,
+  .reservation-filter-form .selector {
+    width: calc(100% / 3);
   }
 
-  form .dropdown:nth-child(3) {
-    border-left: 1px solid #ececec !important;
-    border-radius: 0 !important;
+  #searchbox {
+    border-left: 1px solid rgba(0, 0, 0, 0.08);
   }
 
-  form .dropdown:nth-child(3):hover {
-    border-left: 1px solid $form-hover !important;
-    border-radius: 0 !important;
+  #searchbox, .selector:last-child {
+    width: 100%;
   }
 
-  form .dropdown:first-child {
-    border-right: 1px solid #ececec !important;
+  .selector {
+    border-radius: 0;
   }
 
-  form .dropdown:first-child:hover {
-    border-right: 1px solid $form-hover !important;
+  .selector:last-child {
+    border-radius: 0;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
   }
 
-  .reservation-filter-form select {
-    border-bottom: 1px solid white !important;
+  form div.selector:first-child {
+    border-radius: 0;
+    border-top-left-radius: 3px;
   }
 
-  .reservation-filter-form select:hover {
-    border-bottom: 1px solid $form-hover !important;
+  form div.selector:nth-child(3) {
+    border-radius: 0;
+    border-top-right-radius: 3px;
   }
 
-  .reservation-filter-form .reservation-filter-date {
-    border-bottom: 1px solid white !important;
+  div.selector {
+    border-bottom: 1px solid white;
+  }
+}
+
+@media (max-width: 450px) {
+  .search-filter .selector,
+  .reservation-filter-form .selector {
+    width: 100%;
+    border-left: 1px solid rgba(0, 0, 0, 0.08);
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
   }
 
-  .reservation-filter-form .reservation-filter-date:hover {
-    border-bottom: 1px solid $form-hover !important;
+  .search-filter .selector:hover,
+  .reservation-filter-form .selector:hover {
+    border: 1px solid $form-hover;
   }
 
-  .reservation-section {
-    margin-top: 15px;
-    color: rgb(71, 71, 71);
+  
+
+  .search h2:first-child {
+    display: none;
   }
 
-  .reservation-list-option {
-    margin: 6px 0;
+  .mobile-search-header {
+    display: block;
   }
 
+  form div.selector:first-child {
+    border-radius: 0;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+
+  form div.selector:nth-child(3) {
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 330px) {
+  .nav-logo {
+    padding-right: 5px !important;
+  }
 }

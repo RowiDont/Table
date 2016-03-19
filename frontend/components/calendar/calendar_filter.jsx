@@ -47,7 +47,7 @@ var CalendarFilter = React.createClass({
     return(
       <div className="reservation-filter-date selector">
         <div onClick={this.revealCalendar} className="calendar-value">
-          {this.state.selected.format('MMMM Do, YYYY')}
+          {this.state.selected.format('MMM Do, YYYY')}
         </div>
         <div className={this.state.calendarClass}>
           <Calendar change={this.changeSelected} selected={this.state.selected.startOf("day")} />
