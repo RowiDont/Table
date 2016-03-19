@@ -149,6 +149,15 @@ var ReservationSearchFilter = React.createClass({
       }
     }
 
+    var seating = (
+      <div className="selector">
+        <select defaultValue="2" onChange={this.setPeople} className="reservation-filter-people dropdown" name="people">
+          {seatingOptions}
+        </select>
+        <a href="#">{this.state.people} People</a>
+      </div>
+    )
+
     // date
     var date = <CalendarFilter changeDate={this.setDate} moment={this.state.date} />;
 
@@ -159,6 +168,16 @@ var ReservationSearchFilter = React.createClass({
     for (var j = start; j < end; j += 30) {
       timeOptions.push(<option key={j} value={j}>{Table.timeToString(j)}</option>);
     }
+
+    var time = (
+      <div className="selector">
+        <select value={this.state.time} onChange={this.setTime} className="reservation-filter-time dropdown" name="time">
+          {timeOptions}
+        </select>
+        <a href="#">{Table.timeToString(this.state.time)}</a>
+      </div>
+    )
+
 
     var resultList = this.state.searchOptions.map(function (item, idx) {
       // debugger
@@ -186,21 +205,16 @@ var ReservationSearchFilter = React.createClass({
         <div className="reservation-filter-form">
           <form>
             <div className="search-filter">
-              <select defaultValue="2" onChange={this.setPeople} className="reservation-filter-people selector dropdown" name="people">
-                {seatingOptions}
-              </select>
-              <label>
-                {date}
-              </label>
-              <select value={this.state.time} onChange={this.setTime} className="reservation-filter-time selector dropdown" name="time">
-                {timeOptions}
-              </select>
+              { seating }
+              { date }
+              { time }
+
               <label>
                 <input onBlur={this.hide} onClick={this.revealList} autoComplete="off" type="text" placeholder="Resturant or City" id="searchbox" className="selector" onChange={this.setSearch} value={this.state.searchTerm} />
                 <ul className={this.state.searchClass}>{resultList}</ul>
               </label>
 
-              <button onClick={this.submitFilters} className="selector submit">Find a Table</button>
+              <a onClick={this.submitFilters} className="selector submit">Find a Table</a>
             </div>
           </form>
         </div>

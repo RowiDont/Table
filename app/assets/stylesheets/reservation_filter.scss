@@ -1,36 +1,251 @@
 $primary-color: #da3743;
 $form-hover: #d93c3c;
 
-@media (max-width: 1220px) {
-  .search .reservation-filter-date {
-    width: 20% !important;
-  }
-
-  #searchbox {
-    width: 35% !important;
-  }
+.filter-box {
+  margin: auto;
+  margin-top: 20px;
+  padding: 22px 20px 0 20px;
+  border-bottom: 1px solid #e3e3e3;
+  background: white;
+  border-radius: 2px;
 }
 
-@media (max-width: 950px) {
-  .search h2 {
-    font-size: 1.5em !important;
-  }
-
-  .submit {
-    font-size: 12px !important;
-  }
-
-  .selector {
-    font-size: 12px !important;
-  }
-
-  .reservation-filter-date > .calendar-value {
-    font-size: 12px !important;
-    padding: 12px !important;
-    line-height: 15px !important;
-  }
+.filter-box h2 {
+  font-size: 1.5rem;
 }
 
+.search {
+  position: relative;
+  max-width: 100%;
+  height: 300px;
+  // font-weight: 300;
+  // color: white;
+  background-repeat: no-repeat;
+  background-position: 0;
+}
+
+.search label {
+  position: relative;
+}
+
+.search h2 {
+  font-size: 30px;
+  font-weight: 300;
+  color: white;
+  position: absolute;
+  bottom: 75px;
+  text-shadow: #262626 1px 0 10px;
+}
+
+.search-results {
+  z-index: 50;
+  color: black;
+  font-weight: 300;
+  position: absolute;
+  left: 0;
+  background: white;
+  width: 100%;
+}
+
+.search-item {
+  padding: 5px 5px 5px 10px;
+  cursor: pointer;
+}
+
+.search-item:hover {
+  color: white;
+  background: $primary-color;
+}
+
+.reservation-filter-form {
+  position: relative;
+  padding: 25px 0;
+  line-height: 20px;
+}
+
+.search .reservation-filter-form {
+  width: 95%;
+  position: absolute;
+  bottom: 0;
+}
+
+.reservation-filter-form .selector {
+  box-sizing: border-box;
+  width: 25%;
+  display: inline-block;
+  // border: 1px solid #ececec;
+  margin: 0;
+  line-height: 20px;
+}
+
+.selector {
+  position: relative;
+  color: inherit;
+  background: white;
+  padding: 12px;
+  border: 1px solid #ececec;
+}
+
+.selector:hover {
+  border: 1px solid $form-hover;
+}
+
+form div.selector:first-child {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.dropdown {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.reservation-filter-form .reservation-filter-date {
+  width: 25%;
+}
+
+// .search {
+//   max-width: 100%;
+//   background: rgb(70, 70, 70);
+// }
+
+.search-filter .selector {
+  width: 15%;
+}
+
+.search-filter .reservation-filter-date {
+  width: 20%;
+}
+
+#searchbox {
+  width: 35%;
+  border-left: 0;
+}
+
+#searchbox:hover {
+  border: 1px solid $form-hover;
+}
+
+// .reservation-filter-form .selector:hover {
+//   border: 1px solid $form-hover;
+// }
+
+form .dropdown:first-child {
+  // border-right: 1px solid #fff;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+form .dropdown:nth-child(3) {
+  // border-left: 1px solid #fff;
+  border-radius: 0 !important;
+}
+
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+.submit {
+  border: 1px solid $primary-color;
+  cursor: pointer;
+  background: $primary-color;
+  color: white;
+  transition: background .25s ease-in-out;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  text-align: center;
+}
+
+.submit:hover {
+  background:#b8222d;
+}
+
+.reservation-filter-date {
+  display: inline-block;
+  width: 25%;
+  box-sizing: border-box;
+  border-left: 0;
+  border-right: 0;
+  padding: 0;
+}
+
+// .reservation-filter-date:hover {
+//   border: 1px solid #d93c3c;
+// }
+
+.reservation-filter-date > .calendar-value {
+  padding: 12px;
+  position: relative;
+  cursor: pointer;
+  margin: 0;
+  border-right: 0;
+  font-weight: 400;
+}
+
+.calendar {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  z-index: 40;
+  font-weight: normal;
+}
+
+.triangle {
+  z-index: 100;
+  background: black;
+  border: 20px;
+  border-left-color: grey;
+  border-right-color: black;
+}
+
+.hidden {
+  display: none;
+}
+
+.fa {
+  padding-right: 5px;
+}
+
+li.selected {
+  background: rgb(255, 231, 231);
+}
+
+// @media (max-width: 1220px) {
+//   .search .reservation-filter-date {
+//     width: 20% !important;
+//   }
+//
+//   #searchbox {
+//     width: 35% !important;
+//   }
+// }
+//
+// @media (max-width: 950px) {
+//   .search h2 {
+//     font-size: 1.5em !important;
+//   }
+//
+//   .submit {
+//     font-size: 12px !important;
+//   }
+//
+//   .selector {
+//     font-size: 12px !important;
+//   }
+//
+//   .reservation-filter-date > .calendar-value {
+//     font-size: 12px !important;
+//     padding: 12px !important;
+//     line-height: 15px !important;
+//   }
+// }
+//
 @media (max-width: 765px) {
   .selector {
     display: block !important;
@@ -113,204 +328,4 @@ $form-hover: #d93c3c;
     margin: 6px 0;
   }
 
-}
-
-.filter-box {
-  margin: auto;
-  margin-top: 20px;
-  padding: 22px 20px 0 20px;
-  border-bottom: 1px solid #e3e3e3;
-  background: white;
-  border-radius: 2px;
-}
-
-.filter-box h2 {
-  font-size: 1.5rem;
-}
-
-.search {
-  position: relative;
-  max-width: 100%;
-  height: 300px;
-  font-weight: 300;
-  color: white;
-  background-repeat: no-repeat;
-  background-position: 0;
-}
-
-.search label {
-  position: relative;
-}
-
-.search h2 {
-  font-size: 30px;
-  position: absolute;
-  bottom: 75px;
-  text-shadow: #262626 1px 0 10px;
-}
-
-.search-results {
-  z-index: 50;
-  color: black;
-  position: absolute;
-  left: 0;
-  background: white;
-  width: 100%;
-}
-
-.search-item {
-  padding: 5px 5px 5px 10px;
-  cursor: pointer;
-}
-
-.search-item:hover {
-  color: white;
-  background: $primary-color;
-}
-
-.reservation-filter-form {
-  position: relative;
-  padding: 25px 0;
-}
-
-.search .reservation-filter-form {
-  width: 95%;
-  position: absolute;
-  bottom: 0;
-}
-
-.reservation-filter-form .selector {
-  box-sizing: border-box;
-  width: 25%;
-  display: inline-block;
-  border: 1px solid #ececec;
-  margin: 0;
-}
-
-.reservation-filter-form .reservation-filter-date {
-  width: 25%;
-}
-
-// .search {
-//   max-width: 100%;
-//   background: rgb(70, 70, 70);
-// }
-
-.search-filter .selector {
-  width: 15%;
-}
-
-.search-filter .reservation-filter-date {
-  width: 15%;
-}
-
-.search ::-webkit-input-placeholder {
-  font-weight: 300 !important;
-  color: #e2dddd;
-}
-
-#searchbox {
-  width: 40%;
-  padding: 12px;
-  font-size: 15px;
-  border-left: 0;
-}
-
-#searchbox:hover {
-  border-left: 1px solid $form-hover;
-}
-
-.reservation-filter-form .selector:hover {
-  border: 1px solid $form-hover;
-}
-
-.dropdown {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background: white;
-  appearance: none;
-  padding: 12px;
-  font-size: 15px;
-  cursor: pointer;
-  border-right: 0;
-  border-radius: 0;
-}
-
-form .dropdown:first-child {
-  border-right: 1px solid #fff;
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-}
-
-form .dropdown:nth-child(3) {
-  border-left: 1px solid #fff;
-  border-radius: 0 !important;
-}
-
-.submit {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  padding: 12px;
-  font-size: 15px;
-  border: 0 !important;
-  cursor: pointer;
-  background: $primary-color;
-  color: white;
-  transition: background .25s ease-in-out;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-}
-
-.submit:hover {
-  background:#b8222d;
-}
-
-.reservation-filter-date {
-  display: inline-block;
-  width: 25%;
-  border: 1px solid #ececec;
-  box-sizing: border-box;
-}
-
-.reservation-filter-date:hover {
-  border: 1px solid #d93c3c;
-}
-
-.reservation-filter-date > .calendar-value {
-  position: relative;
-  padding: 12px;
-  cursor: pointer;
-  margin: 0;
-  border-right: 0;
-  background: white;
-  color: black;
-  font-weight: 400;
-  line-height: 18px;
-}
-
-.calendar {
-  position: absolute;
-  z-index: 40;
-  font-weight: normal;
-}
-
-.triangle {
-  z-index: 100;
-  background: black;
-  border: 20px;
-  border-left-color: grey;
-  border-right-color: black;
-}
-
-.hidden {
-  display: none;
-}
-
-.fa {
-  padding-right: 5px;
-}
-
-li.selected {
-  background: rgb(255, 231, 231);
 }

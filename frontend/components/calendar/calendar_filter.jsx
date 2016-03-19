@@ -45,12 +45,11 @@ var CalendarFilter = React.createClass({
 
   render: function () {
     return(
-      <div className="reservation-filter-date">
+      <div className="reservation-filter-date selector">
         <div onClick={this.revealCalendar} className="calendar-value">
           {this.state.selected.format('MMMM Do, YYYY')}
         </div>
         <div className={this.state.calendarClass}>
-          <div className="triangle"></div>
           <Calendar change={this.changeSelected} selected={this.state.selected.startOf("day")} />
         </div>
       </div>

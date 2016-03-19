@@ -130,19 +130,33 @@ var ReservationFilter = React.createClass({
 
     var results = this.state.results;
 
+    var seating = (
+      <div className="selector">
+        <select defaultValue="2" onChange={this.setPeople} className="reservation-filter-people dropdown" name="people">
+          {seatingOptions}
+        </select>
+        <a href="#">{this.state.people} People</a>
+      </div>
+    )
+
+    var time = (
+      <div className="selector">
+        <select value={this.state.time} onChange={this.setTime} className="reservation-filter-time dropdown" name="time">
+          {this.timeOptions}
+        </select>
+        <a href="#">{Table.timeToString(this.state.time)}</a>
+      </div>
+    )
+
     return(
       <div className="filter-box">
         <h2>Make a Reservation</h2>
         <div className="reservation-filter-form">
           <form>
-            <select defaultValue="2" onChange={this.setPeople} className="reservation-filter-people selector dropdown" name="people">
-              {seatingOptions}
-            </select>
-            {date}
-            <select value={this.state.time} onChange={this.setTime} className="reservation-filter-time selector dropdown" name="time">
-              {this.timeOptions}
-            </select>
-            <button onClick={this.submitFilters} className="selector submit">Find a Table</button>
+            { seating }
+            { date }
+            { time }
+            <a onClick={this.submitFilters} className="selector submit">Find a Table</a>
           </form>
         </div>
         <ReservationOptions time={this.state.time} results={results}/>
