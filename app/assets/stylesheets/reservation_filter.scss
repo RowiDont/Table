@@ -260,7 +260,7 @@ li.selected {
     border: 1px solid $form-hover;
   }
 
-  
+
 
   .search h2:first-child {
     display: none;
@@ -278,11 +278,5 @@ li.selected {
 
   form div.selector:nth-child(3) {
     border-radius: 0;
-  }
-}
-
-@media (max-width: 330px) {
-  .nav-logo {
-    padding-right: 5px !important;
   }
 }
